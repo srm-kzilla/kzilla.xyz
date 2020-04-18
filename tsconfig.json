@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "./build",
+    "removeComments": true,
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "client"]
+}
