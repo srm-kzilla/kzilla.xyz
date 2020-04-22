@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "commonjs",
+    "baseUrl": "./",
     "sourceMap": true,
     "outDir": "./build",
     "removeComments": true,
