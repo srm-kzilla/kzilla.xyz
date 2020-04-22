@@ -1,0 +1,14 @@
+<link rel="icon" type="image/png" href="favicon.png" />
+<%
+if(!meta.title) meta.title = "KZILLA.XYZ"
+if(!meta.description) meta.description = "A stupid simple URL shrinker"
+if(!meta.keywords) meta.keywords = ["url", "shrinker", "srmkzilla", "shortner"]
+
+if(meta.title && !meta['og:title']) meta['og:title'] = meta.title
+if(meta.description && !meta['og:description']) meta['og:description'] = meta.description
+if(meta.title && !meta['twitter:title']) meta['twitter:title'] = meta.title
+if(meta.description && !meta['twitter:description']) meta['twitter:description'] = meta.description
+%>
+<% const metaKeys = Object.keys(meta) %>
+<% for(var i=0; i < metaKeys.length; i++) { %>
+<meta name="<%=metaKeys[i]%>" content="<%=meta[metaKeys[i]]%>"><% } %>

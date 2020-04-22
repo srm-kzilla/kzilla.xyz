@@ -1,0 +1,154 @@
+<html>
+
+<head>
+  <title>Page Not Found - KZILLA.XYZ</title>
+  <%- include ('../partials/metas' , {meta: data.meta}); %>
+</head>
+
+<body>
+  <style>
+    @font-face {
+      font-family: 'UniSansBook';
+      src: url(Uni-Sans-Book.woff);
+    }
+
+    @font-face {
+      font-family: 'VisbyRoundCF';
+      src: url(VisbyRoundCF-Regular.woff);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'UniSansBook', sans-serif;
+      font-size: 16px;
+      text-rendering: optimizeLegibility;
+      text-align: center;
+    }
+
+    div.container {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      top: 25%;
+      transform: translateY(-50%);
+    }
+
+    div.flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    div.flex img {
+      width: 5em;
+      height: auto;
+      margin-bottom: 3em;
+      animation: jello 2s infinite;
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+
+    div.flex h2 {
+      font-size: 2rem;
+      color: #202020;
+      position: relative;
+      font-weight: 600;
+      margin-bottom: 0.5em;
+    }
+
+    div.flex h3 {
+      font-size: 1.5rem;
+      color: #202020;
+      font-weight: 400;
+    }
+
+    div.flex h2::after {
+      content: '';
+      position: absolute;
+      height: .5em;
+      width: 40%;
+      bottom: 4px;
+      left: 10%;
+      background-color: #54A870;
+      z-index: -1;
+    }
+
+    lottie-player {
+      width: 100vw;
+      height: 60vh;
+      margin-bottom: .5em;
+    }
+
+    div.footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    div.footer p {
+      font-family: 'VisbyRoundCF', sans-serif;
+      font-size: 0.8em;
+      color: #484C6E;
+    }
+
+    @keyframes jello {
+      11.1% {
+        transform: none
+      }
+
+      22.2% {
+        transform: skewX(-12.5deg) skewY(-12.5deg)
+      }
+
+      33.3% {
+        transform: skewX(6.25deg) skewY(6.25deg)
+      }
+
+      44.4% {
+        transform: skewX(-3.125deg) skewY(-3.125deg)
+      }
+
+      55.5% {
+        transform: skewX(1.5625deg) skewY(1.5625deg)
+      }
+
+      66.6% {
+        transform: skewX(-0.78125deg) skewY(-0.78125deg)
+      }
+
+      77.7% {
+        transform: skewX(0.390625deg) skewY(0.390625deg)
+      }
+
+      88.8% {
+        transform: skewX(-0.1953125deg) skewY(-0.1953125deg)
+      }
+
+      100% {
+        transform: none
+      }
+    }
+  </style>
+
+  <div class="flex container">
+    <img src="icon.svg" alt="icon" />
+    <h2>Well shucks...</h2>
+    <h3>Something has gone wrong. The link is broken, or the world is ending. Either way, we're investigating the cause.
+    </h3>
+  </div>
+
+  <div class="flex footer">
+    <lottie-player src="404.json" background="transparent" speed="1" mode="bounce" loop autoplay></lottie-player>
+    <p>crafted with <span style="color: #F0634D;">&hearts;</span> by your friends on the SRMKZILLA team</p>
+  </div>
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</body>
+
+</html>
