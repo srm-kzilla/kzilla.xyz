@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "Express";
+import { Request, Response, NextFunction } from "express";
 import axios from "axios";
 import { ErrorMessage } from "../constants";
 
