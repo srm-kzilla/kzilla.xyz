@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import { config } from "dotenv";
 import { mw } from "request-ip";
 import { Constants, APIEndpoints } from "./api/constants";
@@ -37,6 +38,7 @@ class Server {
    * Mounts middleswares into the Express instance
    */
   private mountMiddlewares() {
+    this.app.use(cors());
     this.app.use(express.static("public"));
     this.app.use(helmet());
     this.app.use(bodyParser.json());
