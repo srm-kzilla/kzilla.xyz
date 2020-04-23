@@ -75,7 +75,7 @@ export const fetchLink = async (req: Request, res: Response) => {
  * @param res an Express Response object
  */
 router.get(APIEndpoints.Links.MY_LINKS, async (req: Request, res: Response) => {
-  if (req.cookies.linksIds && req.cookies.linksIds.length === 0)
+  if (req.cookies.linkIds && req.cookies.linkIds.length === 0)
     return res.status(404).send();
   console.log(req.cookies.linkIds);
   try {
