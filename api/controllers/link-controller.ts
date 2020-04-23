@@ -111,7 +111,7 @@ export const fetchMyLinks = async (linkIds: string[]) => {
     if (result.length === 0) throw 404;
     return result;
   } catch (error) {
-    throw 500;
+    throw error;
   }
 };
 
