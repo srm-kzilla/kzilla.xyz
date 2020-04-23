@@ -31,6 +31,7 @@ router.post(
       let linkIds = req.cookies.linkIds || [];
       linkIds.push(result.linkId);
       res.cookie("linkIds", linkIds);
+      console.log(req.cookies);
       return res.status(201).json(result);
     } catch (error) {
       if (error === 500) {
@@ -75,6 +76,7 @@ export const fetchLink = async (req: Request, res: Response) => {
  * @param res an Express Response object
  */
 router.get(APIEndpoints.Links.MY_LINKS, async (req: Request, res: Response) => {
+  console.log(req.cookies);
   if (!req.cookies.linkIds || req.cookies.linkIds.length === 0)
     return res.status(404).send();
   console.log(req.cookies.linkIds);
