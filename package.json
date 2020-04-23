@@ -7,7 +7,7 @@
     "tsc": "tsc",
     "build": "yarn run tsc && yarn run copy",
     "copy": "cp -r ./api/views/ ./build/api/views/",
-    "postinstall": "link-module-alias"
+    "postinstall": "link-module-alias && yarn run build"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
