@@ -1,5 +1,5 @@
-import { Router, Request, Response } from "Express";
-import { APIEndpoints } from "../Constants";
+import { Router, Request, Response } from "express";
+import { APIEndpoints } from "../constants";
 import {
   createLink,
   incrementClick,

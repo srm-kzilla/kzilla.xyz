@@ -1,4 +1,4 @@
-import express from "Express";
+import express from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
