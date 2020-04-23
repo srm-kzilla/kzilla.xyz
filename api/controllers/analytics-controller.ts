@@ -39,6 +39,6 @@ export const fetchAnalytics = async (
       result.clicks
     );
   } catch (error) {
-    throw 500;
+    throw error;
   }
 };
