@@ -28,7 +28,9 @@ router.post(
 
     try {
       const result = await createLink(req.body.longUrl, req.clientIp);
-      let linkIds = req.cookies.linkIds || [];
+      let linkIds = Array.isArray(req.cookies.linkIds)
+        ? req.cookies.linkIds
+        : [];
       linkIds.push(result.linkId);
       res.cookie("linkIds", linkIds);
       console.log(req.cookies);
