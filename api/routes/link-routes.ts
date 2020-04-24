@@ -31,6 +31,12 @@ router.post(
       let linkIds = Array.isArray(req.cookies.linkIds)
         ? req.cookies.linkIds
         : [];
+      console.log(
+        "something",
+        Array.isArray(req.cookies.linkIds),
+        req.cookies.linkIds,
+        linkIds
+      );
       linkIds.push(result.linkId);
       res.cookie("linkIds", linkIds);
       console.log(req.cookies);
