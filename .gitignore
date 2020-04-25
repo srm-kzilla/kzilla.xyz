@@ -4,3 +4,4 @@
 .yarn-integrity
 build
 node_modules
+client/public/build
