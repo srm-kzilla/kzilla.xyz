@@ -37,6 +37,7 @@ export const createLink = async (
     analyticsCode: analyticsCode,
     clicks: 0,
     creatorIpAddress: ipAddress,
+    enabled: true,
     logs: [],
     longUrl: longUrl,
     timestamp: Date.now(),
@@ -69,7 +70,7 @@ export const fetchLink = async (shortCode: string) => {
       {
         projection: {
           _id: 0,
-          shortCode: 1,
+          enabled: 1,
           longUrl: 1,
         },
       }
@@ -77,6 +78,10 @@ export const fetchLink = async (shortCode: string) => {
 
   if (!result) {
     throw 404;
+  }
+
+  if (!result.enabled) {
+    throw 403;
   }
 
   try {

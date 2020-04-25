@@ -13,6 +13,17 @@ export const generateRedirect = async (data: any) => {
 };
 
 /**
+ * Renders an EJS forbidden page
+ * @param data an object passed on to EJS render engine
+ */
+export const generateForbidden = async () => {
+  const viewPath = path.join(__dirname, "..", "views", "pages", "403.ejs");
+  return ejs.renderFile(viewPath, {
+    meta: {},
+  });
+};
+
+/**
  * Renders an EJS too many requests page
  */
 export const generateTooManyRequests = async () => {

@@ -7,7 +7,11 @@ import {
   fetchMyLinks,
 } from "../controllers/link-controller";
 import { CacheService } from "../services/cache-service";
-import { generateRedirect, generatePageNotFound } from "../utils/ejs-templates";
+import {
+  generateRedirect,
+  generatePageNotFound,
+  generateForbidden,
+} from "../utils/ejs-templates";
 import { createLinkSchema } from "../models/joi-schemas";
 
 const router = Router();
@@ -57,9 +61,12 @@ router.post(
 export const fetchLink = async (req: Request, res: Response) => {
   let result = await CacheService.getInstance().get(req.params.shortCode);
   if (result) {
+    if (!(result as any).enabled) {
+      const html = await generateForbidden();
+      return res.status(403).send(html);
+    }
     incrementClick(req.params.shortCode, req.clientIp);
     const html = await generateRedirect(result);
-
     return res.status(200).send(html);
   }
 
@@ -72,6 +79,9 @@ export const fetchLink = async (req: Request, res: Response) => {
     if (error === 404) {
       const html = await generatePageNotFound();
       return res.status(404).send(html);
+    } else if (error === 403) {
+      const html = await generateForbidden();
+      return res.status(403).send(html);
     } else {
       res.status(500).send();
     }
@@ -98,5 +108,25 @@ router.get(APIEndpoints.Links.MY_LINKS, async (req: Request, res: Response) => {
     res.status(error).send();
   }
 });
+
+/**
+ * Flushes the entire cache into sewage
+ * @param req an Express Request object
+ * @param res an Express Response object
+ */
+router.put(
+  APIEndpoints.Links.FLUSH_LINKS,
+  async (req: Request, res: Response) => {
+    console.log(req.headers["flush-code"], process.env.FLUSH_CODE);
+    if (
+      req.headers["flush-code"] &&
+      req.headers["flush-code"] === process.env.FLUSH_CODE
+    ) {
+      await CacheService.getInstance().flush();
+      return res.status(200).send();
+    }
+    return res.status(403).send();
+  }
+);
 
 export default router;

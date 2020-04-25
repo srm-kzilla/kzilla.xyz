@@ -7,6 +7,7 @@ export interface Link {
   analyticsCode: string;
   linkId: string;
   clicks: number;
+  enabled: boolean;
   logs: Log[];
   timestamp: number;
   creatorIpAddress: string | undefined;
