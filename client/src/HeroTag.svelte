@@ -19,6 +19,19 @@
         background-color: #54a870;
         z-index: -1;
     }
+    @media(max-width: 650px){
+        .header{
+            margin-top: 20vh;
+            padding-left: 30px;
+        }
+        .header h1{
+            font-size: 10vw;
+        }
+        .headTwo:before{
+            width: 50vw;
+            height: 3vw;
+        }
+    }
 </style>
 
 <script>
