@@ -1,7 +1,7 @@
 <script>
 	import Navbar from './Navbar.svelte';
 	import HeroTag from './HeroTag.svelte';
-	import FormDes from './FormDes.svelte';
+	import FormDesign from './FormDesign.svelte';
 </script>
 
 <style>
@@ -12,7 +12,7 @@
 	}
 	.kz-crafted{
 		position: absolute;
-		bottom: 20px;
+		bottom: 0px;
 		width: 100%;
 	}
 	.kz-para{
@@ -29,7 +29,7 @@
 
 	<HeroTag/>
 
-	<FormDes/>
+	<FormDesign/>
 	<br>
 
 	<div class="text-center kz-crafted">
