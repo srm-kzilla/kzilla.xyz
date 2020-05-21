@@ -83,7 +83,7 @@
 <script>
 
     let tapped = false;
-    let shrinkedText = "kzilla.xyz/DmO7u";
+    let shrinkedText = "kzilla.xyz/HeL0OlUc45";
     let analyticsLink = "kzilla.xyz/Analytics/YmcA5s";
     let enteredLink = "someRandomLink.domainName/abcDE543534fsdfSDFK4353rnjFFDSFSKYUUYTYeUJJH";
 
@@ -92,7 +92,11 @@
     }
 
     function copyExec(){
-
+        var $temp = window.$("<input>");
+        window.$("body").append($temp);
+        $temp.val(window.$("#shrink").text()).select();
+        document.execCommand("copy");
+        $temp.remove();
     }
     
 </script>
@@ -106,16 +110,16 @@
         <div class="container-fluid kz-input kz-input-done" style="margin-right: 0px; width: 100%;">{enteredLink}</div>
         <div class="row justify-content-center" style="margin-left: 10px; padding: 0px !important;">
             <div class="col col-8 col-md-4 text-center" style="padding: 0px !important;">
-                <p class="kz-shrinked-text">{shrinkedText}</p>
+                <p class="kz-shrinked-text" id="shrink">{shrinkedText}</p>
             </div>
             <div class="col col-4 col-md-2" style="padding: 0px !important;">
-                <button class="kz-alternate" on:click={copyExec}>Copy</button>
+                <button class="kz-alternate" on:click={copyExec}><img height="28px" src="ic-round-content-copy.svg" alt="copy-btn"></button>
             </div>
             <div class="col col-8 col-md-4 text-center" style="padding: 0px !important;">
                 <div class="kz-shrinked-text" style=" ">{analyticsLink}</div>
             </div>
             <div class="col col-4 col-md-2" style="padding: 0px !important;">
-                <button class="kz-alternate">Link</button>
+                <button class="kz-alternate"><img height="28px" src="./ic-baseline-bar-chart.svg" alt="stats-btn"></button>
             </div>
         </div>
     </div>
