@@ -1,5 +1,5 @@
 <script>
-	let name = 'world';
+  import Analytics from "./Analytics.svelte";
 </script>
 
-<h1>Hello {name}!</h1>
+<Analytics />
