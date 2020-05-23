@@ -145,3 +145,29 @@ export const incrementClick = async (
       }
     );
 };
+
+export const updateLink = async (
+  linkId: string,
+  longUrl: string,
+  enabled: boolean
+) => {
+  let query: any = {
+    $set: { longUrl: longUrl },
+  };
+  if (longUrl === undefined)
+    query = {
+      $set: { enabled: enabled },
+    };
+
+  const result = await DatabaseService.getInstance()
+    .database!!.collection(Collections.LINKS)
+    .findOneAndUpdate(
+      {
+        linkId: linkId,
+      },
+      query
+    );
+
+  if (!result.value) throw 404;
+  return result;
+};
