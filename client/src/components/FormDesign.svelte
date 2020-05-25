@@ -70,12 +70,12 @@
             font-size: 15px;
         }
         .kz-form-des{
-            margin-bottom: 50px;
+            margin-bottom: 0px;
         }
     }
     @media(max-height: 640px){
         .kz-form-des{
-            margin-top: 15vh;
+            margin-top: 10vh;
         }
     }
 </style>
