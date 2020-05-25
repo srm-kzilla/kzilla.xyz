@@ -2,7 +2,7 @@
     import { Router, Link, Route } from "svelte-routing";
     import HomePage from '../modules/home.svelte';
     import myLinks from '../modules/myLinks.svelte';
-	export let url = "";
+	  export let url = "";
 </script>
 
 <Router url="{url}">

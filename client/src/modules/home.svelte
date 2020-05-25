@@ -31,7 +31,6 @@
 
 	<FormDesign/>
 	<br>
-
 </div>
 
 <div class="text-center kz-crafted">
