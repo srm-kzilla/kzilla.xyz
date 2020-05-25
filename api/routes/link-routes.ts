@@ -5,6 +5,7 @@ import {
   incrementClick,
   fetchLink as fetchLinkController,
   fetchMyLinks,
+  updateLink,
 } from "../controllers/link-controller";
 import { CacheService } from "../services/cache-service";
 import {
@@ -12,7 +13,7 @@ import {
   generatePageNotFound,
   generateForbidden,
 } from "../utils/ejs-templates";
-import { createLinkSchema } from "../models/joi-schemas";
+import { createLinkSchema, updateLinkSchema } from "../models/joi-schemas";
 
 const router = Router();
 
@@ -126,6 +127,29 @@ router.put(
       return res.status(200).send();
     }
     return res.status(403).send();
+  }
+);
+
+/**
+ * Updates the longUrl based on linkId
+ * @param req an Express Request object
+ * @param res an Express Response object
+ */
+router.put(
+  APIEndpoints.Links.UPDATE_LINK,
+  async (req: Request, res: Response) => {
+    try {
+      await updateLinkSchema.validateAsync(req.body);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
+
+    try {
+      await updateLink(req.body.linkId, req.body.longUrl, req.body.enabled);
+      return res.status(200).json({ success: true });
+    } catch (error) {
+      res.status(error).send();
+    }
   }
 );
 
