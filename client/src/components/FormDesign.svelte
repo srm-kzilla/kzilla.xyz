@@ -82,6 +82,8 @@
 
 <script>
 
+    const kzilla = 'kzilla.xyz/';
+    const analytics = 'kzilla.xyz/analytics/';
     let tapped = false;
     let shortURL = "HeL0OlUc45";
     let analyticsCode = "YmcA5s";
@@ -110,13 +112,13 @@
         <div class="container-fluid kz-input kz-input-done" style="margin-right: 0px; width: 100%;">{longURL}</div>
         <div class="row justify-content-center" style="margin-left: 10px; padding: 0px !important;">
             <div class="col col-8 col-md-4 text-center" style="padding: 0px !important;">
-                <p class="kz-shrinked-text" id="shrink">kzilla.xyz/{shortURL}</p>
+                <p class="kz-shrinked-text" id="shrink">{kzilla}{shortURL}</p>
             </div>
             <div class="col col-4 col-md-2" style="padding: 0px !important;">
                 <button class="kz-alternate" on:click={copyExec}><img height="28px" src="ic-round-content-copy.svg" alt="copy-btn"></button>
             </div>
             <div class="col col-8 col-md-4 text-center" style="padding: 0px !important;">
-                <div class="kz-shrinked-text" style=" ">kzilla.xyz/Analytics/{analyticsCode}</div>
+                <div class="kz-shrinked-text" style=" ">{analytics}{analyticsCode}</div>
             </div>
             <div class="col col-4 col-md-2" style="padding: 0px !important;">
                 <button class="kz-alternate"><img height="28px" src="./ic-baseline-bar-chart.svg" alt="stats-btn"></button>
