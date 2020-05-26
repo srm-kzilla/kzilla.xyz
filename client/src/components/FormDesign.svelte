@@ -83,9 +83,9 @@
 <script>
 
     let tapped = false;
-    let shrinkedText = "kzilla.xyz/HeL0OlUc45";
-    let analyticsLink = "kzilla.xyz/Analytics/YmcA5s";
-    let enteredLink = "someRandomLink.domainName/abcDE543534fsdfSDFK4353rnjFFDSFSKYUUYTYeUJJH";
+    let shortURL = "HeL0OlUc45";
+    let analyticsCode = "YmcA5s";
+    let longURL = "";
 
     function buttonClicked(){
         tapped = true;
@@ -103,20 +103,20 @@
 
 <div class="container text-center kz-form-des">
     <form action="" method="POST" class="{tapped? 'delete' : ''}">
-        <input type="text" required placeholder="Enter your link here..." class="{tapped === 1 ? 'kz-input kz-input-done' : 'kz-input'}">
-        <button type="submit" name="userLink" class="shrinker" on:click={buttonClicked}>Shrink</button>
+        <input type="text" bind:value={longURL} required placeholder="Enter your link here..." class="{tapped === 1 ? 'kz-input kz-input-done' : 'kz-input'}">
+        <button type="button" name="userLink" class="shrinker" on:click={buttonClicked}>Shrink</button>
     </form>
     <div id="shrunkLink" class="{tapped? 'container-fluid text-center' : 'delete'}" style="margin-top: 30px; padding: 0px;">
-        <div class="container-fluid kz-input kz-input-done" style="margin-right: 0px; width: 100%;">{enteredLink}</div>
+        <div class="container-fluid kz-input kz-input-done" style="margin-right: 0px; width: 100%;">{longURL}</div>
         <div class="row justify-content-center" style="margin-left: 10px; padding: 0px !important;">
             <div class="col col-8 col-md-4 text-center" style="padding: 0px !important;">
-                <p class="kz-shrinked-text" id="shrink">{shrinkedText}</p>
+                <p class="kz-shrinked-text" id="shrink">kzilla.xyz/{shortURL}</p>
             </div>
             <div class="col col-4 col-md-2" style="padding: 0px !important;">
                 <button class="kz-alternate" on:click={copyExec}><img height="28px" src="ic-round-content-copy.svg" alt="copy-btn"></button>
             </div>
             <div class="col col-8 col-md-4 text-center" style="padding: 0px !important;">
-                <div class="kz-shrinked-text" style=" ">{analyticsLink}</div>
+                <div class="kz-shrinked-text" style=" ">kzilla.xyz/Analytics/{analyticsCode}</div>
             </div>
             <div class="col col-4 col-md-2" style="padding: 0px !important;">
                 <button class="kz-alternate"><img height="28px" src="./ic-baseline-bar-chart.svg" alt="stats-btn"></button>
