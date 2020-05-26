@@ -5,7 +5,7 @@
   import FormDesign from "./FormDesign.svelte";
 </script>
 
-<style>
+<!-- <style>
   .kz-main {
     min-height: 100vh;
     position: relative;
@@ -24,9 +24,7 @@
       font-size: 3.7vw;
     }
   }
-</style>
-
-<div class="container-fluid kz-main">
+</style><div class="container-fluid kz-main">
   <Navbar />
 
   <HeroTag />
@@ -42,5 +40,5 @@
     </p>
   </div>
 
-</div>
-<!-- <Analytics /> -->
+</div> -->
+<Analytics />
