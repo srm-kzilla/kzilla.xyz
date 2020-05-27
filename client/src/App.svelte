@@ -1,6 +1,5 @@
 <script>
-
-	import HomePage from './modules/home.svelte';
+	import Navbar from './components/Navbar.svelte';
 </script>
 
-<HomePage/>
+<Navbar/>
