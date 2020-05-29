@@ -133,6 +133,9 @@
         color: #ffffff;
         /* font-weight: 999; */
     }
+    .marginer{
+        margin-right: 10px;
+    }
 
     @media(max-width: 640px){
         .kz-input{
@@ -147,6 +150,9 @@
         .shrinker{
             margin: 0px;
             margin-top: 10px;
+        }
+        .marginer{
+            margin-right: 5px;
         }
     }
 
@@ -206,9 +212,9 @@ function hideQREditor(){
     {count}
 </div>
 <div class="col col-3 kz-finder">
-    <input class="kz-switch" type="checkbox" name="">
-    <svg on:click={showEditor} style="padding-right: 5px;" height="20px" width="20px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" class="svg-inline--fa fa-pen fa-w-16 kz-edit-btn" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg>
-    <svg style="padding-right: 5px;" height="24px" viewBox="0 0 29 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <input class="kz-switch marginer" type="checkbox" name="">
+    <svg on:click={showEditor} height="20px" width="20px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" class="marginer svg-inline--fa fa-pen fa-w-16 kz-edit-btn" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"></path></svg>
+    <svg class="marginer" height="24px" viewBox="0 0 29 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
         <title>ic-round-content-copy</title>
         <desc>Created with Sketch.</desc>
@@ -230,7 +236,7 @@ function hideQREditor(){
             </g>
         </g>
     </svg>
-    <svg on:click={showQREditor} style="padding-right: 5px;" height="20px" width="20px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" class="svg-inline--fa fa-qrcode fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"></path></svg>
+    <svg on:click={showQREditor} height="20px" width="20px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" class="marginer svg-inline--fa fa-qrcode fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"></path></svg>
     <svg width="15px" height="15px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
         <title>ic-baseline-bar-chart</title>

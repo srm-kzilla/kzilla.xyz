@@ -32,33 +32,44 @@
 
 <script>
 
+    import { onMount } from "svelte";
+    // import { fetchMyLinks } from "../services/longUrl";
     import Table from '../components/table.svelte';
 
+    //Attaching my links API...
+
+    // let datas;
+
+    // async function myLinksFetcher(){
+    //     datas = await fetchMyLinks();
+    // }
+
     let datas = [
-		{ name: 'Goblet of Fire', count: '43345', shortURL: 'kzdou5', longURL: 'gobletoffire.edu/fkdsfkdsnnfjnwejnwkn'},
-		{ name: 'Svelte Developer', count: '365', shortURL: 'kz5Og5', longURL: 'svelte.dev/learnsvelte/oashfdjshfijohiuhewon'},
-		{ name: 'KZilla', count: '17', shortURL: 'kz3Un4', longURL: 'Kzilla.com/events/oashfdjshfijohiuhewon'}
+		{ count: 5435, shortUrl: 'asdsadc', longUrl: 'jdbasjbdsjabdjasbdjh', name: 'Keyboard Cat' },
+		{ count: 5435, shortUrl: 'asdsadc', longUrl: 'jdbasjbdsjabdjasbdjh', name: 'Keyboard Cat' },
+		{ count: 5435, shortUrl: 'asdsadc', longUrl: 'jdbasjbdsjabdjasbdjh', name: 'Keyboard Cat' }
 	];
 
+    // myLinksFetcher();
 </script>
 
-<div class="kz-notUsed"></div>
+    <div class="kz-notUsed"></div>
 
-<div class="container-fluid kz-table-design">
-    <div class="row justify-content-center">
-        <div class="col col-5 kz-head">
-            TITLE
+    <div class="container-fluid kz-table-design">
+        <div class="row justify-content-center">
+            <div class="col col-5 kz-head">
+                TITLE
+            </div>
+            <div class="col col-4 kz-head">
+                CLICKS
+            </div>
+            <div class="col col-3 kz-head">
+                ACTIONS
+            </div>
         </div>
-        <div class="col col-4 kz-head">
-            CLICKS
-        </div>
-        <div class="col col-3 kz-head">
-            ACTIONS
-        </div>
+        {#each datas as { name, count, shortURL, longURL }}
+            <div class="row justify-content-center kz-row-design">
+                <Table count={count} name={name} shortURL={shortURL} longURL={longURL}/>
+            </div>
+        {/each}
     </div>
-    {#each datas as { name, count, shortURL, longURL }}
-        <div class="row justify-content-center kz-row-design">
-            <Table count={count} name={name} shortURL={shortURL} longURL={longURL}/>
-        </div>
-    {/each}
-</div>

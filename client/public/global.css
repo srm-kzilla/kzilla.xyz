@@ -2,6 +2,11 @@ button{
 	border-style: none;
 }
 
+a:hover{
+	color: #ffffff;
+	text-decoration: none;
+}
+
 /*------------------------------Navbar--------------------------------------------*/
 
 
