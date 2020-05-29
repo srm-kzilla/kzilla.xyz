@@ -1,5 +1,5 @@
 <script>
-  export let data;
+  export let sdata;
 </script>
 
 <style>
@@ -28,72 +28,46 @@
     height: 7px !important;
     width: 100%;
   }
-  .smallbox1 {
+  .smallbox {
     margin-top: 30px;
     height: 250px;
     overflow-y: scroll;
     overflow-x: hidden;
   }
-  .smallbox2 {
-    margin-top: 30px;
-    height: 250px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+  ul li:nth-child(4n + 1) .progress-bar,
+  ul li:nth-child(4n + 3) .progress-bar {
+    background-color: #54a870;
+  }
+  ul li:nth-child(4n + 2) .progress-bar {
+    background-color: #f0634d;
+  }
+  ul li:nth-child(4n + 4) .progress-bar,
+  ul li:nth-child(4n + 5) .progress-bar {
+    background-color: #26baff;
   }
 </style>
 
 <!-- 2 small boxes -->
-<div class="row">
-  <div class="col-md-6">
-    <div class="box lightbg smallbox1">
-      <p class="heading">Sources</p>
-      <ul>
-        {#each data.reports[0].data as { label, value }}
-          <li>
-            <div class="row">
-              <div class="col-sm-4">{label}</div>
-              <div class="col-sm-6">
-                <div class="progress">
-                  <div
-                    class="progress-bar "
-                    role="progressbar"
-                    style="width: 57%"
-                    aria-valuenow="57"
-                    aria-valuemin="0"
-                    aria-valuemax="100" />
-                </div>
-              </div>
-              <div class="col-sm-2">{value}</div>
+<div class="box lightbg smallbox">
+  <p class="heading">City</p>
+  <ul>
+    {#each sdata.data as { label, value }}
+      <li>
+        <div class="row">
+          <div class="col-sm-4">{label}</div>
+          <div class="col-sm-6">
+            <div class="progress">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                style="width:{(value / sdata._total) * 100}%"
+                aria-valuenow={(value / sdata._total) * 100}
+                aria-valuemax="100" />
             </div>
-          </li>
-        {/each}
-      </ul>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="box lightbg smallbox2">
-      <p class="heading">City</p>
-      <ul>
-        {#each data.reports[1].data as { label, value }}
-          <li>
-            <div class="row">
-              <div class="col-sm-4">{label}</div>
-              <div class="col-sm-6">
-                <div class="progress">
-                  <div
-                    class="progress-bar"
-                    role="progressbar"
-                    style="width: 57%"
-                    aria-valuenow="57"
-                    aria-valuemin="0"
-                    aria-valuemax="100" />
-                </div>
-              </div>
-              <div class="col-sm-2">{value}</div>
-            </div>
-          </li>
-        {/each}
-      </ul>
-    </div>
-  </div>
+          </div>
+          <div class="col-sm-2">{value}</div>
+        </div>
+      </li>
+    {/each}
+  </ul>
 </div>
