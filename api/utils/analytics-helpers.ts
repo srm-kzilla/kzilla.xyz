@@ -45,7 +45,7 @@ export const readableReports = (
         };
 
         formattedReports.push(formattedReport);
-      } else throw 204;
+      }
     }
   });
 
