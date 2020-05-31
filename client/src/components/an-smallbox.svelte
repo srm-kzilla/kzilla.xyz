@@ -1,5 +1,6 @@
 <script>
   export let sdata;
+  export let heading;
 </script>
 
 <style>
@@ -49,7 +50,7 @@
 
 <!-- 2 small boxes -->
 <div class="box lightbg smallbox">
-  <p class="heading">City</p>
+  <p class="heading">{heading}</p>
   <ul>
     {#each sdata.data as { label, value }}
       <li>
