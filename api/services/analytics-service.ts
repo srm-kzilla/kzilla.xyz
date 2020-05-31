@@ -13,7 +13,10 @@ export class AnalyticsService {
     this._jwt = new google.auth.JWT(
       process.env.GAPI_CLIENT_EMAIL,
       undefined,
-      process.env.GAPI_PRIVATE_KEY,
+      (process.env.GAPI_PRIVATE_KEY as string).replace(
+        new RegExp("\\\\n", "g"),
+        "\n"
+      ),
       this._scopes
     );
   }
