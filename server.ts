@@ -58,6 +58,7 @@ class Server {
     });
 
     this.app.post("*", recaptchaMiddleware);
+    this.app.put("*", recaptchaMiddleware);
 
     this.app.get(APIEndpoints.Links.GET_LINK, apiLimiter, fetchLink);
 
