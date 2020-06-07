@@ -14,6 +14,9 @@ export const fetchAnalytics = async (
   endDate: string
 ) => {
   try {
+    const startDateTs = new Date(startDate).getTime();
+    const endDateTs = new Date(endDate).getTime();
+
     const result = await DatabaseService.getInstance()
       .database!!.collection(Collections.LINKS)
       .findOne(
@@ -32,11 +35,45 @@ export const fetchAnalytics = async (
       throw 404;
     }
 
+    const clicksArray = await DatabaseService.getInstance()
+      .database!!.collection(Collections.LINKS)
+      .aggregate([
+        {
+          $match: {
+            analyticsCode: analyticsCode,
+          },
+        },
+        {
+          $unwind: "$logs",
+        },
+        {
+          $match: {
+            $and: [
+              {
+                "logs.timestamp": {
+                  $gte: startDateTs,
+                  $lte: endDateTs,
+                },
+              },
+            ],
+          },
+        },
+        {
+          $count: "clicks",
+        },
+      ])
+      .toArray();
+
+    var clicks = 0;
+    if (clicksArray[0] && clicksArray[0].clicks) {
+      clicks = clicksArray[0].clicks as number;
+    }
+
     return AnalyticsService.getInstance().getAnalytics(
       startDate,
       endDate,
       result.shortCode,
-      result.clicks
+      clicks
     );
   } catch (error) {
     throw error;
