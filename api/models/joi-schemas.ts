@@ -5,7 +5,9 @@ import Joi from "@hapi/joi";
  */
 export const createLinkSchema = Joi.object({
   longUrl: Joi.string()
-    .regex(/^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{3,6}$/)
+    .regex(
+      /^(?:(http|https|ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+    )
     .required(),
 });
 
@@ -29,7 +31,7 @@ export const updateLinkSchema = Joi.object({
     .regex(/^[A-Za-z]{12}$/)
     .required(),
   longUrl: Joi.string().regex(
-    /^(?:(ftp|http|https):\/\/)?(?:[\w-]+\.)+[a-z]{3,6}$/
+    /^(?:(http|https|ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
   ),
   enabled: Joi.bool(),
 }).xor("longUrl", "enabled");
