@@ -107,6 +107,7 @@ export const fetchMyLinks = async (linkIds: string[]) => {
         _id: 0,
         shortCode: 1,
         analyticsCode: 1,
+        enabled: 1,
         clicks: 1,
         creatorIpAddress: 1,
         longUrl: 1,
