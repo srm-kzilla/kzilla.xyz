@@ -145,8 +145,12 @@ router.put(
     }
 
     try {
-      await updateLink(req.body.linkId, req.body.longUrl, req.body.enabled);
-      return res.status(200).json({ success: true });
+      const result = await updateLink(
+        req.body.linkId,
+        req.body.longUrl,
+        req.body.enabled
+      );
+      return res.status(200).json(result);
     } catch (error) {
       res.status(error).send();
     }

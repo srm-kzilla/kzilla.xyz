@@ -166,9 +166,22 @@ export const updateLink = async (
       {
         linkId: linkId,
       },
-      query
+      query,
+      {
+        projection: {
+          _id: 0,
+          shortCode: 1,
+          analyticsCode: 1,
+          clicks: 1,
+          creatorIpAddress: 1,
+          longUrl: 1,
+          timestamp: 1,
+        },
+      }
     );
 
   if (!result.value) throw 404;
-  return result;
+
+  CacheService.getInstance().del(result.value.shortCode);
+  return result.value;
 };
