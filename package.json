@@ -39,7 +39,7 @@
     "googleapis": "^49.0.0",
     "helmet": "^3.22.0",
     "metaget": "^1.0.7",
-    "mongodb": "^3.5.6",
+    "mongodb": "^3.5.9",
     "node-cache": "^5.1.1",
     "pino": "^6.3.2",
     "request-ip": "^2.1.3",
