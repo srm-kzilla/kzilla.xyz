@@ -1,7 +1,8 @@
 <script>
   import { onMount } from "svelte";
-  import HeroTag from "../components/HeroTag.svelte";
-  import FormDesign from "../components/FormDesign.svelte";
+  import { Router, Link, Route } from "svelte-routing";
+  import HeroTag from "./HeroTag.svelte";
+  import FormDesign from "./FormDesign.svelte";
 </script>
 
 <style>
@@ -19,12 +20,22 @@
     font-size: 20px;
     margin-bottom: 5px;
   }
+  .kz-deepBlue{
+    color: var(--deepBlue);
+  }
   @media (max-width: 600px) {
     .kz-para {
       font-size: 3.7vw;
     }
   }
 </style>
+
+<nav>
+  <div class="container-fluid">
+      <Link to="/"><img src="./icon.svg" class="image" alt="logo"></Link>
+      <Link to="myLinks"><p class="linker">My Links</p></Link>
+  </div>
+</nav>
 
 <div class="container-fluid kz-main">
 
@@ -35,7 +46,7 @@
 </div>
 
 <div class="text-center kz-crafted">
-  <p class="kz-para">
+  <p class="kz-para kz-deepBlue">
     Crafted with
     <span style="color: red;">&hearts</span>
     by your friends on the SRMKZILLA team

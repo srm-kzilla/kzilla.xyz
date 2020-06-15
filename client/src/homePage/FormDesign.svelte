@@ -1,5 +1,6 @@
 <script>
 
+  import { Router, Link, Route } from "svelte-routing";
   import { shrinkUrl } from '../services/longUrl';
 
   const kzilla = "kzilla.xyz/";
@@ -27,14 +28,11 @@
     grecaptcha.ready(async function() {
       const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
       const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
-
       const token = await grecaptcha.execute(
         siteKey,
         { action: "shrink" }
       );
-
       data = await shrinkUrl( token, longUrl );
-
     });
   }
 </script>
@@ -42,10 +40,12 @@
 <style>
   .kz-form-des {
     margin-top: 15vh;
-    padding-left: 0px;
+    padding-left: 150px;
+    padding-right: 150px;
   }
   .kz-input {
-    width: 68%;
+    font-family: UniSansBook;
+    width: 85%;
     background-color: #f5f5f5;
     color: #696969;
     padding: 15px 40px 15px 40px;
@@ -53,55 +53,93 @@
     border-style: none;
     overflow-x: auto;
   }
+  .kz-enter{
+    height: 80px;
+    font-size: 32px;
+  }
   .kz-input-done {
     width: 98%;
   }
   .shrinker {
+    font-family: UniSansHeavy;
     font-size: 20px;
-    color: #ffffff;
-    background-color: #000000;
+    color: var(--white);
+    background-color: var(--black);
     padding: 15px 40px 15px 40px;
     text-transform: uppercase;
     border-radius: 10px;
   }
+  .kz-enter-btn{
+    padding: 30px 40px 25px 40px;
+  }
   .shrinker:hover {
-    color: #ffffff;
+    color: var(--white);
     text-decoration: none;
   }
   .kz-shrinked-text {
-    margin-top: 20px;
+    /* margin-top: 10px; */
     margin-left: 0px;
     background-color: #f5f5f5;
     color: #696969;
     padding: 15px 40px 15px 40px;
     border-radius: 10px;
     border-style: none;
-    overflow: hidden;
+    height: 55px;
+    overflow: auto;
   }
   .kz-alternate {
-    min-width: 100px;
-    color: #ffffff;
-    background-color: #000000;
-    padding: 11px 20px 11px 20px;
+    min-width: 80px;
+    margin-left: 10px;
+    color: var(--white);
+    background-color: var(--black);
+    padding: 13px 20px 13px 20px;
     text-transform: uppercase;
     border-radius: 10px;
-    margin-top: 20px;
   }
   .delete {
     display: none;
+  }
+  
+  @media(max-width: 1350px){
+      .kz-input{
+          width: 75%;
+      }
   }
   @media (max-width: 1100px) {
     .kz-form-des {
       margin-bottom: 100px;
     }
   }
+  @media (max-width: 920px) {
+    .kz-form-des {
+      padding-left: 5vw;
+      padding-right: 20px;
+    }
+    .kz-input{
+        width: 75%;
+    }
+  }
+  @media (max-width: 920px) {
+    .kz-form-des {
+      padding-left: 5vw;
+      padding-right: 20px;
+    }
+    .kz-input{
+        width: 70%;
+    }
+  }
   @media (max-width: 550px) {
     .kz-input {
       padding: 8px 20px 8px 20px;
       border-radius: 7px;
+      width: 75%;
+    }
+    .kz-enter{
+      height: 60px;
+      font-size: 20px;
     }
     .shrinker {
-      padding: 8px 10px 8px 10px;
+      padding: 20px 10px 20px 10px;
       border-radius: 7px;
       font-size: 18px;
     }
@@ -110,12 +148,17 @@
       padding: 8px 20px 8px 20px;
     }
     .kz-alternate {
-      padding: 5px 5px 5px 5px;
-      width: 50px !important;
+      padding: 15px 5px 15px 5px;
+      min-width: 80px !important;
       font-size: 15px;
     }
     .kz-form-des {
       margin-bottom: 0px;
+    }
+  }
+  @media (max-width: 392px) {
+    .kz-input{
+        width: 70%;
     }
   }
   @media (max-height: 640px) {
@@ -125,34 +168,34 @@
   }
 </style>
 
-<div class="container text-center kz-form-des">
+<div class="container-fluid kz-form-des">
 
   {#if !data}
     <form id="kz-form" class={tapped ? 'delete' : ''}>
-      <input type="text" bind:value={longUrl} required placeholder="Enter your link here..." class="kz-input" />
-      <a on:click={buttonClick} class="shrinker">Shrink</a>
+      <input type="text" bind:value={longUrl} required placeholder="Enter your link here..." class="kz-input kz-enter" />
+      <a role="button" on:click={buttonClick} class="shrinker kz-enter-btn">Shrink</a>
     </form>
 
   {:else}
-    <div id="shrunkLink" class="container-fluid text-center" style="margin-top: 30px; padding: 0px;">
-      <div class="container-fluid kz-input kz-input-done" style="margin-right: 0px; width: 100%;">
+    <div id="shrunkLink" class="container-fluid" style="margin-top: 60px; padding: 0px;">
+      <div class="container-fluid kz-input kz-input-done text-center" style="margin-right: 0px; margin-bottom: 30px; width: 100%;">
         {data.longUrl}
       </div>
-      <div class="row justify-content-center" style="margin-left: 10px; padding: 0px !important;">
-        <div class="col col-8 col-md-4 text-center" style="padding: 0px !important;">
+      <div class="row justify-content-center" style="margin-left: 0px; padding: 0px !important;">
+        <div class="col col-9 col-md-4 col-xl-5 text-center" style="padding: 0px !important;">
           <p class="kz-shrinked-text" id="shrink">{kzilla}{data.shortCode}</p>
         </div>
-        <div class="col col-4 col-md-2" style="padding: 0px !important;">
+        <div class="col col-3 col-md-2 col-xl-1 text-center" style="padding: 0px !important;">
           <button class="kz-alternate" on:click={copyExec}>
-            <img height="28px" src="ic-round-content-copy.svg" alt="copy-btn" />
+            <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
           </button>
         </div>
-        <div class="col col-8 col-md-4 text-center" style="padding: 0px !important;">
+        <div class="col col-9 col-md-4 col-xl-5 text-center" style="padding: 0px !important;">
           <div class="kz-shrinked-text" style=" ">{analytics}{data.analyticsCode}</div>
         </div>
-        <div class="col col-4 col-md-2" style="padding: 0px !important;">
+        <div class="col col-3 col-md-2 col-xl-1 text-center" style="padding: 0px !important;">
           <button class="kz-alternate">
-            <img height="28px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
+            <Link to="analytics/{data.analyticsCode}"><img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" /></Link>
           </button>
         </div>
       </div>

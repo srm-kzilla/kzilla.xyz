@@ -1,5 +1,40 @@
+/* -----------------------------Fonts-------------------------------------------- */
+
+@font-face {
+	font-family: UniSansHeavy;
+	src: url('./Uni-Sans-Heavy.otf') format('woff');
+}
+
+@font-face {
+	font-family: UniSansBook;
+	src: url('./Uni-Sans-Book.woff') format('woff');
+}
+
+@font-face {
+	font-family: VisbyRoundLight;
+	src: url('./VisbyRoundCF-Light.otf') format("opentype");
+}
+
+@font-face {
+	font-family: VisbyRoundRegular;
+	src: url('./VisbyRoundCF-Regular.otf') format("opentype");
+}
+
+/* ----------------------------Defaults------------------------------------------ */
+
+:root {
+	--white: #ffffff;
+	--black: #000000;
+	--orange: #f0634d;
+	--blue: #26baff;
+	--grey: #f5f5f5;
+	--deepBlue: #484c6e;
+	--green: #54a870;
+  }
+
 button{
 	border-style: none;
+	font-family: uniSansHeavy !important;
 }
 
 a:hover{
@@ -19,9 +54,14 @@ a:hover{
 }
 .linker{
 	position: absolute;
+	font-family: UniSansHeavy;
 	right: 30px;
 	top: 40px;
 	font-size: 20px;
+	width: 239px;
+	height: 80px;
+	text-align: center;
+	line-height: 50px;
 	color: #ffffff;
 	background-color: #000000;
 	padding: 15px 40px 15px 40px; 
@@ -35,12 +75,15 @@ a:hover{
 
 @media(max-width: 500px){
 	.image{
-		height: 60px;
+		height: 80px;
 	}
 	.linker{
 		font-size: 15px;
 		padding: 10px 20px 10px 20px;
 		top: 30px;
 		border-radius: 7px;
+		width: 180px;
+		height: 64px;
+		line-height: 45px;
 	}
 }
