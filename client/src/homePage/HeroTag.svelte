@@ -1,6 +1,6 @@
 <style>
     .header{
-        margin-top: 254px;
+        margin-top: 20vh;
         padding-left: 150px;
     }
     .header h1{
@@ -72,8 +72,10 @@
             height: 12vw;
         }
     }
-    @media(max-width: 500px){
-        
+    @media(max-height: 676px){
+        .header{
+            margin-top: 20vh;
+        }
     }
 </style>
 

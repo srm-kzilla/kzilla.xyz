@@ -9,13 +9,14 @@
   let analyticsCode = "YmcA5s";
   let longUrl = "";
   let data;
+  let error;
 
   window.$('#kz-form').keydown(function (e) {
     if (e.keyCode == 13) {
         e.preventDefault();
         return false;
     }
-});
+  });
 
   //Copy Button functionality...
 
@@ -30,8 +31,9 @@
   //Attach URL shortener API...
 
   function buttonClick(e) {
-    e.preventDefault();
-    grecaptcha.ready(async function() {
+    if(longUrl){
+      e.preventDefault();
+      grecaptcha.ready(async function() {
       const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
       const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
       const token = await grecaptcha.execute(
@@ -39,7 +41,14 @@
         { action: "shrink" }
       );
       data = await shrinkUrlService( token, longUrl );
+      if(!data.linkId){
+        error = 'The URL you entered is not valid. Please refresh and try again with a valid URL.';
+      }
+      else{
+        error = "";
+      }
     });
+    }
   }
 </script>
 
@@ -60,7 +69,7 @@
     overflow-x: auto;
   }
   .kz-enter{
-    height: 80px;
+    height: 2.3em;
     font-size: 32px;
   }
   .kz-input-done {
@@ -90,11 +99,12 @@
     padding: 15px 40px 15px 40px;
     border-radius: 10px;
     border-style: none;
-    height: 55px;
+    /* height: 55px; */
     overflow: auto;
   }
   .kz-alternate {
     min-width: 80px;
+    height: 4.5em;
     margin-left: 10px;
     color: var(--white);
     background-color: var(--black);
@@ -105,10 +115,18 @@
   .delete {
     display: none;
   }
+  .kz-error{
+    color: var(--orange);
+    font-family: UniSansHeavy;
+    font-size: 1.5rem;
+  }
   
-  @media(max-width: 1350px){
+  @media(max-width: 1365px){
       .kz-input{
           width: 75%;
+      }
+      .kz-form-des{
+        margin-top: 4.5vh;
       }
   }
   @media (max-width: 1100px) {
@@ -155,7 +173,8 @@
     }
     .kz-alternate {
       padding: 15px 5px 15px 5px;
-      min-width: 80px !important;
+      min-width: 70px !important;
+      max-height: 3.7rem;
       font-size: 15px;
     }
     .kz-form-des {
@@ -182,14 +201,14 @@
       <a role="button" on:click={buttonClick} class="shrinker kz-enter-btn">Shrink</a>
     </form>
 
-  {:else}
+  {:else if !error}
     <div id="shrunkLink" class="container-fluid" style="margin-top: 60px; padding: 0px;">
-      <div class="container-fluid kz-input kz-input-done text-center" style="margin-right: 0px; margin-bottom: 30px; width: 100%;">
+      <div class="container-fluid kz-input kz-input-done text-center kz-enter" style="margin-right: 0px; margin-bottom: 30px; width: 100%;">
         {data.longUrl}
       </div>
       <div class="row justify-content-center" style="margin-left: 0px; padding: 0px;">
         <div class="col col-9 col-md-4 col-xl-5 text-center" style="padding: 0px;">
-          <p class="kz-shrinked-text" id="shrink">{API.KZILLA_URL}{data.shortCode}</p>
+          <p class="kz-shrinked-text kz-enter" id="shrink">{API.KZILLA_URL}{data.shortCode}</p>
         </div>
         <div class="col col-3 col-md-2 col-xl-1 text-center" style="padding: 0px;">
           <button class="kz-alternate" on:click={copyExec}>
@@ -197,14 +216,20 @@
           </button>
         </div>
         <div class="col col-9 col-md-4 col-xl-5 text-center" style="padding: 0px;">
-          <div class="kz-shrinked-text" style=" ">{API.ANALYTICS_URL}{data.analyticsCode}</div>
+          <div class="kz-shrinked-text kz-enter" style=" ">{API.ANALYTICS_URL}{data.analyticsCode}</div>
         </div>
         <div class="col col-3 col-md-2 col-xl-1 text-center" style="padding: 0px;">
-          <button class="kz-alternate">
-            <Link to="analytics/{data.analyticsCode}"><img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" /></Link>
-          </button>
+          <Link to="analytics/{data.analyticsCode}">
+            <button class="kz-alternate">
+              <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
+            </button>
+          </Link>
         </div>
       </div>
+    </div>
+  {:else}
+    <div class="container-fluid kz-error">
+      <span>{error}</span>
     </div>
   {/if}
 </div>
