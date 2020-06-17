@@ -1,6 +1,6 @@
 import { API } from '../constants';
 
-export async function shrinkUrl(token, longUrl){
+export async function shrinkUrlService(token, longUrl){
   const data = await fetch(API.BASE_URL+API.SHRINK_URL, {
       method: "POST",
       headers: {
@@ -15,7 +15,7 @@ export async function shrinkUrl(token, longUrl){
     return data.json();
 }
 
-export async function updateUrl(token, linkId, longUrl){
+export async function updateUrlService(token, linkId, longUrl){
   const data = await fetch(API.BASE_URL+API.SHRINK_URL, {
       method: "PUT",
       headers: {
@@ -31,7 +31,7 @@ export async function updateUrl(token, linkId, longUrl){
     return data.json();
 }
 
-export async function enableUrl(token, linkId, enabled){
+export async function enableUrlService(token, linkId, enabled){
   const data = await fetch(API.BASE_URL+API.SHRINK_URL, {
       method: "PUT",
       headers: {

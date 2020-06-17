@@ -8,7 +8,7 @@
 </script>
 
 <Router url="{url}">
-    <div style="z-index: 999 !important;">
+    <div style="z-index: 999">
         <Route path="myLinks" component="{myLinks}" />
         <Route path="/"><HomePage/></Route>
         <Route path="analytics/:id" component="{myLinks}" />

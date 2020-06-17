@@ -1,15 +1,21 @@
 <script>
 
   import { Router, Link, Route } from "svelte-routing";
-  import { shrinkUrl } from '../services/longUrl';
+  import { shrinkUrlService } from '../services/longUrl';
+  import { API } from '../constants';
 
-  const kzilla = "kzilla.xyz/";
-  const analytics = "kzilla.xyz/analytics/";
   let tapped = false;
   let shortURL = "HeL0OlUc45";
   let analyticsCode = "YmcA5s";
   let longUrl = "";
   let data;
+
+  window.$('#kz-form').keydown(function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        return false;
+    }
+});
 
   //Copy Button functionality...
 
@@ -32,7 +38,7 @@
         siteKey,
         { action: "shrink" }
       );
-      data = await shrinkUrl( token, longUrl );
+      data = await shrinkUrlService( token, longUrl );
     });
   }
 </script>
@@ -181,19 +187,19 @@
       <div class="container-fluid kz-input kz-input-done text-center" style="margin-right: 0px; margin-bottom: 30px; width: 100%;">
         {data.longUrl}
       </div>
-      <div class="row justify-content-center" style="margin-left: 0px; padding: 0px !important;">
-        <div class="col col-9 col-md-4 col-xl-5 text-center" style="padding: 0px !important;">
-          <p class="kz-shrinked-text" id="shrink">{kzilla}{data.shortCode}</p>
+      <div class="row justify-content-center" style="margin-left: 0px; padding: 0px;">
+        <div class="col col-9 col-md-4 col-xl-5 text-center" style="padding: 0px;">
+          <p class="kz-shrinked-text" id="shrink">{API.KZILLA_URL}{data.shortCode}</p>
         </div>
-        <div class="col col-3 col-md-2 col-xl-1 text-center" style="padding: 0px !important;">
+        <div class="col col-3 col-md-2 col-xl-1 text-center" style="padding: 0px;">
           <button class="kz-alternate" on:click={copyExec}>
             <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
           </button>
         </div>
-        <div class="col col-9 col-md-4 col-xl-5 text-center" style="padding: 0px !important;">
-          <div class="kz-shrinked-text" style=" ">{analytics}{data.analyticsCode}</div>
+        <div class="col col-9 col-md-4 col-xl-5 text-center" style="padding: 0px;">
+          <div class="kz-shrinked-text" style=" ">{API.ANALYTICS_URL}{data.analyticsCode}</div>
         </div>
-        <div class="col col-3 col-md-2 col-xl-1 text-center" style="padding: 0px !important;">
+        <div class="col col-3 col-md-2 col-xl-1 text-center" style="padding: 0px;">
           <button class="kz-alternate">
             <Link to="analytics/{data.analyticsCode}"><img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" /></Link>
           </button>

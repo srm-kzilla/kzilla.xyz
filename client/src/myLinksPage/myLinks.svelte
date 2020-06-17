@@ -9,7 +9,7 @@
         padding-right: 50px;
     }
 
-    .uni-sand-heavy{
+    .uni-sans-heavy{
         font-family: UniSansHeavy;
     }
 
@@ -62,14 +62,14 @@
 
     <div class="container-fluid kz-table-design">
         <div class="row justify-content-center">
-            <div class="col col-5 kz-head uni-sand-heavy">
-                TITLE
+            <div class="col col-5 kz-head uni-sans-heavy">
+                Title
             </div>
-            <div class="col col-4 kz-head">
-                CLICKS
+            <div class="col col-4 kz-head uni-sans-heavy">
+                Clicks
             </div>
-            <div class="col col-3 kz-head">
-                ACTIONS
+            <div class="col col-3 kz-head uni-sans-heavy">
+                Actions
             </div>
         </div>
         <!-- {#each datas as { name, count, shortUrl, longUrl, linkId, enabled }}

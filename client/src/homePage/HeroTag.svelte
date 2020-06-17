@@ -9,10 +9,10 @@
         font-weight: normal;
         display: flex;
     }
-    .headTwo{
+    .kz-shrinker-heading{
         position: relative;
     }
-    .headTwo:before{
+    .kz-shrinker-heading:before{
         position: absolute;
         content: '';
         bottom: 0px;
@@ -62,7 +62,7 @@
         .header h1{
             font-size: 10vw;
         }
-        .headTwo:before{
+        .kz-shrinker-heading:before{
             top: 7.5vw;
             left: 9vw;
             width: 38vw;
@@ -86,5 +86,5 @@
             <li>&nbsp;snappy</li>
         </ul>
     </h1>
-    <h1 class="headTwo">URL shrinker</h1>
+    <h1 class="kz-shrinker-heading">URL shrinker</h1>
 </div>
