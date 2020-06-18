@@ -30,7 +30,7 @@
 
     import { Router, Link, Route } from "svelte-routing";
     // import { onMount } from "svelte";
-    // import { fetchMyLinks } from "../services/longUrl";
+    // import { fetchMyLinks } from "../services/APIservice";
     import Table from './table.svelte';
 
     //Attaching my links API...

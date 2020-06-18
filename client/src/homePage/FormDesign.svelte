@@ -1,7 +1,7 @@
 <script>
 
   import { Router, Link, Route } from "svelte-routing";
-  import { shrinkUrlService } from '../services/longUrl';
+  import { shrinkUrlService } from '../services/APIservice';
   import { API } from '../constants';
 
   let tapped = false;
@@ -69,7 +69,7 @@
     overflow-x: auto;
   }
   .kz-enter{
-    height: 2.3em;
+    height: 2.5em;
     font-size: 32px;
   }
   .kz-input-done {
@@ -104,7 +104,7 @@
   }
   .kz-alternate {
     min-width: 80px;
-    height: 4.5em;
+    height: 4.7em;
     margin-left: 10px;
     color: var(--white);
     background-color: var(--black);

@@ -216,8 +216,8 @@
 import { Router, Link, Route } from "svelte-routing";
 import { API } from '../constants';
 import QRCode from "./QRJS.svelte";
-import { updateUrlService } from '../services/longUrl';
-import { enableUrlService } from '../services/longUrl';
+import { updateUrlService } from '../services/APIservice';
+import { enableUrlService } from '../services/APIservice';
 
 //importing details of each individual link.
 
