@@ -1,28 +1,31 @@
 <style>
     .header{
-        margin-top:27vh;
+        margin-top: 20vh;
         padding-left: 150px;
     }
     .header h1{
-        font-size: 60px;
+        font-size: 80px;
+        font-family: UniSansBook;
+        font-weight: normal;
         display: flex;
     }
-    .headTwo{
+    .kz-shrinker-heading{
         position: relative;
     }
-    .headTwo:before{
+    .kz-shrinker-heading:before{
         position: absolute;
         content: '';
         bottom: 0px;
-        left: 40px;
-        width: 300px;
-        height: 20px;
-        background-color: #54a870;
+        left: 80px;
+        top: 64px;
+        width: 304px;
+        height: 16px;
+        background-color: var(--green);
         z-index: -1;
     }
     .roller__list {
         overflow-y: hidden;
-        height: 75px;
+        height: 88px;
         margin-top: 2px;
         padding-left: 0px;
     }
@@ -38,31 +41,41 @@
         0% { transform: translateY(-5em); }
         4% { transform: translateY(-3.65em); }
         25% { transform: translateY(-3.65em); }
-        29% { transform: translateY(-2.47em); }
-        50% { transform: translateY(-2.47em); }
+        29% { transform: translateY(-2.41em); }
+        50% { transform: translateY(-2.41em); }
         54% { transform: translateY(-1.25em); }
         75% { transform: translateY(-1.25em); }
-        79% { transform: translateY(-0.07em); }
-        100% { transform: translateY(-0.07em); }
+        79% { transform: translateY(-0.04em); }
+        100% { transform: translateY(-0.04em); }
     }
+    
+    @media (max-width: 920px) {
+    .header{
+        padding-left: 5vw;
+    }
+  }
     @media(max-width: 650px){
         .header{
-            margin-top: 20vh;
+            margin-top: 200px;
             padding-left: 30px;
         }
         .header h1{
             font-size: 10vw;
         }
-        .headTwo:before{
-            width: 50vw;
+        .kz-shrinker-heading:before{
+            top: 7.5vw;
+            left: 9vw;
+            width: 38vw;
             height: 3vw;
         }
         .roller__list{
             height: 12vw;
         }
     }
-    @media(max-width: 500px){
-        
+    @media(max-height: 676px){
+        .header{
+            margin-top: 20vh;
+        }
     }
 </style>
 
@@ -75,5 +88,5 @@
             <li>&nbsp;snappy</li>
         </ul>
     </h1>
-    <h1 class="headTwo">URL shortener</h1>
+    <h1 class="kz-shrinker-heading">URL shrinker</h1>
 </div>
