@@ -16,8 +16,12 @@
 
 <nav>
   <div class="container-fluid">
-      <Link to="/"><img src="./icon.svg" class="image" alt="logo"></Link>
-      <Link to="myLinks"><p class="linker">My Links</p></Link>
+    <Link to="/">
+      <img src="./icon.svg" class="image" alt="logo" />
+    </Link>
+    <Link to="myLinks">
+      <p class="linker">My Links</p>
+    </Link>
   </div>
 </nav>
 
@@ -30,4 +34,4 @@
 
 </div>
 
-<Footer/>
+<Footer />
