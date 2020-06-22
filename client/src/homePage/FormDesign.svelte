@@ -196,7 +196,7 @@
 <div class="container-fluid kz-form-des">
 
   {#if !data}
-    <form id="kz-form" class={tapped ? 'delete' : ''}>
+    <form id="kz-form" on:submit|preventDefault={buttonClick} class={tapped ? 'delete' : ''}>
       <input type="text" bind:value={longUrl} required placeholder="Enter your link here..." class="kz-input kz-enter" />
       <a role="button" on:click={buttonClick} class="shrinker kz-enter-btn">Shrink</a>
     </form>
