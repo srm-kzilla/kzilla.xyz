@@ -7,23 +7,27 @@
 </script>
 
 <style>
+  .hello-nav{
+    height: 15vh;
+  	padding: 1vh 0px 1vh 1vh;
+    position: relative;
+    overflow: hidden;
+  }
   .kz-main {
-    max-height: 70vh;
     position: relative;
     padding: 0px;
   }
 </style>
 
-<nav>
-  <div class="container-fluid">
-    <Link to="/">
-      <img src="./icon.svg" class="image" alt="logo" />
-    </Link>
-    <Link to="myLinks">
-      <p class="linker">My Links</p>
-    </Link>
+
+  <div class="hello-nav">
+      <Link to="/">
+        <img src="./icon.svg" class="image" alt="logo" />
+      </Link>
+      <Link to="myLinks">
+        <p class="linker">My Links</p>
+      </Link>
   </div>
-</nav>
 
 <div class="container-fluid kz-main">
 
