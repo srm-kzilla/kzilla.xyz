@@ -47,24 +47,20 @@ a:hover{
 
 
 .image{
-	position: absolute;
-	height: 100px;
-	left: 30px;
-	top: 20px;
+	height: 8vh;
 }
 .linker{
 	position: absolute;
 	font-family: UniSansHeavy;
-	right: 30px;
-	top: 40px;
-	font-size: 20px;
-	width: 239px;
-	height: 80px;
+	right: 1vh;
+	top: 1.5vh;
+	font-size: 2.5vh;
+	width: 8vw;
+	height: 8vh;
 	text-align: center;
-	line-height: 50px;
+	line-height: 8vh;
 	color: #ffffff;
 	background-color: #000000;
-	padding: 15px 40px 15px 40px; 
 	text-transform: uppercase;
 	border-radius: 10px;
 }
@@ -73,17 +69,23 @@ a:hover{
 	color: #ffffff;
 }
 
-@media(max-width: 500px){
-	.image{
-		height: 80px;
-	}
+@media(max-width: 1400px){
 	.linker{
-		font-size: 15px;
-		padding: 10px 20px 10px 20px;
-		top: 30px;
-		border-radius: 7px;
-		width: 180px;
-		height: 64px;
-		line-height: 45px;
+		width: 12vw;
+	}
+}
+@media(max-width: 1000px){
+	.linker{
+		width: 16vw;
+	}
+}
+@media(max-width: 760px){
+	.linker{
+		width: 25vw;
+	}
+}
+@media(max-width: 470px){
+	.linker{
+		width: 33vw;
 	}
 }

@@ -1,10 +1,10 @@
 <style>
     .header{
-        margin-top: 20vh;
-        padding-left: 150px;
+        margin-top: 8vh;
+        padding-left: 8vw;
     }
     .header h1{
-        font-size: 80px;
+        font-size: 8.5vh;
         font-family: UniSansBook;
         font-weight: normal;
         display: flex;
@@ -16,16 +16,16 @@
         position: absolute;
         content: '';
         bottom: 0px;
-        left: 80px;
-        top: 64px;
-        width: 304px;
-        height: 16px;
+        left: 8vh;
+        top: 6.7vh;
+        width: 32vh;
+        height: 2.5vh;
         background-color: var(--green);
         z-index: -1;
     }
     .roller__list {
         overflow-y: hidden;
-        height: 88px;
+        height: 9.5vh;
         margin-top: 2px;
         padding-left: 0px;
     }
@@ -55,10 +55,10 @@
     }
   }
     @media(max-width: 650px){
-        .header{
+        /* .header{
             margin-top: 200px;
             padding-left: 30px;
-        }
+        } */
         .header h1{
             font-size: 10vw;
         }
@@ -74,7 +74,7 @@
     }
     @media(max-height: 676px){
         .header{
-            margin-top: 20vh;
+            /* margin-top: 20vh; */
         }
     }
 </style>
