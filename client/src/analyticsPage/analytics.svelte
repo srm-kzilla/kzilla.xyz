@@ -17,32 +17,36 @@
   onMount(async function initialise() {
     data = await getData();
   });
-  // Changed Start Date using custom
+  // Changed Start Date using Custom
   var changeStartDate = async value => {
     startdate = value;
     data = await getData();
   };
-  // Change End Date using custom
+  // Change End Date using Custom
   var changeEndDate = async value => {
     enddate = value;
     data = await getData();
   };
   //Changed Dates Range
   var dateschanged = async value => {
+    document.getElementById("dropdownMenuLink").innerHTML = value;
     enddate = formatDate(dateObj);
-    if (value != "custom") {
-      if (value == "today") {
+    if (value != "Custom") {
+      selectedrange = "";
+      if (value == "Today") {
         dateObj.setDate(dateObj.getDate());
-      } else if (value == "yesterday") {
+      } else if (value == "Yesterday") {
         dateObj.setDate(dateObj.getDate() - 1);
-      } else if (value == "threedays") {
+      } else if (value == "Last 3 days") {
         dateObj.setDate(dateObj.getDate() - 2);
-      } else if (value == "month") {
+      } else if (value == "This  month") {
         dateObj.setDate(dateObj.getDate() - 29);
-      } else if (value == "week") {
+      } else if (value == "This week") {
         dateObj.setDate(dateObj.getDate() - 6);
       }
       startdate = formatDate(dateObj);
+    } else {
+      selectedrange = "Custom";
     }
     data = await getData();
   };
@@ -74,23 +78,10 @@
   }
   .kz-logo {
     position: absolute;
-    height: 70px;
     left: 30px;
     top: 20px;
   }
-  .form-group {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-  }
-  select {
-    background-color: #000000;
-    color: #fff;
-    padding: 15px;
-    height: 60px;
-    width: 150px;
-    border-radius: 16px;
-  }
+
   .startdate,
   .enddate {
     background-color: #f5f5f5;
@@ -98,17 +89,66 @@
     width: 160px;
     border-radius: 16px;
     border: none;
-    padding-left: 10px;
+    padding: 10px;
   }
   .startdate {
     position: absolute;
-    right: 360px;
+    right: 480px;
     top: 10px;
+    font-family: UniSansBook;
   }
   .enddate {
     position: absolute;
-    right: 180px;
+    right: 280px;
     top: 10px;
+    font-family: UniSansBook;
+  }
+
+  .no-data {
+    font-family: UniSansBook;
+  }
+  input:focus {
+    border: none;
+  }
+  .dropdown {
+    position: absolute;
+    right: 80px;
+    top: 10px;
+    background-color: var(--black);
+    color: var(--white);
+    height: 60px;
+    width: 160px;
+    border-radius: 16px;
+    border: none;
+    padding: 10px;
+    font-family: UniSansHeavy;
+    font-weight: 200;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+  #dropdownMenuLink {
+    position: absolute;
+    top: 34%;
+    left: 16px;
+  }
+  .dropdown-toggle::after {
+    position: absolute;
+    right: -80px;
+    top: 34%;
+  }
+  .dropdown-menu {
+    font-family: UniSansHeavy;
+    width: 160px;
+    transform: translate3d(0px, 62px, 0px) !important;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 16px;
+  }
+  .dropdown-item:hover {
+    background-color: var(--black);
+    color: var(--white);
   }
   @media (max-width: 768px) {
     .startdate {
@@ -121,13 +161,18 @@
       right: 10px;
       top: 80px;
     }
+    .dropdown {
+      position: absolute;
+      right: 30px;
+      top: 10px;
+    }
   }
 </style>
 
 <div class="navigator">
   <img class="kz-logo" src="./icon.svg" alt="" />
 </div>
-{#if selectedrange == 'custom'}
+{#if selectedrange == 'Custom'}
   <input
     class="startdate"
     type="date"
@@ -139,24 +184,39 @@
     bind:value={enddate}
     on:change={changeEndDate(enddate)} />
 {/if}
-<div class="form-group">
-  <select
-    class="form-control"
-    id="exampleFormControlSelect1"
-    bind:value={selectedrange}
-    on:change={dateschanged(selectedrange)}>
-    <option value="today">Today</option>
-    <option value="threedays">Last 3 days</option>
-    <option value="week">This Week</option>
-    <option value="month">This Month</option>
-    <option value="yesterday">Yesterday</option>
-    <option value="custom">Custom</option>
-  </select>
+<div class="dropdown show">
+  <span
+    class="dropdown-toggle"
+    role="button"
+    id="dropdownMenuLink"
+    data-toggle="dropdown">
+    Today
+  </span>
 
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <span class="dropdown-item" on:click={() => dateschanged('Today')}>
+      Today
+    </span>
+    <span class="dropdown-item" on:click={() => dateschanged('Last 3 days')}>
+      Last 3 days
+    </span>
+    <span class="dropdown-item" on:click={() => dateschanged('This week')}>
+      This Week
+    </span>
+    <span class="dropdown-item" on:click={() => dateschanged('This  month')}>
+      This Month
+    </span>
+    <span class="dropdown-item" on:click={() => dateschanged('Yesterday')}>
+      Yesterday
+    </span>
+    <span class="dropdown-item" on:click={() => dateschanged('Custom')}>
+      Custom
+    </span>
+  </div>
 </div>
 {#if data}
   <div class="container">
-    <HeroTag />
+    <HeroTag {analyticsId} />
     <UpperRow {data} />
     <div class="row">
       <div class="col-md-6">
@@ -168,7 +228,7 @@
     </div>
     <BrowserBox {data} />
     {#if data.reports.length <= 0}
-      <div class="text-center">Sorry no more data available!</div>
+      <div class="text-center no-data">Sorry no more data available!</div>
     {/if}
   </div>
 {/if}
