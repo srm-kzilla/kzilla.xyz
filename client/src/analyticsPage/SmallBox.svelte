@@ -20,6 +20,7 @@
     text-transform: uppercase;
     font-size: 12px;
     margin-bottom: 20px;
+    font-family: UniSansHeavy;
   }
   ul {
     list-style: none;
@@ -36,6 +37,13 @@
     overflow-y: scroll;
     overflow-x: hidden;
   }
+  .smallbox::-webkit-scrollbar {
+    width: 8px;
+  }
+  .smallbox::-webkit-scrollbar-thumb {
+    background: var(--black);
+    border-radius: 10px;
+  }
   ul li:nth-child(4n + 1) .progress-bar,
   ul li:nth-child(4n + 3) .progress-bar {
     background-color: #54a870;
@@ -47,18 +55,21 @@
   ul li:nth-child(4n + 5) .progress-bar {
     background-color: #26baff;
   }
+  .label-p,
+  .value-p {
+    font-family: UniSansBook;
+  }
 </style>
 
 <!-- 2 small boxes -->
 {#if sdata != null}
   <div class="box lightbg smallbox">
     <p class="heading">{heading}</p>
-
     <ul>
       {#each sdata.data as { label, value }}
         <li>
           <div class="row">
-            <div class="col-sm-4">{label}</div>
+            <div class="col-sm-4 label-p">{label}</div>
             <div class="col-sm-6">
               <div class="progress">
                 <div
@@ -69,7 +80,7 @@
                   aria-valuemax="100" />
               </div>
             </div>
-            <div class="col-sm-2">{value}</div>
+            <div class="col-sm-2 value-p">{value}</div>
           </div>
         </li>
       {/each}

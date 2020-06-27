@@ -8,13 +8,14 @@
     padding: 10px 13px 18px 13px;
   }
   .blackbg {
-    background-color: #000000;
+    background-color: var(--black);
     color: #f5f5f5;
   }
   .heading {
     margin: 0;
     font-weight: 700;
     text-transform: uppercase;
+    font-family: UniSansHeavy;
     font-size: 12px;
     margin-bottom: 20px;
   }
@@ -26,11 +27,13 @@
     height: 160px;
   }
   .browser-box i {
-    font-size: 50px;
+    font-size: 35px;
   }
   .browser-box .browser-count {
     font-weight: 400;
     margin-top: 20px;
+    font-size: 35px;
+    font-family: UniSansBook;
   }
   @media (max-width: 768px) {
     .browser-box {
@@ -43,10 +46,9 @@
 </style>
 
 <div class="browser-row row">
-  <div class="col-md-1" />
   {#if data.reports.length != 0}
     {#each data.reports[2].data as { label, value }}
-      <div class="col-md-2 col-xs-6 mx-auto ">
+      <div class="col-md-2 col-xs-6 ">
         <div class="box blackbg browser-box">
           <p class="heading">{label}</p>
           <i class="fa fa-chrome" />
@@ -56,4 +58,3 @@
     {/each}
   {/if}
 </div>
-<div class="col-md-1" />
