@@ -2,11 +2,11 @@
 
     .kz-crafted {
         position: fixed;
-        bottom: 0px;
+        bottom: 2vh;
         width: 100%;
     }
     .kz-para {
-        font-size: 20px;
+        font-size: 15px;
         margin-bottom: 5px;
     }
     .kz-deepBlue{

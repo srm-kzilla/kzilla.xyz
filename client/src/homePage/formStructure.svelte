@@ -3,6 +3,9 @@
   import { Router, Link, Route } from "svelte-routing";
   import { shrinkUrlService } from '../services/APIservice';
   import { API } from '../constants';
+  import Button from "../components/button.svelte";
+
+  let button_content = "Shrink";
 
   let tapped = false;
   let shortURL = "HeL0OlUc45";
@@ -10,7 +13,6 @@
   let longUrl = "";
   let data;
   let error;
-  let myShrinker;
 
   //Copy Button functionality...
 
@@ -27,7 +29,8 @@
   function buttonClick(e) {
     tapped = true;
     if(longUrl){
-      myShrinker.innerHTML = '<div class="spinner-border text-light"><span class="sr-only">Loading...</span></div>';
+      // myShrinker.innerHTML = '<div class="spinner-border text-light"><span class="sr-only">Loading...</span></div>';
+      button_content = "Shrunk";
       e.preventDefault();
       grecaptcha.ready(async function() {
       const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
@@ -39,31 +42,32 @@
       data = await shrinkUrlService( token, longUrl );
       if(!data.linkId){
         error = 'The URL you entered is not valid. Please refresh and try again with a valid URL.';
-      }
+        }
       else{
         error = "";
-      }
-    });
+        }
+      });
     }
   }
+
 </script>
 
 <style>
   .kz-form-des {
-    margin-top: 10vh;
+    margin-top: 15vh;
     padding-left: 8vw;
     padding-right: 8vw;
   }
   .kz-input {
     font-family: UniSansBook;
-    font-size: 2.5vh;
-    width: 75.5vw;
+    font-size: 3vh;
+    width: 71.5vw;
     height: 8vh;
     line-height: 8vh;
-    background-color: #f5f5f5;
-    color: #696969;
+    background-color: var(--grey);
+    color: var(--black);
     padding: 0px 10px 0px 10px;
-    border-radius: 10px;
+    border-radius: 12px;
     border-style: none;
     overflow-x: auto;
   }
@@ -72,24 +76,9 @@
     margin-right: 0px; 
     margin-bottom: 30px;
   }
-  .shrinker {
-    font-family: UniSansHeavy;
-    color: var(--white);
-    width: 8vw;
-	  height: 8vh;
-	  line-height: 8vh;
-	  font-size: 2.5vh;
-    background-color: var(--black);
-    border-radius: 10px;
-    float: right;
-  }
-  .shrinker:hover {
-    color: var(--white);
-    text-decoration: none;
-  }
   .kz-shrinked-text {
-    background-color: #f5f5f5;
-    color: #696969;
+    background-color: var(--grey);
+    color: var(--black);
     line-height: 8vh;
     padding: 0px 10px 0px 10px;
     border-radius: 10px;
@@ -100,9 +89,9 @@
     float: left;
     overflow: auto;
   }
-  .kz-shrinked-text-2{
-    background-color: #f5f5f5;
-    color: #696969;
+  .kz-shrinked-text-alternate{
+    background-color: var(--grey);
+    color: var(--black);
     line-height: 8vh;
     padding: 0px 10px 0px 10px;
     border-radius: 10px;
@@ -138,17 +127,22 @@
     .kz-input-done {
       width: 84vw;
     }
-    .shrinker{
-      width: 12vw;
-    }
     .kz-shrinked-text {
       width: 31.5vw;
     }
-    .kz-shrinked-text-2{
+    .kz-shrinked-text-alternate{
       width: 32vw;
     }
     .kz-alternate {
       width: 7vw;
+    }
+  }
+  @media(max-width: 1200px){
+    .kz-input{
+      width: 69vw;
+    }
+    .kz-input-done {
+      width: 84vw;
     }
   }
   @media (max-width: 1100px) {
@@ -158,10 +152,7 @@
   }
   @media(max-width: 1000px){
     .kz-input{
-      width: 67vw;
-    }
-    .shrinker{
-      width: 16vw;
+      width: 65vw;
     }
     .kz-input-done {
       width: 84vw;
@@ -169,7 +160,7 @@
     .kz-shrinked-text {
       width: 30.5vw;
     }
-    .kz-shrinked-text-2{
+    .kz-shrinked-text-alternate{
       width: 31.5vw;
     }
     .kz-alternate {
@@ -178,12 +169,12 @@
     }
   }
   @media (max-width: 920px) {
+    .kz-input{
+      width: 71vw;
+    }
     .kz-form-des {
       padding-left: 5vw;
       padding-right: 5vw;
-    }
-    .kz-input{
-      width: 73vw;
     }
     .kz-input-done {
       width: 90vw;
@@ -191,7 +182,7 @@
     .kz-shrinked-text {
       width: 33.5vw;
     }
-    .kz-shrinked-text-2{
+    .kz-shrinked-text-alternate{
       width: 34vw;
     }
     .kz-alternate {
@@ -200,10 +191,7 @@
   }
   @media(max-width: 760px){
     .kz-input{
-      width: 63.5vw;
-    }
-    .shrinker{
-      width: 25vw;
+      width: 66.5vw;
     }
     .kz-input-done {
       width: 90vw;
@@ -211,7 +199,7 @@
     .kz-shrinked-text {
       width: 78vw;
     }
-    .kz-shrinked-text-2{
+    .kz-shrinked-text-alternate{
       width: 78vw;
     }
     .kz-alternate {
@@ -230,10 +218,16 @@
     .kz-form-des {
       margin-bottom: 0px;
     }
+    .kz-input{
+      width: 66.5vw;
+    }
+    .kz-input-done {
+      width: 90vw;
+    }
     .kz-shrinked-text {
       width: 76vw;
     }
-    .kz-shrinked-text-2{
+    .kz-shrinked-text-alternate{
       width: 76vw;
     }
     .kz-alternate {
@@ -242,10 +236,7 @@
   }
   @media(max-width: 470px){
     .kz-input{
-      width: 59.5vw;
-    }
-    .shrinker{
-      width: 29vw;
+      width: 58vw;
     }
     .kz-input-done {
       width: 90vw;
@@ -253,11 +244,19 @@
     .kz-shrinked-text {
       width: 72vw;
     }
-    .kz-shrinked-text-2{
+    .kz-shrinked-text-alternate{
       width: 72vw;
     }
     .kz-alternate {
       width: 16vw;
+    }
+  }
+  @media(max-width: 400px){
+    .kz-input{
+      width: 54vw;
+    }
+    .kz-input-done {
+      width: 90vw;
     }
   }
 </style>
@@ -266,8 +265,8 @@
 
   {#if !data}
     <form id="kz-form" on:submit|preventDefault={buttonClick}>
-      <input type="text" bind:value={longUrl} required placeholder="Enter your link here..." class="kz-input " />
-      <div role="button" on:click={buttonClick} bind:this={myShrinker} class={tapped?"shrinker text-center":"shrinker text-center"}>Shrink</div>
+      <input type="text" bind:value={longUrl} required placeholder="Enter your link here..." class="kz-input"/>
+      <Button on:buttonClick={buttonClick} {button_content}/>
     </form>
 
   {:else if !error}
@@ -282,7 +281,7 @@
         <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
       </button>
       
-      <div class="kz-shrinked-text-2" style="">{API.ANALYTICS_URL}{data.analyticsCode}</div>
+      <div class="kz-shrinked-text-alternate" style="">{API.ANALYTICS_URL}{data.analyticsCode}</div>
       
       <Link to="analytics/{data.analyticsCode}">
         <button class="kz-alternate" style="margin-right: 0;">

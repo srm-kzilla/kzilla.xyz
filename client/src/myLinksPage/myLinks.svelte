@@ -32,6 +32,9 @@
     import { onMount } from "svelte";
     import { fetchMyLinks } from "../services/APIservice";
     import Table from './table.svelte';
+    import Navbar from "../components/navbarStructure.svelte";
+
+    let button_content = "";
 
     //Attaching my links API...
 
@@ -44,12 +47,7 @@
     myLinksFetcher();
 </script>
 
-    <nav>
-        <div class="container-fluid">
-            <Link to="/"><img src="./icon.svg" class="image" alt="logo"></Link>
-            <Link to="myLinks"><p class="linker">My Links</p></Link>
-        </div>
-    </nav>
+    <Navbar {button_content}/>
 
     <div class="kz-notUsed"></div>
 
