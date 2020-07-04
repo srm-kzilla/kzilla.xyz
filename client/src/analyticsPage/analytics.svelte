@@ -168,7 +168,7 @@
     }
   }
 </style>
-
+{#if data}
 <div class="navigator">
   <img class="kz-logo" src="./icon.svg" alt="" />
 </div>
@@ -214,7 +214,6 @@
     </span>
   </div>
 </div>
-{#if data}
   <div class="container">
     <HeroTag {analyticsId} />
     <UpperRow {data} />
@@ -231,4 +230,6 @@
       <div class="text-center no-data">Sorry no more data available!</div>
     {/if}
   </div>
+  {:else}
+  <p>Please wait while we load your data</p>
 {/if}
