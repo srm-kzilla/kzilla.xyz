@@ -5,7 +5,6 @@
   import Analytics from "../analyticsPage/analytics.svelte";
 
   export let url = "";
-  console.log(url);
 </script>
 
 <Router {url}>

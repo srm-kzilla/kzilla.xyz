@@ -37,53 +37,7 @@ button {
   font-family: uniSansHeavy !important;
 }
 
-a:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-/*------------------------------Navbar--------------------------------------------*/
-
-.image {
-  height: 8vh;
-}
-.linker {
-  position: absolute;
-  font-family: UniSansHeavy;
-  right: 1vh;
-  top: 1.5vh;
-  font-size: 2.5vh;
-  width: 8vw;
-  height: 8vh;
-  text-align: center;
-  line-height: 8vh;
-  color: #ffffff;
-  background-color: #000000;
-  text-transform: uppercase;
-  border-radius: 10px;
-}
-.linker:hover {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-@media (max-width: 1400px) {
-  .linker {
-    width: 12vw;
-  }
-}
-@media (max-width: 1000px) {
-  .linker {
-    width: 16vw;
-  }
-}
-@media (max-width: 760px) {
-  .linker {
-    width: 25vw;
-  }
-}
-@media (max-width: 470px) {
-  .linker {
-    width: 33vw;
-  }
+a:hover{
+	color: #ffffff;
+	text-decoration: none !important;
 }

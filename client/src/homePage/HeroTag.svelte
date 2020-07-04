@@ -1,6 +1,6 @@
 <style>
     .header{
-        margin-top: 8vh;
+        margin-top: 4vh;
         padding-left: 8vw;
     }
     .header h1{
@@ -72,11 +72,12 @@
             height: 12vw;
         }
     }
-    @media(max-height: 676px){
+    /* @media(max-height: 676px){
         .header{
-            /* margin-top: 20vh; */
+            margin-top: 20vh;
         }
-    }
+    } */
+    
 </style>
 
 <div class="container-fluid header">
