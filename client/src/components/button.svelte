@@ -113,6 +113,10 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
+{:else if button_content === "My Links"}
+  <div role="button" class="linker">
+    {button_content}
+  </div>
 {:else if button_content}
   <div
     role="button"
@@ -122,7 +126,7 @@
     <i class="fa fa-caret-down" />
   </div>
 {:else}
-  <div role="button" class={button_content ? 'linker' : 'd-none'}>
+  <div role="button" class="d-none">
     {button_content}
   </div>
 {/if}
