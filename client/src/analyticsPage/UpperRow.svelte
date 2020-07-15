@@ -5,7 +5,6 @@
 <style>
   .analytics-container {
     margin-top: 50px;
-    width: 100%;
   }
   .box {
     border-radius: 16px;
@@ -66,7 +65,7 @@
 <!-- Navbar -->
 <!-- Analytics -->
 <!-- Part 1 -->
-<div class="container analytics-container">
+<div class="analytics-container">
   <!-- OS -->
 
   <div class="row">
@@ -78,7 +77,7 @@
     </div>
     {#if data.reports.length != 0}
       <div class="col-md-10">
-        <div class="box lightbg os-box">
+        <div class="box lightbg ">
           <p class="heading">Operating System</p>
           <ul>
 

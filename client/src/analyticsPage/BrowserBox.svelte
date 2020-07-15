@@ -39,8 +39,7 @@
     .browser-box {
       height: 160px;
       width: 160px;
-      margin-left: 40px;
-      margin-bottom: 20px;
+      margin: 15px auto;
     }
   }
 </style>

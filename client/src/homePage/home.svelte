@@ -14,8 +14,8 @@
     padding: 0px;
   }
 </style>
-
 <Navbar {button_content}/>
+
 
 <div class="container-fluid kz-main">
 
