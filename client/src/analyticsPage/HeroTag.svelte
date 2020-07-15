@@ -24,7 +24,7 @@
   }
   .hero-div {
     font-family: UniSansBook;
-    margin-top: 60px;
+    margin-top: 70px;
     padding: 20px;
     background-color: #f5f5f5;
     border-radius: 10px;

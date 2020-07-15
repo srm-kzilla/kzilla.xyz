@@ -25,6 +25,7 @@
   //   Initialize onMount
   onMount(async function initialise() {
     data = await getAnalyticsData(analyticsId, startdate, enddate);
+    console.log(data);
   });
   // Changed Start Date using Custom
   var changeStartDate = async event => {
@@ -81,164 +82,72 @@
 
   function toggleDropDown() {
     ddToggler = !ddToggler;
-    console.log("Hello " + ddToggler);
   }
 </script>
 
 <style>
-  .navigator {
-    position: relative;
-    height: 100px;
-  }
-  .kz-logo {
-    position: absolute;
-    left: 30px;
-    top: 20px;
-    height: 50px;
-    widows: 50px;
-  }
-
-  .startdate,
-  .enddate {
-    background-color: #f5f5f5;
-    border: none;
-    padding: 10px;
-    z-index: 9999;
-    /* padding-right: 10px; */
-    /* height: 60px;
-    width: 160px;
-    border-radius: 16px;
-    padding: 10px; */
-  }
-  .startdate {
-    position: absolute;
-    right: 480px;
-    top: 10px;
-    font-family: UniSansBook;
-  }
-  .enddate {
-    position: absolute;
-    right: 280px;
-    top: 10px;
-    font-family: UniSansBook;
-  }
-
   .no-data {
     font-family: UniSansBook;
   }
-  input:focus {
-    border: none;
+  .waiting-for-data {
+    margin-top: 50px;
   }
-  .dropdown {
-    margin-left: auto;
-    margin-right: 30px;
-    background-color: var(--black);
-    color: var(--white);
+  .kz-dropdown {
+    position: fixed;
+    right: 3.4vw;
+    top: 14.4vh;
+    width: 11.6vw;
     border-radius: 16px;
-    border: none;
-    padding: 10px;
-    font-family: UniSansHeavy;
-    position: relative;
-  }
-  #dropdownMenuLink {
-    position: absolute;
-    top: 50%;
-    left: 16px;
-    transform: translateY(-50%);
-  }
-  .dropdown-toggle {
-    position: relative;
-  }
-  .dropdown-toggle::after {
-    position: absolute;
-    right: -100%;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .dropdown-menu {
-    font-family: UniSansHeavy;
-    width: 160px !important;
-    transform: translate3d(0px, 62px, 0px) !important;
     background-color: #f5f5f5;
     border: none;
     border-radius: 16px;
+    padding-top: 8px;
+    z-index: 99;
   }
-  .dropdown-item:hover {
+  .kz-dropdown ul {
+    list-style-type: none;
+    font-family: UniSansHeavy;
+    margin-left: -40px;
+  }
+  .kz-dropdown ul li {
+    list-style-type: none;
+    padding: 2px 0px;
+    padding-left: 20px;
+  }
+  .kz-dropdown ul li:hover {
     background-color: var(--black);
     color: var(--white);
   }
+
   @media (max-width: 768px) {
-    .startdate {
-      position: absolute;
-      left: 10px;
-      top: 80px;
-    }
-    .enddate {
-      position: absolute;
-      right: 10px;
-      top: 80px;
-    }
-    .dropdown {
-      position: absolute;
-      right: 30px;
-      top: 10px;
+    .kz-dropdown {
+      right: 3.4vw;
+      top: 14.4vh;
+      width: 40vw;
     }
   }
-  .linker {
-    letter-spacing: 1px;
-    width: 12vw;
-    height: 8vh;
-    text-align: left;
-    text-transform: uppercase;
-    border-radius: 12px;
+  @media (max-width: 1024px) {
+    .kz-dropdown {
+      right: 2vw;
+      top: 14.4vh;
+      width: 18vw;
+    }
   }
 
-  .kz-dropdown {
-    position: fixed;
-    right: 4.5vw;
-    top: 14vh;
-    width: 12vw;
-  }
-
-  .kz-dropdown ul {
-    list-style-type: none;
-  }
-  @media (max-width: 1400px) {
-    .linker {
-      width: 12vw;
-    }
-  }
-  @media (max-width: 1200px) {
-    .linker {
-      width: 14vw;
-    }
-  }
-  @media (max-width: 1000px) {
-    .linker {
-      width: 22vw;
-    }
-  }
-  @media (max-width: 920px) {
-    .linker {
-      margin-right: 2vh;
-    }
+  @media (max-width: 987px) {
   }
   @media (max-width: 760px) {
-    .linker {
+    .kz-dropdown {
+      right: 2.2vw;
+      top: 14.4vh;
+      width: 23vw;
+    }
+  }
+  @media (max-width: 500px) {
+    .kz-dropdown {
+      right: 2.2vw;
+      top: 14.4vh;
       width: 30vw;
-    }
-  }
-  @media (max-width: 470px) {
-    .linker {
-      width: 36vw;
-    }
-    .dropdown-toggle::after {
-      right: -30px;
-    }
-  }
-  @media (max-width: 400px) {
-    .linker {
-      width: 36vw;
     }
   }
 </style>
@@ -248,51 +157,6 @@
   on:changeEndDate={changeEndDate}
   on:dropDown={toggleDropDown}
   {button_content} />
-<!-- <div class="navigator">
-  <img class="kz-logo" src="../icon.svg" alt="" />
-</div>
-{#if selectedrange == 'Custom'}
-  <input
-    class="startdate linker"
-    type="date"
-    bind:value={startdate}
-    on:change={changeStartDate(startdate)} />
-  <input
-    class="enddate linker"
-    type="date"
-    bind:value={enddate}
-    on:change={changeEndDate(enddate)} />
-{/if} -->
-<!-- <div class="dropdown show linker">
-  <span
-    class="dropdown-toggle"
-    role="button"
-    id="dropdownMenuLink"
-    data-toggle="dropdown">
-    Today
-  </span>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <span class="dropdown-item" on:click={() => datesChanged('Today')}>
-      Today
-    </span>
-    <span class="dropdown-item" on:click={() => datesChanged('Last 3 days')}>
-      Last 3 days
-    </span>
-    <span class="dropdown-item" on:click={() => datesChanged('This week')}>
-      This Week
-    </span>
-    <span class="dropdown-item" on:click={() => datesChanged('This  month')}>
-      This Month
-    </span>
-    <span class="dropdown-item" on:click={() => datesChanged('Yesterday')}>
-      Yesterday
-    </span>
-    <span class="dropdown-item" on:click={() => datesChanged('Custom')}>
-      Custom
-    </span>
-  </div>
-</div> -->
 
 {#if ddToggler}
   <div class="kz-dropdown">
@@ -332,5 +196,7 @@
     {/if}
   </div>
 {:else}
-  <p>Please wait while we load your data</p>
+  <p class="text-center no-data waiting-for-data">
+    Please wait while we load your data
+  </p>
 {/if}

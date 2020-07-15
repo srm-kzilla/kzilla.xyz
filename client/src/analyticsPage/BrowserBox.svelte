@@ -50,7 +50,7 @@
       <div class="col-md-2 col-xs-6 ">
         <div class="box blackbg browser-box">
           <p class="heading">{label}</p>
-          <i class="fa fa-chrome" />
+          <i class="fa fa-{label.toLowerCase()}" />
           <h4 class="browser-count">{value}</h4>
         </div>
       </div>

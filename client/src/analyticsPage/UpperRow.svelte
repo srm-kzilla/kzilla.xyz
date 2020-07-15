@@ -20,9 +20,9 @@
   }
   /* P1 */
   .clicks-box {
-    height: 90px;
+    height: 110px;
     margin-top: 10px;
-    max-width: 120px;
+    max-width: 140px;
   }
   .clicks-box p {
     margin-bottom: 0;
@@ -53,7 +53,7 @@
   }
   .clicks-p {
     font-family: UniSansBook;
-    padding-top: 10px;
+    padding-top: 27px;
     font-size: 32px;
   }
   .label-p,

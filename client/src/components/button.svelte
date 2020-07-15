@@ -40,6 +40,17 @@
     text-transform: uppercase;
     border-radius: 12px;
   }
+  .analytics-btn {
+    position: relative;
+    text-align: left;
+    padding-left: 20px;
+  }
+  .fa {
+    position: absolute;
+    right: 20px;
+    top: 35%;
+    transform: translateX(-50%);
+  }
   .margin-0 {
     margin-right: 0 !important;
   }
@@ -106,12 +117,12 @@
   <div
     role="button"
     on:click={showAlert}
-    class={button_content ? 'linker' : 'd-none'}>
+    class={button_content ? 'linker analytics-btn' : 'd-none'}>
     {button_content}
+    <i class="fa fa-caret-down" />
   </div>
 {:else}
   <div role="button" class={button_content ? 'linker' : 'd-none'}>
     {button_content}
   </div>
 {/if}
-
