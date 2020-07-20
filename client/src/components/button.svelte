@@ -87,14 +87,31 @@
       width: 22vw;
     }
   }
+  @media (max-width: 550px) {
+    .margin-0{
+      margin-top: -15px;
+      margin-left: 34vw;
+      margin-right: 34vw;
+    }
+  }
   @media (max-width: 470px) {
     .linker {
       width: 30vw;
+    }
+    .margin-0{
+      margin-top: -15px;
+      margin-left: 30vw;
+      margin-right: 30vw;
     }
   }
   @media (max-width: 400px) {
     .linker {
       width: 34vw;
+    }
+    .margin-0{
+      margin-top: -15px;
+      margin-left: 28vw;
+      margin-right: 28vw;
     }
   }
 </style>
