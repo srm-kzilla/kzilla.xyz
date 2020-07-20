@@ -1,23 +1,21 @@
 <style>
-
-    .kz-crafted {
-        position: fixed;
-        bottom: 2vh;
-        width: 100%;
-    }
+  .kz-crafted {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .kz-para {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  .kz-deepBlue {
+    color: var(--deepBlue);
+  }
+  @media (max-width: 600px) {
     .kz-para {
-        font-size: 15px;
-        margin-bottom: 5px;
+      font-size: 3.7vw;
     }
-    .kz-deepBlue{
-        color: var(--deepBlue);
-    }
-    @media (max-width: 600px) {
-        .kz-para {
-        font-size: 3.7vw;
-        }
-    }
-
+  }
 </style>
 
 <div class="text-center kz-crafted">

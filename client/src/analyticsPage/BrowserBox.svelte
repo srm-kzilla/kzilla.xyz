@@ -21,7 +21,7 @@
   }
   .browser-row {
     margin-top: 40px;
-    margin-bottom: 40px;
+    padding-bottom: 40px;
   }
   .browser-box {
     height: 160px;

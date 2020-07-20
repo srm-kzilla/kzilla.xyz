@@ -1,7 +1,6 @@
 <script>
-  export let sdata;
+  export let analyticsData;
   export let heading;
-  console.log(sdata);
 </script>
 
 <style>
@@ -41,7 +40,7 @@
     width: 8px;
   }
   .smallbox::-webkit-scrollbar-thumb {
-    background: var(--black);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
   }
   ul li:nth-child(4n + 1) .progress-bar,
@@ -61,12 +60,11 @@
   }
 </style>
 
-<!-- 2 small boxes -->
-{#if sdata != null}
+{#if analyticsData != null}
   <div class="box lightbg smallbox">
     <p class="heading">{heading}</p>
     <ul>
-      {#each sdata.data as { label, value }}
+      {#each analyticsData.data as { label, value }}
         <li>
           <div class="row">
             <div class="col-sm-4 label-p">{label}</div>
@@ -75,8 +73,8 @@
                 <div
                   class="progress-bar"
                   role="progressbar"
-                  style="width:{(value / sdata._total) * 100}%"
-                  aria-valuenow={(value / sdata._total) * 100}
+                  style="width:{(value / analyticsData._total) * 100}%"
+                  aria-valuenow={(value / analyticsData._total) * 100}
                   aria-valuemax="100" />
               </div>
             </div>
