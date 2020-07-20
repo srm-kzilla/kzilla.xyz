@@ -62,12 +62,7 @@
   }
 </style>
 
-<!-- Navbar -->
-<!-- Analytics -->
-<!-- Part 1 -->
 <div class="analytics-container">
-  <!-- OS -->
-
   <div class="row">
     <div class="col-md-2">
       <div class="blackbg clicks-box box">
