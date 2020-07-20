@@ -14,13 +14,6 @@
   let data;
   let error;
 
-  //Error modal
-
-  function showEditor(e){
-    var editor = this.parentElement;
-    window.$(editor).find('.kz-modalId').removeClass('d-none');
-  };
-
   //Copy Button functionality...
 
   function copyExec() {
