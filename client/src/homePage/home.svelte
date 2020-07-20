@@ -5,7 +5,7 @@
   import Footer from "../components/footer.svelte";
   import Navbar from "../components/navbarStructure.svelte";
 
-  let button_content = "My Links";
+  let button_content = "";
 </script>
 
 <style>

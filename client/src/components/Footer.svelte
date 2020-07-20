@@ -12,6 +12,10 @@
     .kz-deepBlue{
         color: var(--deepBlue);
     }
+    .kz-para span{
+        color: var(--orange); 
+        font-size: 20px;
+    }
     @media (max-width: 600px) {
         .kz-para {
         font-size: 3.7vw;
@@ -22,8 +26,8 @@
 
 <div class="text-center kz-crafted">
   <p class="kz-para kz-deepBlue">
-    Crafted with
-    <span style="color: red;">&hearts</span>
+    crafted with
+    <span>&hearts</span>
     by your friends on the SRMKZILLA team
   </p>
 </div>
