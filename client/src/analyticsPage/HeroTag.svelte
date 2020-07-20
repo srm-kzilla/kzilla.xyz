@@ -4,7 +4,6 @@
 </script>
 
 <style>
-  /* Hero */
   .hero-tag {
     font-size: 70px;
     margin-top: 60px;
@@ -46,20 +45,15 @@
       float: none;
     }
   }
-  /* .hero-url {
-    font-size: 30px;
-  } */
 </style>
 
-<!-- Navbar -->
-<!-- Analytics -->
 <div class="row">
   <div class="col-md-6">
     <h1 class="hero-tag">Analytics</h1>
   </div>
   <div class="col-md-6">
     <div class="hero-div">
-      <h5 class="hero-url">{API.KZILLA_URL}/{analyticsId}</h5>
+      <h5 class="hero-url">{API.KZILLA_URL}{analyticsId}</h5>
     </div>
 
   </div>

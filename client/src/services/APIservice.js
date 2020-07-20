@@ -55,7 +55,24 @@ export async function fetchMyLinks() {
 
 export async function getAnalyticsData(analyticsId, startdate, enddate) {
   var response = await fetch(
-    `https://kzilla-xyz.herokuapp.com/api/v1/analytics/${analyticsId}?startDate=${startdate}&endDate=${enddate}`
+    API.BASE_URL +
+      API.FETCH_ANALYTICS +
+      analyticsId +
+      "?startDate=" +
+      startdate +
+      "&endDate=" +
+      enddate,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
   );
-  return await response.json();
+  console.log(response);
+  if (response.status == 200) {
+    return await response.json();
+  } else {
+    return { status: response.status };
+  }
 }
