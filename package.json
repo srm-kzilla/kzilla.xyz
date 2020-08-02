@@ -41,7 +41,7 @@
     "metaget": "^1.0.7",
     "mongodb": "^3.5.6",
     "node-cache": "^5.1.2",
-    "pino": "^6.4.0",
+    "pino": "^6.5.0",
     "request-ip": "^2.1.3",
     "typescript": "^3.9.7"
   },
