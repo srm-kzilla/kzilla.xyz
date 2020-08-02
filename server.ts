@@ -13,6 +13,7 @@ import { AnalyticsService } from "./api/services/analytics-service";
 import { DatabaseService } from "./api/services/database-service";
 import { recaptchaMiddleware } from "./api/middlewares/recaptcha-middleware";
 import { generateTooManyRequests } from "./api/utils/ejs-templates";
+import path from "path";
 
 /**
  * Driver class to run the application
@@ -72,6 +73,17 @@ class Server {
       `${APIEndpoints.BASE}${APIEndpoints.Analytics.BASE_ENDPOINT}`,
       apiLimiter,
       analyticsRoutes
+    );
+
+    this.app.use("/", express.static(path.join(__dirname, "..", "public")));
+
+    this.app.use(
+      "/analytics/:analyticsId",
+      (req, res, next) => {
+        console.log("Hey");
+        next();
+      },
+      express.static(path.join(__dirname, "..", "client", "public"))
     );
   }
 
