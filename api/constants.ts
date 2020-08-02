@@ -23,6 +23,10 @@ export const APIEndpoints = {
     BASE_ENDPOINT: "/analytics",
     FETCH_ANALYTICS: "/:analyticsCode([A-Za-z]{5})",
   },
+  Webhook: {
+    BASE_ENDPOINT: "/webhook",
+    CREATE_LINK: "/link",
+  },
 };
 
 /**

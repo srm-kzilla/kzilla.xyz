@@ -9,6 +9,7 @@ import { mw } from "request-ip";
 import { Constants, APIEndpoints } from "./api/constants";
 import linksRoute, { fetchLink } from "./api/routes/link-routes";
 import analyticsRoutes from "./api/routes/analytics-routes";
+import webhookRoutes from "./api/routes/webhook-routes";
 import { AnalyticsService } from "./api/services/analytics-service";
 import { DatabaseService } from "./api/services/database-service";
 import { recaptchaMiddleware } from "./api/middlewares/recaptcha-middleware";
@@ -57,6 +58,12 @@ class Server {
       max: 4,
       message: page429,
     });
+
+    this.app.use(
+      `${APIEndpoints.BASE}${APIEndpoints.Webhook.BASE_ENDPOINT}`,
+      apiLimiter,
+      webhookRoutes
+    );
 
     this.app.post("*", recaptchaMiddleware);
     this.app.put("*", recaptchaMiddleware);
