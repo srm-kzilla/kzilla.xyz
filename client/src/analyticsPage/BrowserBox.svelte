@@ -44,8 +44,9 @@
   }
 </style>
 
-<div class="browser-row row">
-  {#if data.reports.length != 0}
+{#if data.reports.length != 0}
+  <div class="browser-row row">
+
     {#each data.reports[2].data as { label, value }}
       <div class="col-md-2 col-xs-6 ">
         <div class="box blackbg browser-box">
@@ -55,5 +56,6 @@
         </div>
       </div>
     {/each}
-  {/if}
-</div>
+
+  </div>
+{/if}

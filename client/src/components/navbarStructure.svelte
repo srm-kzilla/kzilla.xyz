@@ -52,8 +52,15 @@
     width: 10.7vw;
     height: 8vh;
     font-family: UniSansBook;
-    border-radius: 16px;
+    border-radius: 12px;
     outline: none;
+  }
+  .startdate::selection,
+  .enddate::selection {
+    background-color: #be0d0d;
+  }
+  ::selection {
+    background-color: #be0d0d;
   }
   .startdate {
     margin-right: 10px;
@@ -67,7 +74,35 @@
       margin-left: 2vh;
     }
   }
-
+  @media (max-width: 1300px) {
+    .custom-dates {
+      margin-right: 10vw;
+      width: 37vw;
+    }
+    .startdate,
+    .enddate {
+      width: 14.5vw;
+      height: 8vh;
+    }
+    .startdate {
+      margin-right: 10px;
+    }
+  }
+  @media (max-width: 1200px) {
+    .custom-dates {
+      margin-right: 12vw;
+    }
+  }
+  @media (max-width: 1100px) {
+    .custom-dates {
+      margin-right: 19vw;
+    }
+    .startdate,
+    .enddate {
+      width: 17vw;
+      height: 8vh;
+    }
+  }
   @media (max-width: 1024px) {
     .custom-dates {
       margin-right: 22vw;
@@ -124,6 +159,19 @@
       width: 160px;
     }
   }
+  /* Change CSS for datepicker */
+  .datepicker::-webkit-datetime-edit-day-field:focus,
+  .datepicker::-webkit-datetime-edit-month-field:focus,
+  .datepicker::-webkit-datetime-edit-year-field:focus {
+    background-color: var(--black);
+    color: white;
+    outline: none;
+  }
+  /* ::-webkit-calendar-picker-indicator {
+    background-color: var(--black);
+    color: white;
+    outline: none;
+  } */
 </style>
 
 <div class="nav-structure">
@@ -134,12 +182,12 @@
     {#if button_content === 'Custom'}
       <div class="custom-dates">
         <input
-          class="startdate linker"
+          class="startdate linker datepicker"
           bind:value={startdate}
           on:change={changeStartDate}
           type="date" />
         <input
-          class="enddate linker"
+          class="enddate linker datepicker"
           bind:value={enddate}
           on:change={changeEndDate}
           type="date" />
