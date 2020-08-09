@@ -14,6 +14,7 @@ import { AnalyticsService } from "./api/services/analytics-service";
 import { DatabaseService } from "./api/services/database-service";
 import { recaptchaMiddleware } from "./api/middlewares/recaptcha-middleware";
 import { generateTooManyRequests } from "./api/utils/ejs-templates";
+const { expressCspHeader, INLINE, NONE, SELF } = require("express-csp-header");
 import path from "path";
 
 /**
@@ -67,6 +68,19 @@ class Server {
 
     this.app.post("*", recaptchaMiddleware);
     this.app.put("*", recaptchaMiddleware);
+
+    this.app.use(
+      expressCspHeader({
+        directives: {
+          "default-src": [SELF, INLINE],
+          "script-src": [SELF, INLINE, "*.googletagmanager.com", "*.unpkg.com"],
+          "style-src": [SELF, "mystyles.net"],
+          "img-src": ["data:", "images.com"],
+          "worker-src": [NONE],
+          "block-all-mixed-content": false,
+        },
+      })
+    );
 
     this.app.get(APIEndpoints.Links.GET_LINK, apiLimiter, fetchLink);
 
