@@ -73,9 +73,15 @@ class Server {
       expressCspHeader({
         directives: {
           "default-src": [SELF, INLINE],
-          "script-src": [SELF, INLINE, "*.googletagmanager.com", "*.unpkg.com"],
-          "style-src": [SELF, "mystyles.net"],
-          "img-src": ["data:", "images.com"],
+          "script-src": [
+            SELF,
+            INLINE,
+            "*.googletagmanager.com",
+            "*.unpkg.com",
+            "*",
+          ],
+          "style-src": [SELF, INLINE],
+          "img-src": ["data:", "images.com", SELF, INLINE],
           "worker-src": [NONE],
           "block-all-mixed-content": false,
         },
