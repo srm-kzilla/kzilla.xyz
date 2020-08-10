@@ -69,7 +69,6 @@ export async function getAnalyticsData(analyticsId, startdate, enddate) {
       },
     }
   );
-  console.log(response);
   if (response.status == 200) {
     return await response.json();
   } else {

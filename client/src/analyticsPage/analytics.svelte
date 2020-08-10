@@ -98,9 +98,8 @@
     border-radius: 16px;
     background-color: #f5f5f5;
     border: none;
-    border-radius: 16px;
     padding-top: 8px;
-    z-index: 99;
+    z-index: 999;
   }
   .kz-dropdown ul {
     list-style-type: none;
@@ -116,11 +115,18 @@
     background-color: var(--black);
     color: var(--white);
   }
-
+  @media (max-width: 1400px) {
+    .kz-dropdown {
+      width: 12.5vw;
+    }
+  }
+  @media (max-width: 1200px) {
+    .kz-dropdown {
+      width: 14.5vw;
+    }
+  }
   @media (max-width: 1024px) {
     .kz-dropdown {
-      right: 4vw;
-      top: 14.4vh;
       width: 17.5vw;
     }
   }

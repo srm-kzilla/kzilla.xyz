@@ -37,7 +37,11 @@ button {
   font-family: uniSansHeavy !important;
 }
 
-a:hover{
-	color: #ffffff;
-	text-decoration: none !important;
+a:hover {
+  color: #ffffff;
+  text-decoration: none !important;
+}
+::selection {
+  background-color: #000000d5;
+  color: var(--white);
 }
