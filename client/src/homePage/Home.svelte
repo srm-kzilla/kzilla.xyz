@@ -1,9 +1,9 @@
 <script>
   import { onMount } from "svelte";
-  import HeroTag from "./heroTag.svelte";
-  import FormDesign from "./formStructure.svelte";
-  import Footer from "../components/footer.svelte";
-  import Navbar from "../components/navbarStructure.svelte";
+  import HeroTag from "./HeroTag.svelte";
+  import FormDesign from "./FormStructure.svelte";
+  import Footer from "../components/Footer.svelte";
+  import Navbar from "../components/NavbarStructure.svelte";
 
   let button_content = "";
 </script>

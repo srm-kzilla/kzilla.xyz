@@ -3,7 +3,7 @@
   import { Router, Link, Route } from "svelte-routing";
   import { shrinkUrlService } from '../services/APIservice';
   import { API } from '../constants';
-  import Button from "../components/button.svelte";
+  import Button from "../components/Button.svelte";
 
   let button_content = "Shrink";
 

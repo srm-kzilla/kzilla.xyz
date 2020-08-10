@@ -4,7 +4,7 @@
   import SmallBox from "./SmallBox.svelte";
   import UpperRow from "./UpperRow.svelte";
   import HeroTag from "./HeroTag.svelte";
-  import Navbar from "../components/navbarStructure.svelte";
+  import Navbar from "../components/NavbarStructure.svelte";
   import Footer from "../components/Footer.svelte";
   import { getAnalyticsData } from "../services/APIservice.js";
 

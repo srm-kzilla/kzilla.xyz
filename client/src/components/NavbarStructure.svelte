@@ -1,6 +1,6 @@
 <script>
   import { Link, Route } from "svelte-routing";
-  import Button from "../components/button.svelte";
+  import Button from "../components/Button.svelte";
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   export let button_content;

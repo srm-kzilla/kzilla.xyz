@@ -31,8 +31,8 @@
     import { Router, Link, Route } from "svelte-routing";
     import { onMount } from "svelte";
     import { fetchMyLinks } from "../services/APIservice";
-    import Table from './table.svelte';
-    import Navbar from "../components/navbarStructure.svelte";
+    import Table from './Table.svelte';
+    import Navbar from "../components/NavbarStructure.svelte";
 
     let button_content = "";
 
