@@ -50,8 +50,8 @@ Please read `Contributing.md` for details on our code of conduct, and the proces
 
 ## Shout outs 💥
 
-| <p align="center">![Ishan Chhabra](https://github.com/ishan-chhabra.png?size=128)<br>[Ishan Chhabra](https://ishanchhabra.com)</p> | <p align="center">![Sriram Kailasam](https://github.com/sriram-kailasam.png?size=128)<br>[Sriram Kailasam](https://github.com/sriram-kailasam)</p> |
-| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <p align="center">![Ishan Chhabra](https://github.com/ishan-chhabra.png?size=128)<br>[Ishan Chhabra](https://ishanchhabra.com)</p> | <p align="center">![Sriram Kailasam](https://github.com/sriram-kailasam.png?size=128)<br>[Sriram Kailasam](https://github.com/sriram-kailasam)</p> | <p align="center">![Harsh Goel](https://github.com/harshgoel05.png?size=128)<br>[Harsh Goel](https://github.com/harshgoel05)</p> | <p align="center">![Ritvick V. Pandey](https://github.com/Ritvick-me.png?size=128)<br>[Ritvick V. Pandey](https://github.com/Ritvick-me)</p> |
+| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 
 ## Forking this repo 🚨
