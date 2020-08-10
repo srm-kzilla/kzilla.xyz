@@ -1,11 +1,11 @@
 <script>
   import { onMount } from "svelte";
-  import BrowserBox from "./BrowserBox.svelte";
-  import SmallBox from "./SmallBox.svelte";
-  import UpperRow from "./UpperRow.svelte";
-  import HeroTag from "./HeroTag.svelte";
+  import BrowserBox from "./browserBox.svelte";
+  import SmallBox from "./smallBox.svelte";
+  import UpperRow from "./upperRow.svelte";
+  import HeroTag from "./heroTag.svelte";
   import Navbar from "../components/navbarStructure.svelte";
-  import Footer from "../components/Footer.svelte";
+  import Footer from "../components/footer.svelte";
   import { getAnalyticsData } from "../services/APIservice.js";
 
   let button_content = "today";
