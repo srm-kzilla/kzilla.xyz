@@ -149,17 +149,16 @@
     .startdate {
       position: absolute;
       left: 10px;
-      top: 100px;
+      top: 115px;
       width: 160px;
     }
     .enddate {
       position: absolute;
       right: 10px;
-      top: 100px;
+      top: 115px;
       width: 160px;
     }
   }
-  /* Change CSS for datepicker */
   .datepicker::-webkit-datetime-edit-day-field:focus,
   .datepicker::-webkit-datetime-edit-month-field:focus,
   .datepicker::-webkit-datetime-edit-year-field:focus {
@@ -167,16 +166,11 @@
     color: white;
     outline: none;
   }
-  /* ::-webkit-calendar-picker-indicator {
-    background-color: var(--black);
-    color: white;
-    outline: none;
-  } */
 </style>
 
 <div class="nav-structure">
   <Link to="/">
-    <img src="../icon.svg" class="image" alt="logo" />
+    <img src="https://kzilla.xyz/icon.svg" class="image" alt="logo" />
   </Link>
   {#if local === 'analytics'}
     {#if button_content === 'Custom'}

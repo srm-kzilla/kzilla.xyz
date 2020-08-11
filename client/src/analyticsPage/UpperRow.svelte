@@ -60,6 +60,14 @@
   .value-p {
     font-family: UniSansBook;
   }
+  @media (max-width: 768px) {
+    .clicks-box {
+      margin-bottom: 20px;
+    }
+    .analytics-container {
+      margin-top: 20px;
+    }
+  }
 </style>
 
 <div class="analytics-container">
