@@ -1,6 +1,7 @@
 import { DatabaseService } from "../services/database-service";
 import { AnalyticsService } from "../services/analytics-service";
 import { Collections } from "../constants";
+import moment from "moment";
 
 /**
  * Fetches analytics for provided analytics code
@@ -10,13 +11,10 @@ import { Collections } from "../constants";
  */
 export const fetchAnalytics = async (
   analyticsCode: string,
-  startDate: string,
-  endDate: string
+  startDate: string | undefined,
+  endDate: string | undefined
 ) => {
   try {
-    const startDateTs = new Date(startDate).getTime();
-    const endDateTs = new Date(endDate).getTime();
-
     const result = await DatabaseService.getInstance()
       .database!!.collection(Collections.LINKS)
       .findOne(
@@ -27,6 +25,7 @@ export const fetchAnalytics = async (
             shortCode: 1,
             longUrl: 1,
             clicks: 1,
+            timestamp: 1,
           },
         }
       );
@@ -34,6 +33,11 @@ export const fetchAnalytics = async (
     if (!result) {
       throw 404;
     }
+
+    const startDateTs = startDate
+      ? new Date(startDate).getTime()
+      : result.timestamp;
+    const endDateTs = endDate ? new Date(endDate).getTime() : Date.now();
 
     const clicksArray = await DatabaseService.getInstance()
       .database!!.collection(Collections.LINKS)
@@ -70,8 +74,8 @@ export const fetchAnalytics = async (
     }
 
     return AnalyticsService.getInstance().getAnalytics(
-      startDate,
-      endDate,
+      moment(startDateTs).format("YYYY-MM-DD"),
+      moment(endDateTs).format("YYYY-MM-DD"),
       result.shortCode,
       clicks
     );

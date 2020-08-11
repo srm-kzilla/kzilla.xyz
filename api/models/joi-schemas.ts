@@ -15,12 +15,8 @@ export const createLinkSchema = Joi.object({
  * Fetch analytics schema
  */
 export const fetchAnalyticsSchema = Joi.object({
-  startDate: Joi.string()
-    .regex(/^2[0-9]{3}-[0-9]{2}-[0-9]{2}$/)
-    .required(),
-  endDate: Joi.string()
-    .regex(/^2[0-9]{3}-[0-9]{2}-[0-9]{2}$/)
-    .required(),
+  startDate: Joi.string().regex(/^2[0-9]{3}-[0-9]{2}-[0-9]{2}$/),
+  endDate: Joi.string().regex(/^2[0-9]{3}-[0-9]{2}-[0-9]{2}$/),
 });
 
 /**
