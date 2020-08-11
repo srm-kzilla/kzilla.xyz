@@ -319,6 +319,8 @@ function putUpdate(e) {
         { action: "enable" }
         );
 
+	console.log(data)
+
         if(data.enabled){
         await enableUrlService( token, data.linkId, false );
         checked = false;
@@ -338,7 +340,7 @@ function putUpdate(e) {
 
 <div class="row justify-content-center kz-row-design">
     <div class="col col-5 kz-uni-sans">
-        {data.shortCode}
+        {API.KZILLA_URL}{data.shortCode}
     </div>
     <div class="col col-4 kz-uni-sans">
         {data.clicks}
@@ -432,7 +434,7 @@ function putUpdate(e) {
                         </div>                    
                     </div>
                     <div class="text-center">
-                        <a id="{data.shortUrl}" href=" " on:click={QRdownload} download="hello.png"><button class="kz-download">Download</button></a>
+                        <a id="{data.shortUrl}" href="" on:click={QRdownload} download="hello.png"><button class="kz-download">Download</button></a>
                     </div>
                 </div>
             </div>
