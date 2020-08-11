@@ -47,6 +47,38 @@ class Server {
     this.app.use(bodyParser.json());
     this.app.use(cookieParser());
     this.app.use(mw());
+
+    this.app.use(
+      expressCspHeader({
+        directives: {
+          "default-src": [SELF, INLINE],
+          "script-src": [
+            SELF,
+            INLINE,
+            "*.googletagmanager.com",
+            "*.unpkg.com",
+            "*.bootstrapcdn.com",
+            "*.cloudflare.com",
+            "*.jquery.com",
+            "*.google.com",
+            "*",
+          ],
+          "style-src": [
+            SELF,
+            INLINE,
+            "*",
+            "*.cloudflare.com",
+            "*.bootstrapcdn.com",
+          ],
+          "img-src": ["data:", "*", SELF, INLINE],
+          "worker-src": [NONE],
+          "frame-src": ["*.google.com", "*"],
+          "font-src": ["*.cloudflare.com", "*"],
+          "connect-src": ["*"],
+          "block-all-mixed-content": false,
+        },
+      })
+    );
   }
 
   /**
@@ -69,25 +101,6 @@ class Server {
     this.app.post("*", recaptchaMiddleware);
     this.app.put("*", recaptchaMiddleware);
 
-    this.app.use(
-      expressCspHeader({
-        directives: {
-          "default-src": [SELF, INLINE],
-          "script-src": [
-            SELF,
-            INLINE,
-            "*.googletagmanager.com",
-            "*.unpkg.com",
-            "*",
-          ],
-          "style-src": [SELF, INLINE],
-          "img-src": ["data:", "images.com", SELF, INLINE],
-          "worker-src": [NONE],
-          "block-all-mixed-content": false,
-        },
-      })
-    );
-
     this.app.get(APIEndpoints.Links.GET_LINK, apiLimiter, fetchLink);
 
     this.app.use(
@@ -102,14 +115,13 @@ class Server {
       analyticsRoutes
     );
 
-    this.app.use("/", express.static(path.join(__dirname, "..", "public")));
+    this.app.use(
+      "/",
+      express.static(path.join(__dirname, "..", "client", "public"))
+    );
 
     this.app.use(
       "/analytics/:analyticsId",
-      (req, res, next) => {
-        console.log("Hey");
-        next();
-      },
       express.static(path.join(__dirname, "..", "client", "public"))
     );
   }
