@@ -168,7 +168,7 @@
     color: white;
     outline: none;
   }
-  @media (max-height: 610px) and (min-width: 550px){
+  @media (max-height: 610px) and (min-width: 550px) {
     .image {
       min-height: 50px;
     }
@@ -184,7 +184,7 @@
     <img src="https://kzilla.xyz/icon.svg" class="image" alt="logo" />
   </Link>
   {#if local === 'analytics'}
-    {#if button_content === 'Custom'}
+    {#if button_content === 'custom'}
       <div class="custom-dates">
         <input
           class="startdate linker datepicker"

@@ -13,8 +13,10 @@
   let ddToggler = false;
   var dateObj = new Date();
   var today = new Date();
+  console.log(today);
   dateObj.setDate(dateObj.getDate());
   today.setDate(today.getDate());
+  console.log(today);
   var startdate = "";
   var enddate = "";
   var analyticsId = window.location.href.split("analytics/")[1];
@@ -37,24 +39,39 @@
   };
   //Changed Dates Range
   var datesChanged = async value => {
-    enddate = formatDate(dateObj);
     button_content = value;
     ddToggler = false;
-    if (value != "Custom" && value != "All Time") {
-      if (value == "Today") {
+    if (value != "custom" && value != "allTime") {
+      today = new Date();
+      today.setDate(today.getDate());
+      if (value == "today") {
         dateObj.setDate(today.getDate());
-      } else if (value == "Yesterday") {
+        dateObj.setMonth(today.getMonth());
+      } else if (value == "yesterday") {
+        console.log(today.getDate());
         dateObj.setDate(today.getDate() - 1);
-      } else if (value == "Last 3 days") {
+        dateObj.setMonth(today.getMonth());
+      } else if (value == "past3Days") {
         dateObj.setDate(today.getDate() - 2);
-      } else if (value == "This  month") {
-        dateObj.setDate(today.getDate() - 29);
-      } else if (value == "This week") {
+        dateObj.setMonth(today.getMonth());
+      } else if (value == "thisMonth") {
+        dateObj.setDate(today.getDate() - 30);
+      } else if (value == "thisWeek") {
         dateObj.setDate(today.getDate() - 6);
+        dateObj.setMonth(today.getMonth());
       }
+      enddate = formatDate(today);
       startdate = formatDate(dateObj);
+      console.log(
+        "Start date: ",
+        startdate,
+        "End date:",
+        enddate,
+        "Today: ",
+        today.getDate()
+      );
     }
-    if (value == "All Time") {
+    if (value == "allTime") {
       startdate = "";
       enddate = "";
     }
@@ -197,23 +214,21 @@
   {#if ddToggler}
     <div class="kz-dropdown">
       <ul>
-        <li role="button" on:click={() => datesChanged('All Time')}>
-          All Time
-        </li>
-        <li role="button" on:click={() => datesChanged('Today')}>Today</li>
-        <li role="button" on:click={() => datesChanged('Last 3 days')}>
+        <li role="button" on:click={() => datesChanged('allTime')}>All Time</li>
+        <li role="button" on:click={() => datesChanged('today')}>Today</li>
+        <li role="button" on:click={() => datesChanged('past3Days')}>
           Last 3 days
         </li>
-        <li role="button" on:click={() => datesChanged('This week')}>
+        <li role="button" on:click={() => datesChanged('thisWeek')}>
           This Week
         </li>
-        <li role="button" on:click={() => datesChanged('This month')}>
+        <li role="button" on:click={() => datesChanged('thisMonth')}>
           This Month
         </li>
-        <li role="button" on:click={() => datesChanged('Yesterday')}>
+        <li role="button" on:click={() => datesChanged('yesterday')}>
           Yesterday
         </li>
-        <li role="button" on:click={() => datesChanged('Custom')}>Custom</li>
+        <li role="button" on:click={() => datesChanged('custom')}>Custom</li>
       </ul>
     </div>
   {/if}
