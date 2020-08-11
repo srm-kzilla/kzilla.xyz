@@ -452,12 +452,12 @@ function putUpdate(e) {
                             </p>
                         {:else if response.status === 400}
                             <p class="text-center no-data error-message">
-                                We went to the moon and back, but could not find any more data.
+                                Something has gone wrong. The link is broken, or the world is ending.
+                                Either way, we're investigating the cause.
                             </p>
                         {:else if response.status === 404}
                             <p class="text-center no-data error-message">
-                                Something has gone wrong. The link is broken, or the world is ending.
-                                Either way, we're investigating the cause.
+                                We went to the moon and back, but could not find any more data.
                             </p>
                         {/if}
                     {/if}
