@@ -22,38 +22,52 @@
   .browser-row {
     margin-top: 40px;
     padding-bottom: 40px;
+    display: flex;
+    align-items: flex-start;
   }
   .browser-box {
     height: 160px;
+    width: 160px;
+    margin-right: 30px;
+    position: relative;
   }
   .browser-box i {
     font-size: 35px;
   }
   .browser-box .browser-count {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
     font-weight: 400;
-    margin-top: 20px;
     font-size: 35px;
     font-family: UniSansBook;
   }
   @media (max-width: 768px) {
+    .browser-row {
+      margin-top: 40px;
+      padding-bottom: 40px;
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
     .browser-box {
-      height: 160px;
-      width: 160px;
-      margin: 15px auto;
+      height: 178px;
+      flex: 2 0 40%;
+      width: 45%;
+      flex-grow: inherit;
+      margin-bottom: 8px;
     }
   }
 </style>
 
 {#if data.reports.length != 0}
-  <div class="browser-row row">
+  <div class="browser-row">
 
     {#each data.reports[2].data as { label, value }}
-      <div class="col-md-2 col-xs-6 ">
-        <div class="box blackbg browser-box">
-          <p class="heading">{label}</p>
-          <i class="fa fa-{label.toLowerCase()}" />
-          <h4 class="browser-count">{value}</h4>
-        </div>
+      <div class="box blackbg browser-box">
+        <p class="heading">{label}</p>
+        <i class="fa fa-{label.toLowerCase()}" />
+        <h4 class="browser-count">{value}</h4>
       </div>
     {/each}
 

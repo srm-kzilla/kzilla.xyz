@@ -8,13 +8,13 @@
   import Footer from "../components/Footer.svelte";
   import { getAnalyticsData } from "../services/APIservice.js";
 
-  let button_content = "today";
+  let button_content = "All Time";
   var data;
   let ddToggler = false;
   var dateObj = new Date();
   dateObj.setDate(dateObj.getDate());
-  var startdate = formatDate(dateObj);
-  var enddate = formatDate(dateObj);
+  var startdate = "";
+  var enddate = "";
   var analyticsId = window.location.href.split("analytics/")[1];
 
   //   Initialize onMount
@@ -38,7 +38,7 @@
     enddate = formatDate(dateObj);
     button_content = value;
     ddToggler = false;
-    if (value != "Custom") {
+    if (value != "Custom" && value != "All Time") {
       if (value == "Today") {
         dateObj.setDate(dateObj.getDate());
       } else if (value == "Yesterday") {
@@ -51,6 +51,10 @@
         dateObj.setDate(dateObj.getDate() - 6);
       }
       startdate = formatDate(dateObj);
+    }
+    if (value == "All Time") {
+      startdate = "";
+      enddate = "";
     }
     data = null;
     data = await getAnalyticsData(analyticsId, startdate, enddate);
@@ -162,8 +166,8 @@
       width: 20vw;
     }
     .no-data {
-      font-size: 17px;
-      padding: 0px 20px;
+      font-size: 14px;
+      padding: 16px 20px;
     }
   }
   @media (max-width: 600px) {
@@ -191,6 +195,9 @@
   {#if ddToggler}
     <div class="kz-dropdown">
       <ul>
+        <li role="button" on:click={() => datesChanged('All Time')}>
+          All Time
+        </li>
         <li role="button" on:click={() => datesChanged('Today')}>Today</li>
         <li role="button" on:click={() => datesChanged('Last 3 days')}>
           Last 3 days
@@ -213,6 +220,10 @@
       <p class="text-center no-data error-message">
         Our systems believe you are on to something bad so they have temporarily
         blocked you. Please try again in a while.
+      </p>
+    {:else if data.status === 400}
+      <p class="text-center no-data error-message">
+        We went to the moon and back, but could not find any more data.
       </p>
     {:else if data.status === 404}
       <p class="text-center no-data error-message">

@@ -54,21 +54,33 @@ export async function fetchMyLinks() {
 }
 
 export async function getAnalyticsData(analyticsId, startdate, enddate) {
-  var response = await fetch(
-    API.BASE_URL +
-      API.FETCH_ANALYTICS +
-      analyticsId +
-      "?startDate=" +
-      startdate +
-      "&endDate=" +
-      enddate,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  if (startdate && enddate && startdate != "" && enddate != "") {
+    var response = await fetch(
+      API.BASE_URL +
+        API.FETCH_ANALYTICS +
+        analyticsId +
+        "?startDate=" +
+        startdate +
+        "&endDate=" +
+        enddate,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  } else {
+    var response = await fetch(
+      API.BASE_URL + API.FETCH_ANALYTICS + analyticsId,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
   if (response.status == 200) {
     return await response.json();
   } else {

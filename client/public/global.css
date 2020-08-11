@@ -42,6 +42,6 @@ a:hover {
   text-decoration: none !important;
 }
 ::selection {
-  background-color: #000000d5;
+  background-color: var(--green);
   color: var(--white);
 }
