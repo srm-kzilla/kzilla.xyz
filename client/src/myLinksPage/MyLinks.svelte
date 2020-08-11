@@ -48,40 +48,45 @@
 
     let button_content = "";
 
+    let loading = true;
+
     //Attaching my links API...
 
     let dataset = [];
 
     onMount(async () => {
         dataset = (await fetchMyLinks()).links
+       loading = false;
     });
 
 </script>
     <Navbar {button_content}/>
 
     <div class="container-fluid kz-table-design">
-        {#if dataset.length > 0}
-            <div class="row justify-content-center">
-                <div class="col col-4 kz-head uni-sans-heavy">
-                    Title
-                </div>
-                <div class="col col-3 kz-head uni-sans-heavy">
-                    Clicks
-                </div>
-                <div class="col col-5 kz-head uni-sans-heavy">
-                    Actions
-                </div>
-            </div>
-            {#each dataset as data }
-                    <Table data = {data}/>
-            {/each}
+        {#if loading}
+            <p class="text-center">
+                Computing the secret to life, the universe, and everything...
+            </p>
         {:else}
-            <div class="row justify-content-center">
-                <div class="col col-auto">
-                    <p>
-                        We went to the moon and back, but could not find any more data.
-                    </p>
+            {#if dataset.length > 0}
+                <div class="row justify-content-center">
+                    <div class="col col-4 kz-head uni-sans-heavy">
+                        Title
+                    </div>
+                    <div class="col col-3 kz-head uni-sans-heavy">
+                        Clicks
+                    </div>
+                    <div class="col col-5 kz-head uni-sans-heavy">
+                        Actions
+                    </div>
                 </div>
-            </div>
+                {#each dataset as data }
+                    <Table data = {data}/>
+                {/each}
+            {:else}
+                <p class="text-center">
+                    We went to the moon and back, but could not find any more data.
+                </p>
+            {/if}
         {/if}
     </div>

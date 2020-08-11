@@ -55,4 +55,5 @@ a:hover {
 ::selection {
   background-color: var(--green);
   color: var(--white);
+  z-index: 1 !important;
 }
