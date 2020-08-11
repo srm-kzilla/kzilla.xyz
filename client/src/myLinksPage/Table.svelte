@@ -14,11 +14,6 @@
         min-width: 1000px;
     }
 
-    .col{
-        display: inline-block;
-        float: none;
-    }
-
     .kz-edit{
         position: fixed;
         top: 0;
@@ -26,7 +21,7 @@
         width: 100vw;
         height: 100vh;
         background-color: transparent;
-        z-index: 999;
+        z-index: 999 !important;
     }
 
     .kz-modal-body{
@@ -69,6 +64,9 @@
     }
 
     .kz-close{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
         right: 0px;
         top: 10px;
@@ -76,7 +74,10 @@
 
     .kz-close button{
         background-color: transparent;
-        padding-right: 0px;
+        padding: 0px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .kz-redirect{
@@ -212,6 +213,9 @@
     .marginer{
         margin-right: 10px;
     }
+    .error-message{
+        margin-bottom: 5px;
+    }
 
     @media(max-width: 640px){
         .kz-input{
@@ -253,6 +257,7 @@ import { enableUrlService } from '../services/APIservice';
 // export let enabled;
 let checked = false;
 export let data;
+let response = [];
 
 //QR Download button
 
@@ -261,7 +266,6 @@ function QRdownload(e) {
     var myImage = myDiv.children[1];
     var hr = document.getElementById(data.shortCode);
     hr.href = myImage.src;
-    console.log(hr.href);
     return false;
 }
 
@@ -335,40 +339,42 @@ function putUpdate(e) {
 
         data.enabled = true;
         checked = true;
-        await updateUrlService( token, data.linkId, data.longUrl );
+        response = await updateUrlService( token, data.linkId, data.longUrl );
+        if(!response.status){
+            hideEditor();
+        }
     });
   }
 
-  function switchButton(e) {
-    e.preventDefault();
-    grecaptcha.ready(async function() {
-        const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
+    function switchButton(e) {
+        checked = !checked;
+        grecaptcha.ready(async function() {
+            const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
 
-        const token = await grecaptcha.execute(
-        siteKey,
-        { action: "enable" }
-        );
+            const token = await grecaptcha.execute(
+            siteKey,
+            { action: "enable" }
+            );
 
-	console.log(data)
 
-        if(data.enabled){
-        await enableUrlService( token, data.linkId, false );
-        checked = false;
-        data.enabled = false;
-        }
-        else{
-        await enableUrlService( token, data.linkId, true );
-        checked = true;
-        data.enabled = true;
-        }
-    });
+            if(data.enabled){
+                await enableUrlService( token, data.linkId, false );
+                checked = false;
+                data.enabled = false;
+            }
+            else{
+                await enableUrlService( token, data.linkId, true );
+                checked = true;
+                data.enabled = true;
+            }
+        });
   }
 
 
 </script>
 
 <div class="row justify-content-center kz-row-design">
-    <div class="col col-5 kz-uni-sans">
+    <div class="col col-4 kz-uni-sans">
         {API.KZILLA_URL}{data.shortCode}
     </div>
     <div class="col col-3 kz-uni-sans">
@@ -438,6 +444,23 @@ function putUpdate(e) {
                             <button on:click={putUpdate} type="submit" name="userLink" class="shrinker uni-sand-heavy">Update</button>
                         </form>
                     </div>
+                    {#if response.status}
+                        {#if response.status === 429}
+                            <p class="text-center no-data error-message">
+                                Our systems believe you are on to something bad so they have temporarily
+                                blocked you. Please try again in a while.
+                            </p>
+                        {:else if response.status === 400}
+                            <p class="text-center no-data error-message">
+                                We went to the moon and back, but could not find any more data.
+                            </p>
+                        {:else if response.status === 404}
+                            <p class="text-center no-data error-message">
+                                Something has gone wrong. The link is broken, or the world is ending.
+                                Either way, we're investigating the cause.
+                            </p>
+                        {/if}
+                    {/if}
                 </div>
             </div>
         </div>

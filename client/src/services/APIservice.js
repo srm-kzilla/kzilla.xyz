@@ -27,8 +27,11 @@ export async function updateUrlService(token, linkId, longUrl) {
       longUrl,
     }),
   });
-
-  return data.json();
+  if (data.status == 200) {
+    return await data.json();
+  } else {
+    return { status: data.status };
+  }
 }
 
 export async function enableUrlService(token, linkId, enabled) {
