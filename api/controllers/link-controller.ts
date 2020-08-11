@@ -111,6 +111,7 @@ export const fetchMyLinks = async (linkIds: string[]) => {
         clicks: 1,
         creatorIpAddress: 1,
         longUrl: 1,
+        linkId: 1,
         timestamp: 1,
       })
       .toArray();
@@ -176,6 +177,7 @@ export const updateLink = async (
           creatorIpAddress: 1,
           longUrl: 1,
           timestamp: 1,
+          linkId: 1
         },
       }
     );

@@ -349,6 +349,8 @@ function putUpdate(e) {
         { action: "enable" }
         );
 
+	console.log(data)
+
         if(data.enabled){
         await enableUrlService( token, data.linkId, false );
         checked = false;
@@ -366,8 +368,8 @@ function putUpdate(e) {
 </script>
 
 <div class="row justify-content-center kz-row-design">
-    <div class="col col-4 kz-uni-sans">
-        {data.shortCode}
+    <div class="col col-5 kz-uni-sans">
+        {API.KZILLA_URL}{data.shortCode}
     </div>
     <div class="col col-3 kz-uni-sans">
         {data.clicks}
