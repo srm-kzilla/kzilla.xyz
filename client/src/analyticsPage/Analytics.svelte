@@ -13,10 +13,8 @@
   let ddToggler = false;
   var dateObj = new Date();
   var today = new Date();
-  console.log(today);
   dateObj.setDate(dateObj.getDate());
   today.setDate(today.getDate());
-  console.log(today);
   var startdate = "";
   var enddate = "";
   var analyticsId = window.location.href.split("analytics/")[1];
@@ -48,7 +46,6 @@
         dateObj.setDate(today.getDate());
         dateObj.setMonth(today.getMonth());
       } else if (value == "yesterday") {
-        console.log(today.getDate());
         dateObj.setDate(today.getDate() - 1);
         dateObj.setMonth(today.getMonth());
       } else if (value == "past3Days") {
@@ -62,14 +59,6 @@
       }
       enddate = formatDate(today);
       startdate = formatDate(dateObj);
-      console.log(
-        "Start date: ",
-        startdate,
-        "End date:",
-        enddate,
-        "Today: ",
-        today.getDate()
-      );
     }
     if (value == "allTime") {
       startdate = "";
