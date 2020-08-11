@@ -38,19 +38,12 @@
 
     //Attaching my links API...
 
-    let dataset;
+    let dataset = [];
 
     onMount(async () => {
-        async function myLinksFetcher(){
-            dataset = await fetchMyLinks();
-        }
-	});
-
-    
-
-    myLinksFetcher();
+        dataset = (await fetchMyLinks()).links
+    });
 </script>
-
     <Navbar {button_content}/>
 
     <div class="kz-notUsed"></div>

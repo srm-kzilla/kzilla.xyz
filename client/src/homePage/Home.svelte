@@ -10,12 +10,7 @@
   let dataset;
 	
   onMount(async () => {
-		async function myLinksFetcher(){
-      dataset = await fetchMyLinks();
-    }
-    if(dataset){
-      button_content = "My Links"
-    }
+    await myLinksFetcher()
   });
   
   async function myLinksFetcher(){

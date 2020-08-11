@@ -9,10 +9,11 @@
 
 <Router {url}>
   <div style="z-index: 999">
-    <Route path="me" component={MyLinks} />
+   
     <Route path="/">
       <HomePage />
     </Route>
+    <Route path="/me" component={MyLinks} />
     <Route path="analytics/:id" component={Analytics} />
   </div>
 </Router>

@@ -124,6 +124,11 @@ class Server {
       "/analytics/:analyticsId",
       express.static(path.join(__dirname, "..", "client", "public"))
     );
+
+    this.app.use(
+      "/me",
+      express.static(path.join(__dirname, "..", "client", "public"))
+    );
   }
 
   /**

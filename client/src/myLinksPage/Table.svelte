@@ -338,10 +338,10 @@ function putUpdate(e) {
 
 <div class="row justify-content-center kz-row-design">
     <div class="col col-5 kz-uni-sans">
-        {data.name}
+        {data.shortCode}
     </div>
     <div class="col col-4 kz-uni-sans">
-        {data.count}
+        {data.clicks}
     </div>
     <div class="col col-3 kz-finder">
         <input id="{data.linkId}" on:click={switchButton} class="kz-switch marginer" type="checkbox" {checked}>
