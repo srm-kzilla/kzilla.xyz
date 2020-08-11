@@ -50,10 +50,10 @@
     }
     
     @media (max-width: 920px) {
-    .header{
-        padding-left: 5vw;
+        .header{
+            padding-left: 5vw;
+        }
     }
-  }
     @media(max-width: 650px){
         /* .header{
             margin-top: 200px;
@@ -72,11 +72,23 @@
             height: 12vw;
         }
     }
-    /* @media(max-height: 676px){
+    @media (max-height: 610px) and (min-width: 550px){
         .header{
-            margin-top: 20vh;
+            margin-top: 30px;
         }
-    } */
+        .header h1{
+            font-size: 50px !important;
+        }
+        .kz-shrinker-heading:before{
+            top: 42px;
+            left: 50px;
+            width: 190px;
+            height: 10px;
+        }
+        .roller__list{
+            height: 55px;
+        }
+    }
     
 </style>
 

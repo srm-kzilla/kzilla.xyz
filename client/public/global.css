@@ -20,6 +20,7 @@
   src: url("./VisbyRoundCF-Regular.otf") format("opentype");
 }
 
+
 /* ----------------------------Defaults------------------------------------------ */
 
 :root {
@@ -31,6 +32,7 @@
   --deepBlue: #484c6e;
   --green: #54a870;
 }
+
 
 button {
   border-style: none;

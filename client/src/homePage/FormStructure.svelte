@@ -2,8 +2,12 @@
 
   import { Router, Link, Route } from "svelte-routing";
   import { shrinkUrlService } from '../services/APIservice';
+  import { createEventDispatcher } from "svelte";
   import { API } from '../constants';
   import Button from "../components/Button.svelte";
+
+  
+  const dispatch = createEventDispatcher();
 
   let button_content = "Shrink";
 
@@ -29,7 +33,6 @@
   function buttonClick(e) {
     tapped = true;
     if(longUrl){
-      // myShrinker.innerHTML = '<div class="spinner-border text-light"><span class="sr-only">Loading...</span></div>';
       button_content = "Shrunk";
       e.preventDefault();
       grecaptcha.ready(async function() {
@@ -45,6 +48,7 @@
         }
       else{
         error = "";
+        dispatch("submission");
         }
       });
     }
@@ -307,6 +311,27 @@
       width: 90vw;
     }
   }
+  @media (max-height: 610px) and (min-width: 550px){
+    .kz-form-des {
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+    .kz-input{
+      font-size: 15px;
+      line-height: 50px;
+      min-height: 50px;
+    }
+    .kz-shrinked-text{
+      font-size: 15px;
+      line-height: 50px;
+      min-height: 50px;
+    }
+    .kz-shrinked-text-alternate{
+      font-size: 15px;
+      line-height: 50px;
+      min-height: 50px;
+    }
+  }
 </style>
 
 <div class="container-fluid kz-form-des">
@@ -317,7 +342,7 @@
       <div class="kz-display-none">
         <br>
       </div>
-      <Button on:buttonClick={buttonClick} {button_content}/>
+      <Button on:submission on:buttonClick={buttonClick} {button_content}/>
     </form>
 
   {:else if !error}
@@ -325,13 +350,17 @@
       <div class="container-fluid text-center kz-input kz-input-done">
         {data.longUrl}
       </div>
-      <div class="kz-shrinked-text" id="shrink">{API.KZILLA_URL}{data.shortCode}</div>
+      <div class="kz-shrinked-text" id="shrink">
+        {API.KZILLA_URL}{data.shortCode}
+      </div>
       
       <button class="kz-alternate" on:click={copyExec}>
         <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
       </button>
       
-      <div class="kz-shrinked-text-alternate" style="">{API.ANALYTICS_URL}{data.analyticsCode}</div>
+      <div class="kz-shrinked-text-alternate" style="">
+        {API.ANALYTICS_URL}{data.analyticsCode}
+      </div>
       
       <Link to="analytics/{data.analyticsCode}">
         <button class="kz-alternate" style="margin-right: 0;">

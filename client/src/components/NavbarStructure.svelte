@@ -28,6 +28,7 @@
 <style>
   .image {
     height: 8vh;
+    min-height: 50px;
     margin-top: 5vh;
     margin-left: 5vh;
   }
@@ -51,6 +52,7 @@
     z-index: 999;
     width: 10.7vw;
     height: 8vh;
+    min-height: 50px;
     font-family: UniSansBook;
     border-radius: 12px;
     outline: none;
@@ -166,6 +168,15 @@
     color: white;
     outline: none;
   }
+  @media (max-height: 610px) and (min-width: 550px){
+    .image {
+      min-height: 50px;
+    }
+    .startdate,
+    .enddate {
+      min-height: 50px;
+    }
+  }
 </style>
 
 <div class="nav-structure">
@@ -193,7 +204,7 @@
       {customClicked}
       {button_content} />
   {:else}
-    <Link to="myLinks">
+    <Link to="me">
       <Button {button_content} />
     </Link>
   {/if}

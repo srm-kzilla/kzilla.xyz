@@ -1,12 +1,15 @@
 <style>
   .kz-crafted {
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: 0%;
     width: 100%;
   }
   .kz-para {
     font-size: 15px;
     margin-bottom: 5px;
+  }
+  .kz-para span{
+      color: var(--orange);
   }
   .kz-deepBlue {
     color: var(--deepBlue);

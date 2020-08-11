@@ -114,6 +114,14 @@
       margin-right: 28vw;
     }
   }
+  @media (max-height: 610px) and (min-width: 550px){
+    .linker{
+      font-size: 15px;
+      line-height: 50px;
+      min-height: 50px;
+      margin-top: -50px;
+    }
+  }
 </style>
 
 {#if button_content === 'Shrink'}
@@ -126,9 +134,9 @@
   </div>
 {:else if button_content === 'Shrunk'}
   <div class={button_content ? 'linker margin-0' : 'd-none'}>
-    <div class="spinner-border text-light">
+    <div class="spinner-border spinner-border-sm text-light">
       <span class="sr-only">Loading...</span>
-    </div>
+    </div> 
   </div>
 {:else if button_content === "My Links"}
   <div role="button" class="linker">

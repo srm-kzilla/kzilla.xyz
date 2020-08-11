@@ -40,9 +40,13 @@
 
     let dataset;
 
-    async function myLinksFetcher(){
-        dataset = await fetchMyLinks();
-    }
+    onMount(async () => {
+        async function myLinksFetcher(){
+            dataset = await fetchMyLinks();
+        }
+	});
+
+    
 
     myLinksFetcher();
 </script>

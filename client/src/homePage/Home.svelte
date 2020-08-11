@@ -1,11 +1,29 @@
 <script>
   import { onMount } from "svelte";
+  import { fetchMyLinks } from "../services/APIservice";
   import HeroTag from "./HeroTag.svelte";
   import FormDesign from "./FormStructure.svelte";
   import Footer from "../components/Footer.svelte";
   import Navbar from "../components/NavbarStructure.svelte";
 
   let button_content = "";
+
+  onMount(async () => {
+		async function myLinksFetcher(){
+      dataset = await fetchMyLinks();
+    }
+    if(dataset){
+      button_content = "My Links"
+    }
+  });
+  
+  async function myLinksFetcher(){
+    dataset = await fetchMyLinks();
+    if(dataset){
+      button_content="My Links"
+    }
+  }
+
 </script>
 
 <style>
@@ -14,6 +32,7 @@
     padding: 0px;
   }
 </style>
+
 <Navbar {button_content}/>
 
 
@@ -21,7 +40,7 @@
 
   <HeroTag />
 
-  <FormDesign />
+  <FormDesign on:submission={myLinksFetcher}/>
   <br />
 
 </div>
