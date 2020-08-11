@@ -12,7 +12,9 @@
   var data;
   let ddToggler = false;
   var dateObj = new Date();
+  var today = new Date();
   dateObj.setDate(dateObj.getDate());
+  today.setDate(today.getDate());
   var startdate = "";
   var enddate = "";
   var analyticsId = window.location.href.split("analytics/")[1];
@@ -40,15 +42,15 @@
     ddToggler = false;
     if (value != "Custom" && value != "All Time") {
       if (value == "Today") {
-        dateObj.setDate(dateObj.getDate());
+        dateObj.setDate(today.getDate());
       } else if (value == "Yesterday") {
-        dateObj.setDate(dateObj.getDate() - 1);
+        dateObj.setDate(today.getDate() - 1);
       } else if (value == "Last 3 days") {
-        dateObj.setDate(dateObj.getDate() - 2);
+        dateObj.setDate(today.getDate() - 2);
       } else if (value == "This  month") {
-        dateObj.setDate(dateObj.getDate() - 29);
+        dateObj.setDate(today.getDate() - 29);
       } else if (value == "This week") {
-        dateObj.setDate(dateObj.getDate() - 6);
+        dateObj.setDate(today.getDate() - 6);
       }
       startdate = formatDate(dateObj);
     }
