@@ -50,78 +50,38 @@
 
     //Attaching my links API...
 
-    let dataset = [
-        {
-            "linkId":"PVKOIplrpqIE",
-            "shortCode":"JKQMc",
-            "analyticsCode":"OkFJl",
-            "clicks":0,
-            "creatorIpAddress":"::1",
-            "enabled":true,
-            "longUrl":"https://ishanchhabra.com",
-            "timestamp":1597089848795
-        },
-        {   
-            "linkId":"otKPXDeOgbpm",
-            "shortCode":"WNKNL",
-            "analyticsCode":"mxmxh",
-            "clicks":0,
-            "creatorIpAddress":"::1",
-            "enabled":true,
-            "longUrl":"https://ishanchhabra.com",
-            "timestamp":1597137112953
-        },
-        {
-            "linkId":"NFGECxnJMyVx",
-            "shortCode":"tbSVN",
-            "analyticsCode":"yEpQR",
-            "clicks":2,
-            "creatorIpAddress":"::1",
-            "enabled":true,
-            "longUrl":"https://ishanchhabra.com",
-            "timestamp":1597137280220
-        },
-        {
-            "linkId":"frMkkggloXDO",
-            "shortCode":"LzYwR",
-            "analyticsCode":"XLSPP",
-            "clicks":0,
-            "creatorIpAddress":"::ffff:127.0.0.1",
-            "enabled":true,
-            "longUrl":"https://google.com",
-            "timestamp":1597140255692
-        },
-        {
-            "linkId":"xGoaLDtmHSBd",
-            "shortCode":"xrbTU",
-            "analyticsCode":"bIWqf",
-            "clicks":1,
-            "creatorIpAddress":"::1",
-            "enabled":true,
-            "longUrl":"https://facebook.com",
-            "timestamp":1597089819171
-        }
-    ];
+    let dataset = [];
 
-    // onMount(async () => {
-    //     dataset = (await fetchMyLinks()).links
-    // });
+    onMount(async () => {
+        dataset = (await fetchMyLinks()).links
+    });
+
 </script>
     <Navbar {button_content}/>
 
     <div class="container-fluid kz-table-design">
-        <div class="row justify-content-center">
-            <div class="col col-4 kz-head uni-sans-heavy">
-                Title
+        {#if dataset.length > 0}
+            <div class="row justify-content-center">
+                <div class="col col-4 kz-head uni-sans-heavy">
+                    Title
+                </div>
+                <div class="col col-3 kz-head uni-sans-heavy">
+                    Clicks
+                </div>
+                <div class="col col-5 kz-head uni-sans-heavy">
+                    Actions
+                </div>
             </div>
-            <div class="col col-3 kz-head uni-sans-heavy">
-                Clicks
+            {#each dataset as data }
+                    <Table data = {data}/>
+            {/each}
+        {:else}
+            <div class="row justify-content-center">
+                <div class="col col-auto">
+                    <p>
+                        We went to the moon and back, but could not find any more data.
+                    </p>
+                </div>
             </div>
-            <div class="col col-5 kz-head uni-sans-heavy">
-                Actions
-            </div>
-        </div>
-        {#each dataset as data }
-                <Table data = {data}/>
-        {/each}
+        {/if}
     </div>
