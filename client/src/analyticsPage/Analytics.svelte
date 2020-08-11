@@ -52,6 +52,7 @@
         dateObj.setDate(today.getDate() - 2);
         dateObj.setMonth(today.getMonth());
       } else if (value == "thisMonth") {
+        dateObj.setMonth(today.getMonth());
         dateObj.setDate(today.getDate() - 30);
       } else if (value == "thisWeek") {
         dateObj.setDate(today.getDate() - 6);
