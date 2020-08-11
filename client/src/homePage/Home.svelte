@@ -7,7 +7,8 @@
   import Navbar from "../components/NavbarStructure.svelte";
 
   let button_content = "";
-
+  let dataset;
+	
   onMount(async () => {
 		async function myLinksFetcher(){
       dataset = await fetchMyLinks();
