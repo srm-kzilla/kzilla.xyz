@@ -95,7 +95,7 @@
 <div class="container-fluid header">
     <h1>A 
         <ul class="roller__list">
-            <li>&nbsp;stupid simple</li>
+            <li>&nbsp;blazing fast</li>
             <li>&nbsp;breezy</li>
             <li>n&nbsp;uninterrupted</li>
             <li>&nbsp;snappy</li>
