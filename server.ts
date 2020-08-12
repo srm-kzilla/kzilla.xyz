@@ -88,7 +88,7 @@ class Server {
     const page429 = await generateTooManyRequests();
     const apiLimiter = rateLimit({
       windowMs: 1 * 60 * 1000,
-      max: 4,
+      max: 60,
       message: page429,
     });
 
