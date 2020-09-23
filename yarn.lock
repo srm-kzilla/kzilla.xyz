@@ -845,10 +845,10 @@ googleapis-common@^4.4.0:
     url-template "^2.0.8"
     uuid "^8.0.0"
 
-googleapis@^58.0.0:
-  version "58.0.0"
-  resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-58.0.0.tgz#03d5d1f40a12ca60adc139ef4624636024afaeac"
-  integrity sha512-gfpv+8Fr8TCO6yMCTrQUySZe2IJDM/6lulUAh3RuYYPlUBdd3g1B2zMkd7Ot59P6CyGYt4ZMzTLpyHVoLxM85w==
+googleapis@^60.0.1:
+  version "60.0.1"
+  resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-60.0.1.tgz#f0614cbf798e1308ef6e7dd6b7cbf3c464692975"
+  integrity sha512-r/7pDeIMAm/FepbAl2iM+uRQURf2manjOaOVR0j7v2fDPU8QEme44z6N6qGroqJtne0JO5BM0FUz4LuskcwGeQ==
   dependencies:
     google-auth-library "^6.0.0"
     googleapis-common "^4.4.0"
