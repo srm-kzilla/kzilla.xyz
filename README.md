@@ -42,7 +42,7 @@ $ yarn start
 
 ## License 📜
 
-`kzilla-xyz` is available under the MIT license. See the LICENSE file for more info.
+`kzilla-xyz` is available under the **MIT license**. See the LICENSE file for more info.
 
 ## Contributing 🤝
 
@@ -51,12 +51,12 @@ Please read `Contributing.md` for details on our code of conduct, and the proces
 ## Shout outs 💥
 
 | <p align="center">![Ishan Chhabra](https://github.com/ishan-chhabra.png?size=128)<br>[Ishan Chhabra](https://ishanchhabra.com)</p> | <p align="center">![Sriram Kailasam](https://github.com/sriram-kailasam.png?size=128)<br>[Sriram Kailasam](https://github.com/sriram-kailasam)</p> | <p align="center">![Harsh Goel](https://github.com/harshgoel05.png?size=128)<br>[Harsh Goel](https://github.com/harshgoel05)</p> | <p align="center">![Ritvick V. Pandey](https://github.com/Ritvick-me.png?size=128)<br>[Ritvick V. Pandey](https://github.com/Ritvick-me)</p> |
-| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 
 
-## Forking this repo 🚨
+## FORKING THIS REPO 🚨
 
-Many people have contacted us asking if they can use this code for their own websites. The answer to that question is usually "yes", with attribution. There are some cases, such as using this code for a business or something that is greater than a personal project, that we may be less comfortable saying yes to. If in doubt, please don't hesitate to ask us.
+Many people have contacted us asking if they can **USE** this code for their own websites. The answer to that question is usually "yes", with attribution. There are some cases, such as using this code for a business or something that is greater than a personal project, that we may be less comfortable saying yes to. If in doubt, please don't hesitate to ask us.
 
 We value keeping this site open source, but as you all know, _**plagiarism is bad**_. We spent a non-negligible amount of effort developing, designing, and trying to perfect this iteration of our website, and we are proud of it! All we ask is to not claim this effort as your own.
 
