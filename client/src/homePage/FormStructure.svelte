@@ -23,7 +23,7 @@
   function copyExec() {
     var $temp = window.$("<input>");
     window.$("body").append($temp);
-    $temp.val(window.$("#shrink").text()).select();
+    $temp.val("https://" + window.$("#shrink").text()).select();
     document.execCommand("copy");
     $temp.remove();
   }
