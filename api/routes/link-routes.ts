@@ -43,7 +43,9 @@ router.post(
         linkIds
       );
       linkIds.push(result.linkId);
-      res.cookie("linkIds", linkIds);
+      res.cookie("linkIds", linkIds, {
+        expires: new Date(253402300799999),
+      });
       console.log(req.cookies);
       return res.status(201).json(result);
     } catch (error) {
