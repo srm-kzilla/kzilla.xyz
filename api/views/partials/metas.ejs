@@ -12,7 +12,7 @@ if(meta.description && !meta['og:description']) meta['og:description'] = meta.de
 if(meta.title && !meta['twitter:title']) meta['twitter:title'] = meta.title
 if(meta.description && !meta['twitter:description']) meta['twitter:description'] = meta.description
 if(meta['og:title'].length <= 40)
-if(!meta['og:image']) meta['og:image'] = `https://billboard.srmkzilla.net/api/blog?title=${meta['og:title'].replace(/\s/g,'%20')}&fileType=jpeg&theme=dark`
+if(!meta['og:image']) meta['og:image'] = `https://billboard.srmkzilla.net/api/blog?title=${meta['og:title'].replace(/\s/g,'%20')}&subtitle=Shortened%20using%20KZILLA.XYZ&fileType=jpeg&theme=dark`
 else
 if(!meta['og:image']) meta['og:image'] = `https://billboard.srmkzilla.net/api/blog?title=KZILLA.XYZ&fileType=jpeg&theme=dark&fontSize=180px`
 %>
