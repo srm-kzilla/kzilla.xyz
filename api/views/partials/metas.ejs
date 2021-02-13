@@ -5,16 +5,15 @@
 if(!meta.title) meta.title = "KZILLA.XYZ"
 if(!meta.description) meta.description = "A stupid simple URL shrinker"
 if(!meta.keywords) meta.keywords = ["url", "shrinker", "srmkzilla", "shortner"]
-if(!meta.image) meta.image = `https://billboard.srmkzilla.net/api/blog?title=${meta.title.replace(/\s/g,'%20')}&fileType=jpeg&theme=dark`
-
+if(!meta.image) meta.image = `https://billboard.srmkzilla.net/api/blog?title=${meta.title.replace(/\s/g,'%20')}&subtitle=Shortened%20using%20KZILLA.XYZ&fileType=jpeg&theme=dark`
 if(meta.title && !meta['og:title']) meta['og:title'] = meta.title
 if(meta.description && !meta['og:description']) meta['og:description'] = meta.description
 if(meta.title && !meta['twitter:title']) meta['twitter:title'] = meta.title
 if(meta.description && !meta['twitter:description']) meta['twitter:description'] = meta.description
 if(meta['og:title'].length <= 40)
-if(!meta['og:image']) meta['og:image'] = `https://billboard.srmkzilla.net/api/blog?title=${meta['og:title'].replace(/\s/g,'%20')}&fileType=jpeg&theme=dark`
+if(!meta['og:image']) meta['og:image'] = `https://billboard.srmkzilla.net/api/blog?title=${meta['og:title'].replace(/\s/g,'%20')}&subtitle=Shortened%20using%20KZILLA.XYZ&fileType=jpeg&theme=dark`
 else
-if(!meta['og:image']) meta['og:image'] = `https://billboard.srmkzilla.net/api/blog?title=KZILLA.XYZ&fileType=jpeg&theme=dark&fontSize=180px`
+if(!meta['og:image']) meta['og:image'] = `https://billboard.srmkzilla.net/api/blog?title=KZILLA.XYZ&subtitle=Shortened%20using%20KZILLA.XYZ&fileType=jpeg&theme=dark&fontSize=180px`
 %>
 <% const metaKeys = Object.keys(meta) %>
 <% for(var i=0; i < metaKeys.length; i++) { %>
