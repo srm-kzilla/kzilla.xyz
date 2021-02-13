@@ -85,7 +85,10 @@ export const fetchLink = async (shortCode: string) => {
   }
 
   try {
+    if(result.longUrl.startsWith("https://"))
     result.meta = await metaget.fetch(result.longUrl);
+    else
+    result.meta = await metaget.fetch("https://" + result.longUrl);
   } catch (e) {
     result.meta = {};
   }
@@ -177,7 +180,7 @@ export const updateLink = async (
           creatorIpAddress: 1,
           longUrl: 1,
           timestamp: 1,
-          linkId: 1
+          linkId: 1,
         },
       }
     );
