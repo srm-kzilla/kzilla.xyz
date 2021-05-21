@@ -20,7 +20,7 @@
     "@types/express-rate-limit": "^5.0.0",
     "@types/hapi__joi": "^17.1.4",
     "@types/helmet": "^0.0.47",
-    "@types/mongodb": "^3.5.25",
+    "@types/mongodb": "^3.6.16",
     "@types/node-cache": "^4.2.5",
     "@types/pino": "^6.0.0",
     "@types/request-ip": "^0.0.35",
