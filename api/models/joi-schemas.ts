@@ -6,7 +6,7 @@ import Joi from "@hapi/joi";
 export const createLinkSchema = Joi.object({
   longUrl: Joi.string()
     .regex(
-      /^(?:(http|https|ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+      /^(?:(http|https|ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]%@!\$&'\(\)\*\+,;=.]+$/
     )
     .required(),
 });
