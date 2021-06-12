@@ -3,6 +3,7 @@
     position: fixed;
     bottom: 0%;
     width: 100%;
+    background-color: #ffffff;
   }
   .kz-para {
     font-size: 15px;
