@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "23:30"
+  open-pull-requests-limit: 10
+  reviewers:
+  - ishan-chhabra
+  ignore:
+  - dependency-name: "@types/mongodb"
+    versions:
+    - 3.6.10
+    - 3.6.11
+    - 3.6.3
+    - 3.6.5
+    - 3.6.6
+    - 3.6.7
+    - 3.6.8
+    - 3.6.9
+  - dependency-name: pino
+    versions:
+    - 6.11.0
+    - 6.11.1
+    - 6.11.2
+  - dependency-name: helmet
+    versions:
+    - 4.4.1
