@@ -8,7 +8,8 @@ export const createLinkSchema = Joi.object({
     .regex(
       /^(?:(http|https|ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]%@!\$&'\(\)\*\+,;=.]+$/
     )
-    .required(),
+    .required()
+    .trim(),
 });
 
 /**
