@@ -62,6 +62,10 @@
     padding-left: 8vw;
     padding-right: 8vw;
   }
+  .kz-form {
+    display: flex;
+    gap: 0.5vw;
+  }
   .kz-input {
     font-family: UniSansBook;
     font-size: 3vh;
@@ -221,6 +225,9 @@
     .kz-input{
       width: 71vw;
     }
+    .kz-form {
+      gap: 1vw;
+    }
     .kz-form-des {
       padding-left: 5vw;
       padding-right: 5vw;
@@ -287,6 +294,9 @@
     }
   }
   @media(max-width: 470px){
+    .kz-form {
+      flex-direction: column;
+    }
     .kz-input{
       width: 90vw;
     }
@@ -337,7 +347,7 @@
 <div class="container-fluid kz-form-des">
 
   {#if !data}
-    <form id="kz-form" on:submit|preventDefault={buttonClick}>
+    <form class="kz-form" id="kz-form" on:submit|preventDefault={buttonClick}>
       <input type="text" bind:value={longUrl} required placeholder="Enter your link here..." class="kz-input"/>
       <div class="kz-display-none">
         <br>

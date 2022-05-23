@@ -26,9 +26,6 @@
 <style>
   .linker {
     font-family: UniSansHeavy;
-    margin-left: auto;
-    margin-top: -8vh;
-    margin-right: 6vh;
     font-size: 2vh;
     letter-spacing: 1px;
     width: 12vw;
