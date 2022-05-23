@@ -5,6 +5,8 @@
   import { createEventDispatcher } from "svelte";
   import { API } from '../constants';
   import Button from "../components/Button.svelte";
+  import { SvelteToast , toast  } from '@zerodevx/svelte-toast'
+
 
   
   const dispatch = createEventDispatcher();
@@ -21,6 +23,13 @@
   //Copy Button functionality...
 
   function copyExec() {
+    toast.push('Link Copied',{
+      theme:{
+        '--themeBackground':'cyan',
+        '--toastColor':'white',
+        '--toastBarBackground': '#f0634d'
+      }
+    });
     var $temp = window.$("<input>");
     window.$("body").append($temp);
     $temp.val("https://" + window.$("#shrink").text()).select();
@@ -392,4 +401,5 @@
       <span>{error}</span>
     </div> -->
   {/if}
+  <SvelteToast/>
 </div>
