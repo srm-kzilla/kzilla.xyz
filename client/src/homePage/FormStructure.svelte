@@ -28,6 +28,11 @@
     $temp.remove();
   }
 
+  function resetData() {
+    data = "";
+
+  }
+
   //Attach URL shortener API...
 
   function buttonClick(e) {
@@ -168,7 +173,21 @@
       height: 100vh;
       background-color: transparent;
   }
-  
+  .shrink-another {
+    font-family: UniSansHeavy;
+    margin-top: 2vh;
+    font-size: 2vh;
+    letter-spacing: 1px;
+    height: 8vh;
+    text-align: center;
+    line-height: 8vh;
+    color: #ffffff;
+    background-color: #000000;
+    text-transform: uppercase;
+    border-radius: 12px;
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
   @media(max-width: 1400px){
     .kz-input{
       width: 71vw;
@@ -367,6 +386,12 @@
           <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
         </button>
       </Link>
+    
+      <div class="text-center" >
+        <button on:click={resetData} class="shrink-another">Shrink another url</button>
+      </div>
+
+
 
     </div>
   {:else}
