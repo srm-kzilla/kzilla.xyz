@@ -84,13 +84,6 @@
       width: 22vw;
     }
   }
-  @media (max-width: 550px) {
-    .margin-0{
-      margin-top: -15px;
-      margin-left: 34vw;
-      margin-right: 34vw;
-    }
-  }
   @media (max-width: 470px) {
     .linker {
       width: 30vw;
@@ -116,7 +109,6 @@
       font-size: 15px;
       line-height: 50px;
       min-height: 50px;
-      margin-top: -50px;
     }
   }
 </style>

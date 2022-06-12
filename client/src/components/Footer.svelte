@@ -1,7 +1,6 @@
 <style>
   .kz-crafted {
     position: absolute;
-    bottom: 0;
     width: 100%;
   }
   .kz-para {
