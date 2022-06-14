@@ -5,7 +5,7 @@
   import { createEventDispatcher } from "svelte";
   import { API } from '../constants';
   import Button from "../components/Button.svelte";
-  import { SvelteToast , toast  } from '@zerodevx/svelte-toast'
+  import { SvelteToast , toast  } from '@zerodevx/svelte-toast';
 
 
   
@@ -27,7 +27,7 @@
       theme:{
         '--themeBackground':'cyan',
         '--toastColor':'white',
-        '--toastBarBackground': '#f0634d'
+        '--toastBarBackground': '#54a870'
       }
     });
     var $temp = window.$("<input>");
@@ -54,6 +54,13 @@
       data = await shrinkUrlService( token, longUrl );
       if(!data.linkId){
         error = 'The URL you entered is not valid. Please refresh and try again with a valid URL.';
+        toast.push('Invalid URL',{
+        theme:{
+          '--themeBackground':'cyan',
+          '--toastColor':'white',
+          '--toastBarBackground': '#FF0000'
+        }
+      });
         }
       else{
         error = "";
