@@ -35,22 +35,28 @@
     if(longUrl){
       button_content = "Shrunk";
       e.preventDefault();
-      grecaptcha.ready(async function() {
-      const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
-      const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
-      const token = await grecaptcha.execute(
-        siteKey,
-        { action: "shrink" }
-      );
-      data = await shrinkUrlService( token, longUrl );
-      if(!data.linkId){
-        error = 'The URL you entered is not valid. Please refresh and try again with a valid URL.';
-        }
-      else{
-        error = "";
-        dispatch("submission");
-        }
-      });
+      if(!longUrl.includes("kzilla.xyz/")) {
+        grecaptcha.ready(async function() {
+          const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
+          const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
+          const token = await grecaptcha.execute(
+            siteKey,
+            { action: "shrink" }
+          );
+          data = await shrinkUrlService( token, longUrl );
+          if(!data.linkId){
+            error = 'The URL you entered is not valid. Please refresh and try again with a valid URL.';
+          }
+          else{
+            error = "";
+            dispatch("submission");
+          }
+        });
+      }
+      else {
+        data = {}
+        error = "Cannot re-shrink kzilla.xyz links. Please refresh and try again with a different URL."
+      }
     }
   }
 
