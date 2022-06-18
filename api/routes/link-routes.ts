@@ -32,7 +32,7 @@ router.post(
     }
 
     try {
-      const result = await createLink(req.body.longUrl, req.clientIp);
+      const result = await createLink(req.body.longUrl, req.clientIp, req.body.customCode);
       let linkIds = Array.isArray(req.cookies.linkIds)
         ? req.cookies.linkIds
         : [];

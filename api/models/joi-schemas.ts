@@ -10,6 +10,7 @@ export const createLinkSchema = Joi.object({
     )
     .required()
     .trim(),
+  customCode: Joi.string().trim()
 });
 
 /**

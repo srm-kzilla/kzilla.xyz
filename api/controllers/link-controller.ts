@@ -12,9 +12,10 @@ import * as metaget from "metaget";
  */
 export const createLink = async (
   longUrl: string,
-  ipAddress: string | undefined
+  ipAddress: string | undefined,
+  customCode: string | undefined
 ): Promise<any> => {
-  const shortCode = generateRandomCode(5);
+  const shortCode = customCode || generateRandomCode(5);
   const analyticsCode = generateRandomCode(5);
   const linkId = generateRandomCode(12);
 
@@ -29,7 +30,7 @@ export const createLink = async (
     })
     .toArray();
 
-  if (result.length !== 0) return createLink(longUrl, ipAddress);
+  if (result.length !== 0) return createLink(longUrl, ipAddress, shortCode);
 
   const document: Link = {
     linkId: linkId,
