@@ -8,7 +8,7 @@ export class DatabaseService {
   public database: MongoDB.Db | null = null;
 
   private client: MongoDB.MongoClient = new MongoDB.MongoClient(
-    process.env.DB_URL || ""
+    process.env.DB_URL || "", { useUnifiedTopology: true }
   );
   private static instance: DatabaseService;
 
