@@ -31,8 +31,8 @@
   //Validate URL (Check whether a URL is a kzilla.xyz link)
 
   function validateURL(url) {
-    const regexp = /^(https?:\/\/)?kzilla.xyz\/[a-zA-z\d]+\/?$/gm;
-    return !regexp.test(url);
+    const regex = /^((https?|ftp):\/\/)?kzilla.xyz\/\w+\/?$/;
+    return !regex.test(url);
   }
 
   //Attach URL shortener API...
@@ -40,7 +40,6 @@
   function buttonClick(e) {
     tapped = true;
     if(longUrl){
-      console.log(validateURL(longUrl))
       button_content = "Shrunk";
       e.preventDefault();
       if(validateURL(longUrl)) {
