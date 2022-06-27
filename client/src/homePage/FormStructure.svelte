@@ -28,14 +28,22 @@
     $temp.remove();
   }
 
+  //Validate URL (Check whether a URL is a kzilla.xyz link)
+
+  function validateURL(url) {
+    const regexp = /^(https?:\/\/)?kzilla.xyz\/[a-zA-z\d]+\/?$/gm;
+    return !regexp.test(url);
+  }
+
   //Attach URL shortener API...
 
   function buttonClick(e) {
     tapped = true;
     if(longUrl){
+      console.log(validateURL(longUrl))
       button_content = "Shrunk";
       e.preventDefault();
-      if(!longUrl.includes("kzilla.xyz/")) {
+      if(validateURL(longUrl)) {
         grecaptcha.ready(async function() {
           const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
           const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
