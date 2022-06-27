@@ -30,7 +30,8 @@
 
   function resetData() {
     data = "";
-
+    longUrl = ""
+    button_content = "Shrink"
   }
 
   //Attach URL shortener API...
