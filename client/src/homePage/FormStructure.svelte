@@ -62,6 +62,14 @@
     padding-left: 8vw;
     padding-right: 8vw;
   }
+  .kz-form {
+    display: flex;
+    gap: 0.5vw;
+  }
+  .kz-links {
+    display: flex;
+    flex-direction: column;
+  }
   .kz-input {
     font-family: UniSansBook;
     font-size: 3vh;
@@ -221,6 +229,9 @@
     .kz-input{
       width: 71vw;
     }
+    .kz-form {
+      gap: 1vw;
+    }
     .kz-form-des {
       padding-left: 5vw;
       padding-right: 5vw;
@@ -287,6 +298,9 @@
     }
   }
   @media(max-width: 470px){
+    .kz-form {
+      flex-direction: column;
+    }
     .kz-input{
       width: 90vw;
     }
@@ -337,7 +351,7 @@
 <div class="container-fluid kz-form-des">
 
   {#if !data}
-    <form id="kz-form" on:submit|preventDefault={buttonClick}>
+    <form class="kz-form" id="kz-form" on:submit|preventDefault={buttonClick}>
       <input type="text" bind:value={longUrl} required placeholder="Enter your link here..." class="kz-input"/>
       <div class="kz-display-none">
         <br>
@@ -346,28 +360,29 @@
     </form>
 
   {:else if !error}
-    <div id="shrunkLink" class="container-fluid" style="margin-top: 60px; padding: 0px;">
+    <div id="shrunkLink" class="container-fluid kz-links" style="margin-top: 60px; padding: 0px;">
       <div class="container-fluid text-center kz-input kz-input-done">
         {data.longUrl}
       </div>
-      <div class="kz-shrinked-text" id="shrink">
-        {API.KZILLA_URL}{data.shortCode}
-      </div>
-      
-      <button class="kz-alternate" on:click={copyExec}>
-        <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
-      </button>
-      
-      <div class="kz-shrinked-text-alternate" style="">
-        {API.ANALYTICS_URL}{data.analyticsCode}
-      </div>
-      
-      <Link to="analytics/{data.analyticsCode}">
-        <button class="kz-alternate" style="margin-right: 0;">
-          <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
+      <div>
+        <div class="kz-shrinked-text" id="shrink">
+          {API.KZILLA_URL}{data.shortCode}
+        </div>
+  
+        <button class="kz-alternate" on:click={copyExec}>
+          <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
         </button>
-      </Link>
-
+  
+        <div class="kz-shrinked-text-alternate" style="">
+          {API.ANALYTICS_URL}{data.analyticsCode}
+        </div>
+  
+        <Link to="analytics/{data.analyticsCode}">
+          <button class="kz-alternate" style="margin-right: 0;">
+            <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
+          </button>
+        </Link>
+      </div>
     </div>
   {:else}
     <div class="container-fluid kz-edit kz-modalId">
