@@ -29,13 +29,12 @@
   .image {
     height: 8vh;
     min-height: 50px;
-    margin-top: 5vh;
-    margin-left: 5vh;
   }
   .nav-structure {
     height: 20vh;
-    padding: 1vh 0px 1vh 1vh;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 6vh 3vw;
     /* overflow: hidden; */
   }
   .custom-dates {
