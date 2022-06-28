@@ -5,6 +5,7 @@
   import { createEventDispatcher } from "svelte";
   import { API } from '../constants';
   import Button from "../components/Button.svelte";
+  import { SvelteToast , toast  } from '@zerodevx/svelte-toast';
 
   
   const dispatch = createEventDispatcher();
@@ -21,6 +22,13 @@
   //Copy Button functionality...
 
   function copyExec() {
+    toast.push('Link Copied',{
+      theme:{
+        '--themeBackground':'cyan',
+        '--toastColor':'white',
+        '--toastBarBackground': '#54a870'
+      }
+    });
     var $temp = window.$("<input>");
     window.$("body").append($temp);
     $temp.val("https://" + window.$("#shrink").text()).select();
@@ -59,6 +67,13 @@
           data = await shrinkUrlService( token, longUrl );
           if(!data.linkId){
             error = 'The URL you entered is not valid. Please refresh and try again with a valid URL.';
+            toast.push('Invalid URL',{
+        theme:{
+          '--themeBackground':'cyan',
+          '--toastColor':'white',
+          '--toastBarBackground': '#FF0000'
+        }
+      });
           }
           else{
             error = "";
@@ -489,4 +504,5 @@
       <span>{error}</span>
     </div> -->
   {/if}
+  <SvelteToast/>
 </div>

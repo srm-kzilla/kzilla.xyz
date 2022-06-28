@@ -251,6 +251,7 @@ import { API } from '../constants';
 import QRCode from "./Qrjs.svelte";
 import { updateUrlService } from '../services/APIservice';
 import { enableUrlService } from '../services/APIservice';
+import { SvelteToast , toast  } from '@zerodevx/svelte-toast';
 
 //importing details of each individual link.
 
@@ -319,6 +320,13 @@ function copyToClipboard(text) {
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
+    toast.push('Link Copied',{
+      theme:{
+        '--themeBackground':'cyan',
+        '--toastColor':'white',
+        '--toastBarBackground': '#54a870'
+      }
+    });
 }
 
 function copyBtn(){
@@ -488,6 +496,7 @@ function putUpdate(e) {
             </div>
         </div>
     </div>
+    <SvelteToast/>
 </div>
 
 
