@@ -2,6 +2,7 @@
  * Defines Constants for API
  */
 export const Constants = {
+  NODE_ENV: process.env.NODE_ENV,
   PORT: process.env.PORT || 3000,
   TTLSeconds: Number(process.env.TTL_SECONDS) || 60 * 60 * 6,
 };

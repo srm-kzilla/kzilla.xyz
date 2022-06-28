@@ -93,7 +93,7 @@
   }
   .footer-container {
     position: absolute;
-    bottom: -20px;
+    bottom: 0;
     width: 100%;
   }
   .no-data {

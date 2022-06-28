@@ -33,6 +33,13 @@
     longUrl = ""
     button_content = "Shrink"
   }
+  
+  //Validate URL (Check whether a URL is a kzilla.xyz link)
+
+  function validateURL(url) {
+    const regex = /^((https?|ftp):\/\/)?kzilla.xyz\/\w+\/?$/;
+    return !regex.test(url);
+  }
 
   //Attach URL shortener API...
 
@@ -41,22 +48,28 @@
     if(longUrl){
       button_content = "Shrunk";
       e.preventDefault();
-      grecaptcha.ready(async function() {
-      const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
-      const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
-      const token = await grecaptcha.execute(
-        siteKey,
-        { action: "shrink" }
-      );
-      data = await shrinkUrlService( token, longUrl );
-      if(!data.linkId){
-        error = 'The URL you entered is not valid. Please refresh and try again with a valid URL.';
-        }
-      else{
-        error = "";
-        dispatch("submission");
-        }
-      });
+      if(validateURL(longUrl)) {
+        grecaptcha.ready(async function() {
+          const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
+          const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
+          const token = await grecaptcha.execute(
+            siteKey,
+            { action: "shrink" }
+          );
+          data = await shrinkUrlService( token, longUrl );
+          if(!data.linkId){
+            error = 'The URL you entered is not valid. Please refresh and try again with a valid URL.';
+          }
+          else{
+            error = "";
+            dispatch("submission");
+          }
+        });
+      }
+      else {
+        data = {}
+        error = "Cannot re-shrink kzilla.xyz links. Please refresh and try again with a different URL."
+      }
     }
   }
 
@@ -67,6 +80,14 @@
     margin-top: 15vh;
     padding-left: 8vw;
     padding-right: 8vw;
+  }
+  .kz-form {
+    display: flex;
+    gap: 0.5vw;
+  }
+  .kz-links {
+    display: flex;
+    flex-direction: column;
   }
   .kz-input {
     font-family: UniSansBook;
@@ -248,6 +269,9 @@
     .kz-input{
       width: 71vw;
     }
+    .kz-form {
+      gap: 1vw;
+    }
     .kz-form-des {
       padding-left: 5vw;
       padding-right: 5vw;
@@ -347,6 +371,9 @@
     }
   }
   @media(max-width: 470px){
+    .kz-form {
+      flex-direction: column;
+    }
     .kz-input{
       width: 90vw;
     }
@@ -400,7 +427,7 @@
 <div class="container-fluid kz-form-des">
 
   {#if !data}
-    <form id="kz-form" on:submit|preventDefault={buttonClick}>
+    <form class="kz-form" id="kz-form" on:submit|preventDefault={buttonClick}>
       <input type="text" bind:value={longUrl} required placeholder="Enter your link here..." class="kz-input"/>
       <div class="kz-display-none">
         <br>
@@ -409,30 +436,33 @@
     </form>
 
   {:else if !error}
-    <div id="shrunkLink" class="container-fluid" style="margin-top: 60px; padding: 0px;">
+    <div id="shrunkLink" class="container-fluid kz-links" style="margin-top: 60px; padding: 0px;">
       <div class="container-fluid text-center kz-input kz-input-done">
         {data.longUrl}
       </div>
-      <div class="kz-shrinked-text" id="shrink">
-        {API.KZILLA_URL}{data.shortCode}
-      </div>
-      
-      <button class="kz-alternate" on:click={copyExec}>
-        <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
-      </button>
-      
-      <div class="kz-shrinked-text-alternate" style="">
-        {API.ANALYTICS_URL}{data.analyticsCode}
-      </div>
-      
-      <Link to="analytics/{data.analyticsCode}">
-        <button class="kz-alternate" style="margin-right: 0;">
-          <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
+      <div>
+        <div class="kz-shrinked-text" id="shrink">
+          {API.KZILLA_URL}{data.shortCode}
+        </div>
+  
+        <button class="kz-alternate" on:click={copyExec}>
+          <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
         </button>
+
       </Link>
     <div class="text-center">
       <button on:click={resetData} class="shrink-another">Shrink another url</button>
     </div>
+        <div class="kz-shrinked-text-alternate" style="">
+          {API.ANALYTICS_URL}{data.analyticsCode}
+        </div>
+  
+        <Link to="analytics/{data.analyticsCode}">
+          <button class="kz-alternate" style="margin-right: 0;">
+            <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
+          </button>
+        </Link>
+      </div>
     </div>
   {:else}
     <div class="container-fluid kz-edit kz-modalId">
