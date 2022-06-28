@@ -449,10 +449,7 @@
           <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
         </button>
 
-      </Link>
-    <div class="text-center">
-      <button on:click={resetData} class="shrink-another">Shrink another url</button>
-    </div>
+  
         <div class="kz-shrinked-text-alternate" style="">
           {API.ANALYTICS_URL}{data.analyticsCode}
         </div>
@@ -462,6 +459,11 @@
             <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
           </button>
         </Link>
+
+        <div class="text-center">
+          <button on:click={resetData} class="shrink-another">Shrink another url</button>
+        </div>
+
       </div>
     </div>
   {:else}
