@@ -28,6 +28,12 @@
     $temp.remove();
   }
 
+  function resetData() {
+    data = "";
+    longUrl = ""
+    button_content = "Shrink"
+  }
+  
   //Validate URL (Check whether a URL is a kzilla.xyz link)
 
   function validateURL(url) {
@@ -132,7 +138,7 @@
     width: 5vw;
     line-height: 8vh;
     margin-left: 0.5vw;
-    margin-right: 5vw;
+    margin-right: 4vw;
     color: var(--white);
     background-color: var(--black);
     padding: 0px 20px 0px 20px;
@@ -189,7 +195,25 @@
       height: 100vh;
       background-color: transparent;
   }
-  
+  .shrink-another {
+    font-family: UniSansHeavy;
+    margin-top: 3vh;
+    font-size: 2vh;
+    letter-spacing: 1px;
+    height: 8vh;
+    text-align: center;
+    line-height: 8vh;
+    color: #ffffff;
+    background-color: #000000;
+    text-transform: uppercase;
+    border-radius: 12px;
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+  .text-center {
+    text-align: start !important;
+  }
+
   @media(max-width: 1400px){
     .kz-input{
       width: 71vw;
@@ -219,6 +243,9 @@
     .kz-form-des {
       margin-bottom: 100px;
     }
+    .kz-alternate {
+      margin-right: 4vw;
+    }
   }
   @media(max-width: 1000px){
     .kz-input{
@@ -235,7 +262,7 @@
     }
     .kz-alternate {
       width: 9vw;
-      margin-right: 3vw;
+      margin-right: 2vw;
     }
   }
   @media (max-width: 920px) {
@@ -277,9 +304,31 @@
     }
     .kz-alternate {
       margin-right: 0px;
-      margin-left: 2vw;
+      margin-left: 6px;
       margin-bottom: 1vh;
       width: 10vw;
+    }
+  }
+  @media (max-width: 700px) {
+    .kz-shrinked-text {
+      width: 76vw;
+    }
+    .kz-shrinked-text-alternate{
+      width: 76vw;
+    }
+    .kz-alternate {
+      margin-left: 1vw;
+      width: 10vw;
+    }
+    .shrink-another {
+      margin-top: 1.5vh;
+      font-size: 1.6vh;
+      letter-spacing: 1px;
+      height: 7vh;
+      line-height: 7vh;
+      padding-left: 1.4vw;
+      padding-right: 1.4vw;
+      border-radius: 8px;
     }
   }
   @media (max-height: 640px) {
@@ -301,13 +350,24 @@
       width: 90vw;
     }
     .kz-shrinked-text {
-      width: 76vw;
+      width: 74vw;
     }
     .kz-shrinked-text-alternate{
-      width: 76vw;
+      width: 74vw;
     }
     .kz-alternate {
+      margin-left: 1vw;
       width: 12vw;
+    }
+    .shrink-another {
+      margin-top: 1.5vh;
+      font-size: 1.6vh;
+      letter-spacing: 1px;
+      height: 6vh;
+      line-height: 6vh;
+      padding-left: 1.4vw;
+      padding-right: 1.4vw;
+      border-radius: 8px;
     }
   }
   @media(max-width: 470px){
@@ -327,7 +387,10 @@
       width: 72vw;
     }
     .kz-alternate {
-      width: 16vw;
+      width: 14vw;
+    }
+    .text-center {
+      text-align: center !important;
     }
   }
   @media(max-width: 400px){
@@ -385,6 +448,7 @@
         <button class="kz-alternate" on:click={copyExec}>
           <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
         </button>
+
   
         <div class="kz-shrinked-text-alternate" style="">
           {API.ANALYTICS_URL}{data.analyticsCode}
@@ -395,6 +459,11 @@
             <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
           </button>
         </Link>
+
+        <div class="text-center">
+          <button on:click={resetData} class="shrink-another">Shrink another url</button>
+        </div>
+
       </div>
     </div>
   {:else}
