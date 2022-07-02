@@ -32,7 +32,7 @@ router.post(
     }
 
     try {
-      const result = await createLink(req.body.longUrl, req.clientIp);
+      const result = await createLink(req.body.longUrl, req.clientIp, req.body.customCode);
       let linkIds = Array.isArray(req.cookies.linkIds)
         ? req.cookies.linkIds
         : [];
@@ -49,9 +49,7 @@ router.post(
       console.log(req.cookies);
       return res.status(201).json(result);
     } catch (error) {
-      if (error === 500) {
-        res.status(500).send();
-      }
+        res.status(error.code).send(error);
     }
   }
 );
@@ -68,7 +66,7 @@ export const fetchLink = async (req: Request, res: Response) => {
       const html = await generateForbidden();
       return res.status(403).send(html);
     }
-    incrementClick(req.params.shortCode, req.clientIp);
+    await incrementClick(req.params.shortCode, req.clientIp);
     const html = await generateRedirect(result);
     return res.status(200).send(html);
   }
@@ -76,7 +74,7 @@ export const fetchLink = async (req: Request, res: Response) => {
   try {
     result = await fetchLinkController(req.params.shortCode);
     const html = await generateRedirect(result);
-    incrementClick(req.params.shortCode, req.clientIp);
+    await incrementClick(req.params.shortCode, req.clientIp);
     return res.status(200).send(html);
   } catch (error) {
     if (error === 404) {
