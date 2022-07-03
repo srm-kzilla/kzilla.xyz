@@ -39,13 +39,13 @@ export const createLink = async (
     else {
        result = await database
         .find(
-          { shortCode: shortCode }
+          { shortCode : shortCode }
         )
         .toArray();
     }
 
     if (result.length !== 0) throw CUSTOM_CODE_ALREADY_EXISTS;
-    else return createLink(longUrl, ipAddress, customCode);
+    return createLink(longUrl, ipAddress, customCode);
   }
 
   const document: Link = {

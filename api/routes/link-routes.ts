@@ -66,7 +66,7 @@ export const fetchLink = async (req: Request, res: Response) => {
       const html = await generateForbidden();
       return res.status(403).send(html);
     }
-    await incrementClick(req.params.shortCode, req.clientIp);
+    incrementClick(req.params.shortCode, req.clientIp);
     const html = await generateRedirect(result);
     return res.status(200).send(html);
   }
@@ -74,7 +74,7 @@ export const fetchLink = async (req: Request, res: Response) => {
   try {
     result = await fetchLinkController(req.params.shortCode);
     const html = await generateRedirect(result);
-    await incrementClick(req.params.shortCode, req.clientIp);
+    incrementClick(req.params.shortCode, req.clientIp);
     return res.status(200).send(html);
   } catch (error) {
     if (error === 404) {

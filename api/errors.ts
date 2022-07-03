@@ -7,9 +7,9 @@ export const SERVER_ERROR = {
 }
 
 export const CUSTOM_CODE_ALREADY_EXISTS = {
-  code: 400,
+  code: 409,
   message: {
-    error: 'Bad Request',
+    error: 'Conflict',
     error_description: 'Custom code is already in use.'
   }
 }
