@@ -16,7 +16,7 @@ export const APIEndpoints = {
     BASE_ENDPOINT: "/links",
     CREATE_LINK: "/",
     UPDATE_LINK: "/",
-    GET_LINK: "/:shortCode([A-Za-z0-9_-]{4,75})",
+    GET_LINK: "/:shortCode([A-Za-z0-9_-]{6,25})",
     MY_LINKS: "/me",
     FLUSH_LINKS: "/flush",
   },

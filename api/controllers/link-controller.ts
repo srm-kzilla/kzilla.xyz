@@ -36,13 +36,11 @@ export const createLink = async (
 
   if (result.length !== 0) {
     if (!customCode) return createLink(longUrl, ipAddress);
-    else {
-       result = await database
-        .find(
-          { shortCode : shortCode }
-        )
-        .toArray();
-    }
+    result = await database
+      .find(
+        { shortCode : shortCode }
+      )
+      .toArray();
 
     if (result.length !== 0) throw CUSTOM_CODE_ALREADY_EXISTS;
     return createLink(longUrl, ipAddress, customCode);
