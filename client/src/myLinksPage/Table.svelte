@@ -247,7 +247,7 @@
 <script>
 
 import { Router, Link, Route } from "svelte-routing";
-import { API } from '../constants';
+import { API ,toastSuccess} from '../constants';
 import QRCode from "./Qrjs.svelte";
 import { updateUrlService } from '../services/APIservice';
 import { enableUrlService } from '../services/APIservice';
@@ -320,13 +320,8 @@ function copyToClipboard(text) {
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
-    toast.push('Link Copied',{
-      theme:{
-        '--themeBackground':'cyan',
-        '--toastColor':'white',
-        '--toastBarBackground': '#54a870'
-      }
-    });
+    toast.pop();
+    toast.push('Link Copied',toastSuccess);
 }
 
 function copyBtn(){
