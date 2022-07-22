@@ -54,14 +54,18 @@
 
   function handleError(data) {
     if(data.details){
-      if (data.details[0].context.key === "longUrl")
+      if (data.details[0].context.key === "longUrl") {
         error = "The URL you entered is not valid. Please refresh and try again with a valid URL.";
-        toast.push('Link Copied',toastFail);
-      else if (data.details[0].context.key === "customCode")
+        toast.push('Invalid URL', toastFail);
+      }
+      else if (data.details[0].context.key === "customCode") {
         error = "Length of custom code must be between 6 and 25, may contain only letters, numbers, hyphens(-) and underscores(_)"
+        toast.push('Invalid custom code', toastFail);
+      }
     }
     else if(data.code === 409) {
       error = "Custom code already exist. Please try again with a different custom code"
+      toast.push('Custom code already exist', toastFail);
     }
     else{
       error = "";
