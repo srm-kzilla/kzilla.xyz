@@ -10,6 +10,11 @@ export const createLinkSchema = Joi.object({
     )
     .required()
     .trim(),
+  customCode: Joi.string()
+    .regex(
+      /^(?=.*[A-Za-z])[^-_][-\w]{5,25}$/
+    )
+    .trim()
 });
 
 /**
