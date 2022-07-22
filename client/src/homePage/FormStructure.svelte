@@ -79,6 +79,10 @@
   function buttonClick(e) {
     tapped = true;
     if(longUrl){
+      if (toShowCustomCodeInput && customCode === undefined) {
+        toast.push('Enter a valid custom code', toastFail);
+        return
+      }
       button_content = "Shrunk";
       e.preventDefault();
       if(validateURL(longUrl)) {
@@ -96,6 +100,7 @@
       else {
         data = {}
         error = "Cannot re-shrink kzilla.xyz links. Please refresh and try again with a different URL."
+        toast.push('Cannot shrink kzilla.xyz', toastFail);
       }
     }
   }
