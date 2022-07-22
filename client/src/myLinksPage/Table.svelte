@@ -247,10 +247,11 @@
 <script>
 
 import { Router, Link, Route } from "svelte-routing";
-import { API } from '../constants';
+import { API ,toastSuccess} from '../constants';
 import QRCode from "./Qrjs.svelte";
 import { updateUrlService } from '../services/APIservice';
 import { enableUrlService } from '../services/APIservice';
+import { SvelteToast , toast  } from '@zerodevx/svelte-toast';
 
 //importing details of each individual link.
 
@@ -319,6 +320,8 @@ function copyToClipboard(text) {
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
+    toast.pop();
+    toast.push('Link Copied',toastSuccess);
 }
 
 function copyBtn(){
@@ -488,6 +491,7 @@ function putUpdate(e) {
             </div>
         </div>
     </div>
+    <SvelteToast/>
 </div>
 
 
