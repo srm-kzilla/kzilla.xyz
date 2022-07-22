@@ -3,8 +3,9 @@
   import { Router, Link, Route } from "svelte-routing";
   import { shrinkUrlService } from '../services/APIservice';
   import { createEventDispatcher } from "svelte";
-  import { API } from '../constants';
+  import { API , toastFail , toastSuccess} from '../constants';
   import Button from "../components/Button.svelte";
+  import { SvelteToast , toast  } from '@zerodevx/svelte-toast';
 
   
   const dispatch = createEventDispatcher();
@@ -23,6 +24,8 @@
   //Copy Button functionality...
 
   function copyExec() {
+    toast.pop();
+    toast.push('Link Copied',toastSuccess);
     var $temp = window.$("<input>");
     window.$("body").append($temp);
     $temp.val("https://" + window.$("#shrink").text()).select();
@@ -53,6 +56,7 @@
     if(data.details){
       if (data.details[0].context.key === "longUrl")
         error = "The URL you entered is not valid. Please refresh and try again with a valid URL.";
+        toast.push('Link Copied',toastFail);
       else if (data.details[0].context.key === "customCode")
         error = "Length of custom code must be between 6 and 25, may contain only letters, numbers, hyphens(-) and underscores(_)"
     }
@@ -514,4 +518,5 @@
       <span>{error}</span>
     </div> -->
   {/if}
+  <SvelteToast/>
 </div>
