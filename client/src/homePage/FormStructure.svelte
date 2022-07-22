@@ -12,9 +12,11 @@
   let button_content = "Shrink";
 
   let tapped = false;
+  let toShowCustomCodeInput = false;
   let shortURL = "HeL0OlUc45";
   let analyticsCode = "YmcA5s";
   let longUrl = "";
+  let customCode = undefined;
   let data;
   let error;
 
@@ -31,6 +33,8 @@
   function resetData() {
     data = "";
     longUrl = ""
+    customCode = undefined;
+    toShowCustomCodeInput = false;
     button_content = "Shrink"
   }
   
@@ -39,6 +43,27 @@
   function validateURL(url) {
     const regex = /^((https?|ftp):\/\/)?kzilla.xyz\/\w+\/?$/;
     return !regex.test(url);
+  }
+
+  function showCustomCodeInput() {
+    toShowCustomCodeInput = !toShowCustomCodeInput;
+  }
+
+  function handleError(data) {
+    if(data.details){
+      if (data.details[0].context.key === "longUrl")
+        error = "The URL you entered is not valid. Please refresh and try again with a valid URL.";
+      else if (data.details[0].context.key === "customCode")
+        error = "Length of custom code must be between 6 and 25, may contain only letters, numbers, hyphens(-) and underscores(_)"
+    }
+    else if(data.code === 409) {
+      error = "Custom code already exist. Please try again with a different custom code"
+    }
+    else{
+      error = "";
+      dispatch("submission");
+    }
+    return error;
   }
 
   //Attach URL shortener API...
@@ -56,14 +81,8 @@
             siteKey,
             { action: "shrink" }
           );
-          data = await shrinkUrlService( token, longUrl );
-          if(!data.linkId){
-            error = 'The URL you entered is not valid. Please refresh and try again with a valid URL.';
-          }
-          else{
-            error = "";
-            dispatch("submission");
-          }
+          data = await shrinkUrlService( token, longUrl, customCode );
+          error = handleError(data)
         });
       }
       else {
@@ -84,6 +103,11 @@
   .kz-form {
     display: flex;
     gap: 0.5vw;
+  }
+  .kz-form-buttons {
+    display: flex;
+    gap: 0.5vw;
+    justify-content: center;
   }
   .kz-links {
     display: flex;
@@ -150,9 +174,6 @@
     font-family: UniSansHeavy;
     font-size: 1.5rem;
   } */
-  .kz-display-none{
-    display: none;
-  }
   .kz-edit{
       top: 0;
       left: 0;
@@ -340,11 +361,11 @@
     .kz-form-des {
       margin-bottom: 0px;
     }
+    .kz-form-buttons {
+      gap: 1vw;
+    }
     .kz-input{
       width: 90vw;
-    }
-    .kz-display-none{
-      display: block;
     }
     .kz-input-done {
       width: 90vw;
@@ -373,6 +394,7 @@
   @media(max-width: 470px){
     .kz-form {
       flex-direction: column;
+      gap: 1vh;
     }
     .kz-input{
       width: 90vw;
@@ -429,10 +451,13 @@
   {#if !data}
     <form class="kz-form" id="kz-form" on:submit|preventDefault={buttonClick}>
       <input type="text" bind:value={longUrl} required placeholder="Enter your link here..." class="kz-input"/>
-      <div class="kz-display-none">
-        <br>
+      {#if toShowCustomCodeInput}
+        <input type="text" bind:value={customCode} required placeholder="Enter custom code..." class="kz-input"/>
+      {/if}
+      <div class="kz-form-buttons">
+        <Button on:click={showCustomCodeInput} button_content="Customize"/>
+        <Button on:submission on:buttonClick={buttonClick} {button_content}/>
       </div>
-      <Button on:submission on:buttonClick={buttonClick} {button_content}/>
     </form>
 
   {:else if !error}

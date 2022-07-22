@@ -34,8 +34,7 @@
     height: 20vh;
     display: flex;
     justify-content: space-between;
-    padding: 6vh 3vw;
-    /* overflow: hidden; */
+    padding: 6vh 4vw;
   }
   .custom-dates {
     margin-left: auto;
