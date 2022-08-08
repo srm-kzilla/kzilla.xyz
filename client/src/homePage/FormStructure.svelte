@@ -3,7 +3,7 @@
   import { Router, Link, Route } from "svelte-routing";
   import { shrinkUrlService } from '../services/APIservice';
   import { createEventDispatcher } from "svelte";
-  import { API , toastFail ,QRdownload, toastSuccess} from '../constants';
+  import { API , toastFail ,toastSuccess} from '../constants';
   import Button from "../components/Button.svelte";
   import { SvelteToast , toast  } from '@zerodevx/svelte-toast';
   import QRCode from "../myLinksPage/Qrjs.svelte";
@@ -35,7 +35,7 @@
   }
 
   function resetData() {
-    data = "";
+    data = ""
     longUrl = ""
     customCode = undefined;
     toShowCustomCodeInput = false;
@@ -87,6 +87,14 @@ function hideQREditor() {
   editor.classList.add("d-none");
 }
 
+//function to download the qr
+function QRdownload(e) {
+  var myDiv = document.getElementById(API.KZILLA_URL + data.shortCode);
+  var myImage = myDiv.children[1];
+  var hr = document.getElementById(data.shortCode);
+  hr.href = myImage.src;
+  return false;
+}
   //Attach URL shortener API...
 
   function buttonClick(e) {
@@ -295,8 +303,8 @@ function hideQREditor() {
         background-color: transparent;
     }
     
-  #kz-qr-btn{
-    margin-right: 1.2vw;
+  #qr-btn{
+    margin-right: 1rem;    
   }
   .kz-alt-btn{
     margin-top: 3vh;
@@ -327,6 +335,7 @@ function hideQREditor() {
     .kz-alternate {
       width: 7vw;
     }
+
   }
   @media(max-width: 1200px){
     .kz-input{
@@ -361,6 +370,9 @@ function hideQREditor() {
       width: 9vw;
       margin-right: 2vw;
     }
+    #qr-btn{
+      margin-right: 0.9rem;
+    }
   }
   @media (max-width: 920px) {
     .kz-input{
@@ -385,6 +397,9 @@ function hideQREditor() {
     .kz-alternate {
       width: 9vw;
     }
+    #qr-btn{
+      margin-right: 0.8rem;
+    }
   }
   @media(max-width: 760px){
     .kz-input{
@@ -404,6 +419,9 @@ function hideQREditor() {
       margin-left: 6px;
       margin-bottom: 1vh;
       width: 10vw;
+    }
+    #qr-btn{
+      margin-right: 0.7rem;
     }
   }
   @media (max-width: 700px) {
@@ -426,6 +444,9 @@ function hideQREditor() {
       padding-left: 1.4vw;
       padding-right: 1.4vw;
       border-radius: 8px;
+    }
+    #qr-btn{
+      margin-right: 1.3rem;
     }
   }
   @media (max-height: 640px) {
@@ -466,6 +487,9 @@ function hideQREditor() {
       padding-right: 1.4vw;
       border-radius: 8px;
     }
+    #qr-btn{
+      margin-right: 1.2rem;
+    }
   }
   @media(max-width: 470px){
     .kz-form {
@@ -490,6 +514,9 @@ function hideQREditor() {
     .text-center {
       text-align: center !important;
     }
+    #qr-btn{
+      margin-right: 0.9rem;
+    }
   }
   @media(max-width: 400px){
     .kz-input{
@@ -497,6 +524,9 @@ function hideQREditor() {
     }
     .kz-input-done {
       width: 90vw;
+    }
+    #qr-btn{
+      margin-right: 0.6rem;
     }
   }
   @media (max-height: 610px) and (min-width: 550px){
@@ -566,8 +596,9 @@ function hideQREditor() {
 
         <div class=" kz-alt-btn">
           <button on:click={resetData} class="shrink-another">Shrink another url</button>
-          <button class="kz-alternate" id="kz-qr-btn">
-            <svg on:click={showQREditor}  height="20px" width="20px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" class="marginer svg-inline--fa fa-qrcode fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"></path></svg>
+          <button on:click={showQREditor} class="shrink-another" id="qr-btn">
+            <svg height="20px" width="20px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" class="marginer svg-inline--fa fa-qrcode fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"></path></svg>
+            QR-CODE
           </button>
         </div>
 
