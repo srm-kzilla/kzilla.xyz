@@ -26,155 +26,72 @@
 </script>
 
 <style>
-  .image {
-    height: 8vh;
-    min-height: 50px;
-  }
-  .nav-structure {
-    height: 20vh;
-    display: flex;
-    justify-content: space-between;
-    padding: 6vh 4vw;
-  }
-  .custom-dates {
-    margin-left: auto;
-    margin-right: 15vw;
-    margin-top: -8vh;
-    width: 23vw;
-  }
-  .startdate,
-  .enddate {
-    background-color: #f5f5f5;
-    border: none;
-    padding: 10px;
-    z-index: 999;
-    width: 10.7vw;
-    height: 8vh;
-    min-height: 50px;
-    font-family: UniSansBook;
-    border-radius: 12px;
-    outline: none;
-  }
-  .startdate::selection,
-  .enddate::selection {
-    background-color: #be0d0d;
-  }
-  ::selection {
-    background-color: #be0d0d;
-  }
-  .startdate {
-    margin-right: 10px;
-  }
-  .enddate {
-    margin-left: auto;
-  }
+    .image {
+        height: 8vh;
+        min-height: 50px;
+    }
+    .nav-structure {
+        height: 20vh;
+        display: flex;
+        justify-content: space-between;
+        padding: 6vh 4vw;
+    }
+    .custom-dates {
+        display: flex;
+        gap: 0.7vw;
+        margin: 0 0.7vw 0 auto;
+    }
+    .startdate,
+    .enddate {
+        background-color: #f5f5f5;
+        border: none;
+        padding: 10px;
+        z-index: 999;
+        min-width: 10vw;
+        height: 8vh;
+        min-height: 50px;
+        font-family: UniSansBook;
+        border-radius: 12px;
+        outline: none;
+    }
+    .startdate::selection,
+    .enddate::selection {
+        background-color: #be0d0d;
+    }
+    ::selection {
+        background-color: #be0d0d;
+    }
 
-  @media (max-width: 920px) {
-    .image {
-      margin-left: 2vh;
+    @media (max-width: 920px) {
+        .image {
+            margin-left: 2vh;
+        }
     }
-  }
-  @media (max-width: 1300px) {
-    .custom-dates {
-      margin-right: 10vw;
-      width: 37vw;
+
+    @media (max-width: 558px) {
+        .startdate {
+            position: absolute;
+            left: 7vw;
+            top: 16vh;
+        }
+        .enddate {
+            position: absolute;
+            right: 7vw;
+            top: 16vh;
+        }
     }
-    .startdate,
-    .enddate {
-      width: 14.5vw;
-      height: 8vh;
+    .datepicker::-webkit-datetime-edit-day-field:focus,
+    .datepicker::-webkit-datetime-edit-month-field:focus,
+    .datepicker::-webkit-datetime-edit-year-field:focus {
+        background-color: var(--black);
+        color: white;
+        outline: none;
     }
-    .startdate {
-      margin-right: 10px;
+    @media (max-height: 610px) and (min-width: 550px) {
+        .image {
+            min-height: 50px;
+        }
     }
-  }
-  @media (max-width: 1200px) {
-    .custom-dates {
-      margin-right: 12vw;
-    }
-  }
-  @media (max-width: 1100px) {
-    .custom-dates {
-      margin-right: 19vw;
-    }
-    .startdate,
-    .enddate {
-      width: 17vw;
-      height: 8vh;
-    }
-  }
-  @media (max-width: 1024px) {
-    .custom-dates {
-      margin-right: 22vw;
-      width: 37vw;
-    }
-    .startdate,
-    .enddate {
-      width: 17.7vw;
-      height: 8vh;
-    }
-    .startdate {
-      margin-right: 10px;
-    }
-  }
-  @media (max-width: 987px) {
-    .custom-dates {
-      margin-right: 22vw;
-      width: 49.5vw;
-    }
-    .startdate,
-    .enddate {
-      width: 22vw;
-      height: 8vh;
-    }
-    .startdate {
-      margin-right: 10px;
-    }
-  }
-  @media (max-width: 730px) {
-    .custom-dates {
-      margin-right: 24vw;
-      width: 59.5vw;
-    }
-    .startdate,
-    .enddate {
-      width: 28vw;
-      height: 8vh;
-    }
-    .startdate {
-      margin-right: 10px;
-    }
-  }
-  @media (max-width: 558px) {
-    .startdate {
-      position: absolute;
-      left: 10px;
-      top: 115px;
-      width: 160px;
-    }
-    .enddate {
-      position: absolute;
-      right: 10px;
-      top: 115px;
-      width: 160px;
-    }
-  }
-  .datepicker::-webkit-datetime-edit-day-field:focus,
-  .datepicker::-webkit-datetime-edit-month-field:focus,
-  .datepicker::-webkit-datetime-edit-year-field:focus {
-    background-color: var(--black);
-    color: white;
-    outline: none;
-  }
-  @media (max-height: 610px) and (min-width: 550px) {
-    .image {
-      min-height: 50px;
-    }
-    .startdate,
-    .enddate {
-      min-height: 50px;
-    }
-  }
 </style>
 
 <div class="nav-structure">
