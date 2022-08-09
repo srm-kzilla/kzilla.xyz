@@ -3,9 +3,10 @@
   import { Router, Link, Route } from "svelte-routing";
   import { shrinkUrlService } from '../services/APIservice';
   import { createEventDispatcher } from "svelte";
-  import { API , toastFail , toastSuccess} from '../constants';
+  import { API , toastFail ,toastSuccess} from '../constants';
   import Button from "../components/Button.svelte";
   import { SvelteToast , toast  } from '@zerodevx/svelte-toast';
+  import QRCode from "../myLinksPage/Qrjs.svelte";
 
   
   const dispatch = createEventDispatcher();
@@ -34,7 +35,7 @@
   }
 
   function resetData() {
-    data = "";
+    data = ""
     longUrl = ""
     customCode = undefined;
     toShowCustomCodeInput = false;
@@ -74,6 +75,26 @@
     return error;
   }
 
+  //function to show the qr code
+  function showQREditor(e) {
+  var editor = document.getElementById("qrContainer");
+  console.log(editor);
+  editor.classList.remove("d-none");
+}
+  //function to hide the qr code 
+function hideQREditor() {
+  var editor =document.getElementById("qrContainer");
+  editor.classList.add("d-none");
+}
+
+//function to download the qr
+function QRdownload(e) {
+  var myDiv = document.getElementById(API.KZILLA_URL + data.shortCode);
+  var myImage = myDiv.children[1];
+  var hr = document.getElementById(data.shortCode);
+  hr.href = myImage.src;
+  return false;
+}
   //Attach URL shortener API...
 
   function buttonClick(e) {
@@ -231,7 +252,6 @@
   }
   .shrink-another {
     font-family: UniSansHeavy;
-    margin-top: 3vh;
     font-size: 2vh;
     letter-spacing: 1px;
     height: 8vh;
@@ -247,6 +267,57 @@
   .text-center {
     text-align: start !important;
   }
+  .kz-download {
+        font-family: UniSansHeavy;
+        font-size: 20px;
+        color: var(--white);
+        background-color: var(--black);
+        padding: 15px 40px 15px 40px;
+        text-transform: uppercase;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .kz-QR-bg{
+        margin: auto;
+        width: 290px;
+        height: 290px;
+        padding: 20px 10px 20px 10px;
+        border-radius: 15px;
+        background-color: var(--white);
+    }
+    .kz-QR{
+        padding: 0; 
+        padding-bottom: 20px; 
+    }
+    #qrcode {
+        width:160px;
+        height:160px;
+        margin-top:15px;
+    }
+  .kz-qr-absolute{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: transparent;
+    }
+    
+  #qr-btn{
+    margin-right: 1rem;    
+  }
+  .kz-alt-btn{
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: row;
+    height: 8vh;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+  }
+
 
   @media(max-width: 1400px){
     .kz-input{
@@ -264,6 +335,7 @@
     .kz-alternate {
       width: 7vw;
     }
+
   }
   @media(max-width: 1200px){
     .kz-input{
@@ -298,6 +370,9 @@
       width: 9vw;
       margin-right: 2vw;
     }
+    #qr-btn{
+      margin-right: 0.9rem;
+    }
   }
   @media (max-width: 920px) {
     .kz-input{
@@ -322,6 +397,9 @@
     .kz-alternate {
       width: 9vw;
     }
+    #qr-btn{
+      margin-right: 0.8rem;
+    }
   }
   @media(max-width: 760px){
     .kz-input{
@@ -342,6 +420,9 @@
       margin-bottom: 1vh;
       width: 10vw;
     }
+    #qr-btn{
+      margin-right: 0.7rem;
+    }
   }
   @media (max-width: 700px) {
     .kz-shrinked-text {
@@ -358,11 +439,14 @@
       margin-top: 1.5vh;
       font-size: 1.6vh;
       letter-spacing: 1px;
-      height: 7vh;
-      line-height: 7vh;
+      height: 8vh;
+      line-height: 8vh;
       padding-left: 1.4vw;
       padding-right: 1.4vw;
       border-radius: 8px;
+    }
+    #qr-btn{
+      margin-right: 1.3rem;
     }
   }
   @media (max-height: 640px) {
@@ -403,6 +487,9 @@
       padding-right: 1.4vw;
       border-radius: 8px;
     }
+    #qr-btn{
+      margin-right: 1.2rem;
+    }
   }
   @media(max-width: 470px){
     .kz-form {
@@ -427,6 +514,9 @@
     .text-center {
       text-align: center !important;
     }
+    #qr-btn{
+      margin-right: 0.9rem;
+    }
   }
   @media(max-width: 400px){
     .kz-input{
@@ -434,6 +524,9 @@
     }
     .kz-input-done {
       width: 90vw;
+    }
+    #qr-btn{
+      margin-right: 0.6rem;
     }
   }
   @media (max-height: 610px) and (min-width: 550px){
@@ -474,6 +567,8 @@
     </form>
 
   {:else if !error}
+
+  <div>
     <div id="shrunkLink" class="container-fluid kz-links" style="margin-top: 60px; padding: 0px;">
       <div class="container-fluid text-center kz-input kz-input-done">
         {data.longUrl}
@@ -482,27 +577,64 @@
         <div class="kz-shrinked-text" id="shrink">
           {API.KZILLA_URL}{data.shortCode}
         </div>
-  
+
         <button class="kz-alternate" on:click={copyExec}>
           <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
         </button>
 
-  
+
         <div class="kz-shrinked-text-alternate" style="">
           {API.ANALYTICS_URL}{data.analyticsCode}
         </div>
   
         <Link to="analytics/{data.analyticsCode}">
-          <button class="kz-alternate" style="margin-right: 0;">
+          <button class="kz-alternate " style="margin-right: 0;">
             <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
           </button>
         </Link>
+      </div>
 
-        <div class="text-center">
+        <div class=" kz-alt-btn">
           <button on:click={resetData} class="shrink-another">Shrink another url</button>
+          <button on:click={showQREditor} class="shrink-another" id="qr-btn">
+            <svg height="20px" width="20px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" class="marginer svg-inline--fa fa-qrcode fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"></path></svg>
+            QR-CODE
+          </button>
         </div>
 
-      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+    
+    <div class="d-none kz-qr-absolute " id="qrContainer">
+      <div class="container-fluid kz-edit  kz-qr-modalId" >
+        <div class="row align-items-center justify-content-center kz-modal-body">
+            <div class="kz-qr-absolute" on:click={hideQREditor}></div>
+            <div class="col col-12 col-sm-8 col-lg-6 col-xl-5 kz-modal-bg">
+                <h3 class="kz-modal-heading kz-uni-sans">
+                    {API.KZILLA_URL}{data.shortCode}
+                    <div class="kz-close">
+                        <button on:click={hideQREditor}>
+                            <svg height="20px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="window-close" class="svg-inline--fa fa-window-close fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="black" d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-83.6 290.5c4.8 4.8 4.8 12.6 0 17.4l-40.5 40.5c-4.8 4.8-12.6 4.8-17.4 0L256 313.3l-66.5 67.1c-4.8 4.8-12.6 4.8-17.4 0l-40.5-40.5c-4.8-4.8-4.8-12.6 0-17.4l67.1-66.5-67.1-66.5c-4.8-4.8-4.8-12.6 0-17.4l40.5-40.5c4.8-4.8 12.6-4.8 17.4 0l66.5 67.1 66.5-67.1c4.8-4.8 12.6-4.8 17.4 0l40.5 40.5c4.8 4.8 4.8 12.6 0 17.4L313.3 256l67.1 66.5z"></path></svg>
+                        </button>
+                    </div>
+                </h3>
+                <div class="container-fluid text-center kz-QR">
+                    <div class="kz-QR-bg">
+                        <QRCode  codeValue="{API.KZILLA_URL}{data.shortCode}" squareSize=250/>    
+                    </div>                    
+                </div>
+                <div class="text-center">
+                    <a id="{data.shortCode}" href=" " on:click={QRdownload} download="qr.png"><button class="kz-download">Download</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
   {:else}
     <div class="container-fluid kz-edit kz-modalId">
