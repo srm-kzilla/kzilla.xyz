@@ -35,21 +35,35 @@
   }
 
   function resetData() {
-    data = ""
-    longUrl = ""
+    data = "";
+    longUrl = "";
     customCode = undefined;
     toShowCustomCodeInput = false;
-    button_content = "Shrink"
+    button_content = "Shrink";
   }
   
   //Validate URL (Check whether a URL is a kzilla.xyz link)
 
   function validateURL(url) {
-    const regex = /^((https?|ftp):\/\/)?kzilla.xyz\/\w+\/?$/;
-    return !regex.test(url);
+
+    const validUrl = new RegExp('^((https?|ftp):\\/\\/)?'+ // validate protocol
+	    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
+	    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+	    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+	    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+	    '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+    const isKzillaUrl = /^((https?|ftp):\/\/)?kzilla.xyz\/\w+\/?$/;
+    if(!validUrl.test(url)) {
+      return {valid:false, msg:"Invalid URL."};
+    } else if(isKzillaUrl.test(url)) {
+      return {valid:false, msg:"Cannot re-shrink kzilla.xyz links."};
+    } else {
+      return {valid:true};
+    }
   }
 
   function showCustomCodeInput() {
+    customCode = undefined;
     toShowCustomCodeInput = !toShowCustomCodeInput;
   }
 
@@ -106,7 +120,8 @@ function QRdownload(e) {
       }
       button_content = "Shrunk";
       e.preventDefault();
-      if(validateURL(longUrl)) {
+      const checkUrl =  validateURL(longUrl);
+      if(checkUrl.valid) {
         grecaptcha.ready(async function() {
           const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
           const siteKey = "6LfQuOoUAAAAAJ6GHFvllghVXunXJYfpezpEJOEp";
@@ -120,8 +135,8 @@ function QRdownload(e) {
       }
       else {
         data = {}
-        error = "Cannot re-shrink kzilla.xyz links. Please refresh and try again with a different URL."
-        toast.push('Cannot shrink kzilla.xyz', toastFail);
+        error = `${checkUrl.msg} Please refresh and try again with a different URL.`
+        toast.push(checkUrl.msg, toastFail);
       }
     }
   }
