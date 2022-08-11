@@ -74,7 +74,7 @@
         toast.push('Invalid URL', toastFail);
       }
       else if (data.details[0].context.key === "customCode") {
-        error = "Length of custom code must be between 6 and 25, may contain only letters, numbers, hyphens(-) and underscores(_)"
+        error = "Length of custom code must be between 4 and 25, may contain only letters, numbers, hyphens(-) and underscores(_)"
         toast.push('Invalid custom code', toastFail);
       }
     }
@@ -576,7 +576,7 @@ function QRdownload(e) {
         <input type="text" bind:value={customCode} required placeholder="Enter custom code..." class="kz-input"/>
       {/if}
       <div class="kz-form-buttons">
-        <Button on:click={showCustomCodeInput} button_content="Customize"/>
+        <Button on:click={showCustomCodeInput} button_content={toShowCustomCodeInput ? "Randomize" : "Customize"}/>
         <Button on:submission on:buttonClick={buttonClick} {button_content}/>
       </div>
     </form>
@@ -594,7 +594,7 @@ function QRdownload(e) {
         </div>
 
         <button class="kz-alternate" on:click={copyExec}>
-          <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
+          <img height="20px" src="/icons/copy-light.svg" alt="copy-btn" />
         </button>
 
 
@@ -604,7 +604,7 @@ function QRdownload(e) {
   
         <Link to="analytics/{data.analyticsCode}">
           <button class="kz-alternate " style="margin-right: 0;">
-            <img height="15px" src="./ic-baseline-bar-chart.svg" alt="stats-btn" />
+            <img src="/icons/analytics.svg" alt="edit link"/>
           </button>
         </Link>
       </div>
@@ -612,20 +612,12 @@ function QRdownload(e) {
         <div class=" kz-alt-btn">
           <button on:click={resetData} class="shrink-another">Shrink another url</button>
           <button on:click={showQREditor} class="shrink-another" id="qr-btn">
-            <svg height="20px" width="20px" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="qrcode" class="marginer svg-inline--fa fa-qrcode fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z"></path></svg>
+            <img src="/icons/qr.svg" alt="download qr"/>
             QR-CODE
           </button>
         </div>
-
-
     </div>
-
-
   </div>
-
-
-
-    
     <div class="d-none kz-qr-absolute " id="qrContainer">
       <div class="container-fluid kz-edit  kz-qr-modalId" >
         <div class="row align-items-center justify-content-center kz-modal-body">

@@ -206,12 +206,13 @@
       </div>
     </div>
     <div on:click={showEditor} class="kz-button"><img src="/icons/edit.svg" alt="edit link"/>Edit Link</div>
-    <Link to="analytics/{data.analyticsCode}"><div class="kz-button"><img src="/icons/analytics.svg" alt="edit link"/>Analytics</div></Link>
-    <div on:click={showQREditor} class="kz-button"><img src="/icons/qr.svg" alt="edit link"/>QR Code</div>
+    <Link to="analytics/{data.analyticsCode}"><div class="kz-button"><img src="/icons/analytics.svg" alt="view analytics"/>Analytics</div></Link>
+    <div on:click={showQREditor} class="kz-button"><img src="/icons/qr.svg" alt="download qr"/>QR Code</div>
     <div on:click={switchButton} class={isEnabled ? "kz-button kz-link-enabled" : "kz-button kz-link-disabled" }>{isEnabled ? "Disable Link" : "Enable Link" }</div>
   </div>
   <SvelteToast/>
 </div>
+
 <style>
     .kz-container {
         display: flex;
@@ -247,6 +248,7 @@
     .kz-copy {
         width: 25px;
         cursor: pointer;
+        user-select: none;
     }
 
     .kz-copy:active {
@@ -408,6 +410,7 @@
 
     .kz-button {
         display: flex;
+        user-select: none;
         justify-content: center;
         column-gap: 7px;
         font-family: UniSansHeavy, sans-serif;

@@ -12,7 +12,7 @@ export const createLinkSchema = Joi.object({
     .trim(),
   customCode: Joi.string()
     .regex(
-      /^(?=.*[A-Za-z])[^-_][-\w]{5,25}$/
+      /^(?=.*[A-Za-z])[^-_][-\w]{3,25}$/
     )
     .trim()
 });
