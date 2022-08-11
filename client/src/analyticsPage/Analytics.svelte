@@ -239,7 +239,7 @@
       </p>
     {:else}
       <div class="header">
-        <HeroTag {analyticsId} />
+        <HeroTag shortCode={data.shortCode} />
         <UpperRow {data} />
         <div class="row">
           <div class="col-md-6">

@@ -5,10 +5,12 @@ import { Report, Data } from "../models/report-model";
  * Makes botched Analytics report readable
  * @param reports an array of Google Analytics report
  * @param clicks number of clicks on the short link
+ * @param shortCode the shortCode of the link.
  */
 export const readableReports = (
   reports: analyticsreporting_v4.Schema$Report[],
-  clicks: number
+  clicks: number,
+  shortCode: string
 ) => {
   let formattedReports: Report[] = [];
   reports.forEach((report: analyticsreporting_v4.Schema$Report) => {
@@ -49,5 +51,5 @@ export const readableReports = (
     }
   });
 
-  return { clicks: clicks, reports: formattedReports };
+  return { shortCode: shortCode, clicks: clicks, reports: formattedReports };
 };
