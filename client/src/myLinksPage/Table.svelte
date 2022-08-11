@@ -212,6 +212,7 @@
   </div>
   <SvelteToast/>
 </div>
+
 <style>
     .kz-container {
         display: flex;
@@ -408,6 +409,7 @@
 
     .kz-button {
         display: flex;
+        user-select: none;
         justify-content: center;
         column-gap: 7px;
         font-family: UniSansHeavy, sans-serif;
