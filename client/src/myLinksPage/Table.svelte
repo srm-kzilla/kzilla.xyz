@@ -248,6 +248,7 @@
     .kz-copy {
         width: 25px;
         cursor: pointer;
+        user-select: none;
     }
 
     .kz-copy:active {

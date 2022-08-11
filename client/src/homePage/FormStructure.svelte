@@ -74,7 +74,7 @@
         toast.push('Invalid URL', toastFail);
       }
       else if (data.details[0].context.key === "customCode") {
-        error = "Length of custom code must be between 6 and 25, may contain only letters, numbers, hyphens(-) and underscores(_)"
+        error = "Length of custom code must be between 4 and 25, may contain only letters, numbers, hyphens(-) and underscores(_)"
         toast.push('Invalid custom code', toastFail);
       }
     }
