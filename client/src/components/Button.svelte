@@ -113,7 +113,7 @@
   <div role="button" class="linker">
     {button_content}
   </div>
-{:else if button_content === "Customize"}
+{:else if button_content === "Customize" || button_content === "Randomize"}
   <div role="button" on:click class="linker">
     {button_content}
   </div>

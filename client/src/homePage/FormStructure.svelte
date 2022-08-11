@@ -576,7 +576,7 @@ function QRdownload(e) {
         <input type="text" bind:value={customCode} required placeholder="Enter custom code..." class="kz-input"/>
       {/if}
       <div class="kz-form-buttons">
-        <Button on:click={showCustomCodeInput} button_content="Customize"/>
+        <Button on:click={showCustomCodeInput} button_content={toShowCustomCodeInput ? "Randomize" : "Customize"}/>
         <Button on:submission on:buttonClick={buttonClick} {button_content}/>
       </div>
     </form>
