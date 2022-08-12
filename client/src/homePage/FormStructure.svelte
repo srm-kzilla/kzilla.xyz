@@ -633,7 +633,7 @@ function QRdownload(e) {
                 </h3>
                 <div class="container-fluid text-center kz-QR">
                     <div class="kz-QR-bg">
-                        <QRCode  codeValue="{API.KZILLA_URL}{data.shortCode}" squareSize=250/>    
+                        <QRCode  codeValue="https://{API.KZILLA_URL}{data.shortCode}" squareSize=250/>    
                     </div>                    
                 </div>
                 <div class="text-center">
