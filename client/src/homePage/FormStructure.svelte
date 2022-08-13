@@ -594,7 +594,7 @@ function QRdownload(e) {
         </div>
 
         <button class="kz-alternate" on:click={copyExec}>
-          <img height="20px" src="/icons/copy-light.svg" alt="copy-btn" />
+          <img height="20px" src="ic-round-content-copy.svg" alt="copy-btn" />
         </button>
 
 

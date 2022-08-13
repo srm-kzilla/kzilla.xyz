@@ -23,7 +23,7 @@
     "@types/helmet": "^0.0.47",
     "@types/mongodb": "^3.5.25",
     "@types/node-cache": "^4.2.5",
-    "@types/pino": "^8.0.0",
+    "@types/pino": "^7.0.5",
     "@types/request-ip": "^0.0.35",
     "cross-env": "^7.0.3",
     "link-module-alias": "^1.2.0",
