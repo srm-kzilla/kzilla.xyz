@@ -29,7 +29,7 @@
     user-select: none;
     font-size: 0.9em;
     letter-spacing: 1px;
-    width: 10em;
+    width: 12em;
     height: 4em;
     text-align: center;
     line-height: 4em;
