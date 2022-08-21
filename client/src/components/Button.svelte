@@ -27,12 +27,12 @@
   .linker {
     font-family: UniSansHeavy,sans-serif;
     user-select: none;
-    font-size: 2vh;
+    font-size: 0.9em;
     letter-spacing: 1px;
-    width: 12vw;
-    height: 8vh;
+    width: 10em;
+    height: 4em;
     text-align: center;
-    line-height: 8vh;
+    line-height: 4em;
     color: #ffffff;
     background-color: #000000;
     text-transform: uppercase;
@@ -57,41 +57,19 @@
     margin-top: 2.5vh;
   }
 
-  @media (max-width: 1400px) {
-    .linker {
-      width: 12vw;
-    }
-  }
-  @media (max-width: 1200px) {
-    .linker {
-      width: 14vw;
-    }
-  }
   @media (max-width: 1000px) {
     .linker {
-      width: 18vw;
+      width: 9em;
     }
   }
   @media (max-width: 760px) {
     .linker {
-      width: 22vw;
+      width: 7em;
     }
   }
   @media (max-width: 470px) {
     .linker {
-      width: 30vw;
-    }
-  }
-  @media (max-width: 400px) {
-    .linker {
-      width: 34vw;
-    }
-  }
-  @media (max-height: 610px) and (min-width: 550px){
-    .linker{
-      font-size: 15px;
-      line-height: 50px;
-      min-height: 50px;
+      width: 8em;
     }
   }
 </style>
