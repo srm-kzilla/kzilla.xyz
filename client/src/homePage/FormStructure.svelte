@@ -163,14 +163,14 @@ function QRdownload(e) {
     flex-direction: column;
   }
   .kz-input {
-    font-family: UniSansBook;
-    font-size: 3vh;
-    width: 71.5vw;
-    height: 8vh;
-    line-height: 8vh;
+    font-family: UniSansBook,sans-serif;
+    flex-grow: 1;
+    font-size: 24px;
+    height: 58px;
+    line-height: 58px;
     background-color: var(--grey);
     color: var(--black);
-    padding: 0px 10px 0px 10px;
+    padding: 0 10px 0 10px;
     border-radius: 12px;
     border-style: none;
     overflow-x: auto;
@@ -329,15 +329,9 @@ function QRdownload(e) {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    
-    
   }
 
-
   @media(max-width: 1400px){
-    .kz-input{
-      width: 71vw;
-    }
     .kz-input-done {
       width: 84vw;
     }
@@ -369,9 +363,6 @@ function QRdownload(e) {
     }
   }
   @media(max-width: 1000px){
-    .kz-input{
-      width: 65vw;
-    }
     .kz-input-done {
       width: 84vw;
     }
@@ -390,9 +381,6 @@ function QRdownload(e) {
     }
   }
   @media (max-width: 920px) {
-    .kz-input{
-      width: 71vw;
-    }
     .kz-form {
       gap: 1vw;
     }
