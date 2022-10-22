@@ -15,10 +15,10 @@
   //QR Download button
 
   function QRdownload(e) {
-    let myDiv = document.getElementById(API.KZILLA_URL+data.shortCode);
-    let myImage = myDiv.children[1];
+    let myDiv = document.getElementById("https://"+API.KZILLA_URL+data.shortCode);
+    let myImage = myDiv.children[0];
     let hr = document.getElementById(data.shortCode);
-    hr.href = myImage.src;
+    hr.href = myImage.toDataURL()
     return false;
   }
 
@@ -196,7 +196,7 @@
           </h3>
           <div class="container-fluid text-center kz-QR">
             <div class="kz-QR-bg">
-              <QRCode codeValue="https://{API.KZILLA_URL}{data.shortCode}" squareSize=250/>
+              <QRCode codeValue="https://{API.KZILLA_URL}{data.shortCode}" squareSize=250 id="https://{API.KZILLA_URL}{data.shortCode}"/>
             </div>
           </div>
           <div class="text-center">
