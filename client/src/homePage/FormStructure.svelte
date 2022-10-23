@@ -103,12 +103,12 @@ function hideQREditor() {
 
 //function to download the qr
 function QRdownload(e) {
-  var myDiv = document.getElementById(API.KZILLA_URL + data.shortCode);
-  var myImage = myDiv.children[1];
-  var hr = document.getElementById(data.shortCode);
-  hr.href = myImage.src;
-  return false;
-}
+    let myDiv = document.getElementById("https://"+API.KZILLA_URL+data.shortCode);
+    let myImage = myDiv.children[0];
+    let hr = document.getElementById(data.shortCode);
+    hr.href = myImage.toDataURL()
+    return false;
+  }
   //Attach URL shortener API...
 
   function buttonClick(e) {
@@ -621,7 +621,7 @@ function QRdownload(e) {
                 </h3>
                 <div class="container-fluid text-center kz-QR">
                     <div class="kz-QR-bg">
-                        <QRCode  codeValue="https://{API.KZILLA_URL}{data.shortCode}" squareSize=250/>    
+                        <QRCode  codeValue="https://{API.KZILLA_URL}{data.shortCode}" squareSize=250  id="https://{API.KZILLA_URL}{data.shortCode}"/>    
                     </div>                    
                 </div>
                 <div class="text-center">
