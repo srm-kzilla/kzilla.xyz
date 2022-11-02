@@ -97,7 +97,7 @@
     width: 100%;
   }
   .no-data {
-    font-family: UniSansBook;
+    font-family: UniSansBook, sans-serif;
     font-size: 20px;
   }
   .error-message {
@@ -116,13 +116,12 @@
   }
   .kz-dropdown ul {
     list-style-type: none;
-    font-family: UniSansHeavy;
+    font-family: UniSansHeavy, sans-serif;
     margin-left: -40px;
   }
   .kz-dropdown ul li {
     list-style-type: none;
-    padding: 2px 0px;
-    padding-left: 20px;
+    padding: 2px 0 2px 20px;
   }
   .kz-dropdown ul li:hover {
     background-color: var(--black);
