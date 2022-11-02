@@ -45,20 +45,22 @@
   //Validate URL (Check whether a URL is a kzilla.xyz link)
 
   function validateURL(url) {
-
-    const validUrl = new RegExp('^((https?|ftp):\\/\\/)?'+ // validate protocol
+    const validUrl = new RegExp(
+      '^((https?|ftp):\\/\\/)?'+ // validate protocol
 	    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
 	    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
-	    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+	    '(\\:\\d+)?(\\/[-a-z\\d%_.~+@]*)*'+ // validate port and path
 	    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
-	    '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+	    '(\\#[-a-z\\d_]*)?$','i' // validate fragment locator
+    );
     const isKzillaUrl = /^((https?|ftp):\/\/)?kzilla.xyz\/\w+\/?$/;
+
     if(!validUrl.test(url)) {
-      return {valid:false, msg:"Invalid URL."};
+      return { valid:false, msg:"Invalid URL." };
     } else if(isKzillaUrl.test(url)) {
-      return {valid:false, msg:"Cannot re-shrink kzilla.xyz links."};
+      return { valid:false, msg:"Cannot re-shrink kzilla.xyz links." };
     } else {
-      return {valid:true};
+      return { valid:true };
     }
   }
 
