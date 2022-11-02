@@ -161,6 +161,7 @@ function QRdownload(e) {
     justify-content: center;
   }
   .kz-links {
+    font-family: "UniSansBook", sans-serif;
     display: flex;
     flex-direction: column;
   }
