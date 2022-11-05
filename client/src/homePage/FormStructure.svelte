@@ -45,20 +45,22 @@
   //Validate URL (Check whether a URL is a kzilla.xyz link)
 
   function validateURL(url) {
-
-    const validUrl = new RegExp('^((https?|ftp):\\/\\/)?'+ // validate protocol
+    const validUrl = new RegExp(
+      '^((https?|ftp):\\/\\/)?'+ // validate protocol
 	    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
 	    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
-	    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+	    '(\\:\\d+)?(\\/[-a-z\\d%_.~+@]*)*'+ // validate port and path
 	    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
-	    '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+	    '(\\#[-a-z\\d_]*)?$','i' // validate fragment locator
+    );
     const isKzillaUrl = /^((https?|ftp):\/\/)?kzilla.xyz\/\w+\/?$/;
+
     if(!validUrl.test(url)) {
-      return {valid:false, msg:"Invalid URL."};
+      return { valid:false, msg:"Invalid URL." };
     } else if(isKzillaUrl.test(url)) {
-      return {valid:false, msg:"Cannot re-shrink kzilla.xyz links."};
+      return { valid:false, msg:"Cannot re-shrink kzilla.xyz links." };
     } else {
-      return {valid:true};
+      return { valid:true };
     }
   }
 
@@ -102,11 +104,11 @@ function hideQREditor() {
 }
 
 //function to download the qr
-function QRdownload(e) {
+function QRDownload(e) {
     let myDiv = document.getElementById("https://"+API.KZILLA_URL+data.shortCode);
-    let myImage = myDiv.children[0];
+    let canvas = myDiv.children[0];
     let hr = document.getElementById(data.shortCode);
-    hr.href = myImage.toDataURL()
+    hr.href = canvas.toDataURL()
     return false;
   }
   //Attach URL shortener API...
@@ -159,6 +161,7 @@ function QRdownload(e) {
     justify-content: center;
   }
   .kz-links {
+    font-family: "UniSansBook", sans-serif;
     display: flex;
     flex-direction: column;
   }
@@ -266,60 +269,58 @@ function QRdownload(e) {
       background-color: transparent;
   }
   .shrink-another {
-    font-family: UniSansHeavy;
-    font-size: 2vh;
-    letter-spacing: 1px;
-    height: 8vh;
-    text-align: center;
-    line-height: 8vh;
-    color: #ffffff;
-    background-color: #000000;
-    text-transform: uppercase;
-    border-radius: 12px;
-    padding-left: 1vw;
-    padding-right: 1vw;
+      font-family: UniSansHeavy,sans-serif;
+      font-size: 2vh;
+      letter-spacing: 1px;
+      height: 8vh;
+      text-align: center;
+      line-height: 8vh;
+      color: #ffffff;
+      background-color: #000000;
+      text-transform: uppercase;
+      border-radius: 12px;
+      padding-left: 1vw;
+      padding-right: 1vw;
   }
   .text-center {
     text-align: start !important;
   }
+  .kz-uni-sans {
+      font-family: "UniSansBook", sans-serif;
+  }
   .kz-download {
-        font-family: UniSansHeavy;
-        font-size: 20px;
-        color: var(--white);
-        background-color: var(--black);
-        padding: 15px 40px 15px 40px;
-        text-transform: uppercase;
-        border-radius: 10px;
-        margin-bottom: 20px;
+      font-family: UniSansHeavy,sans-serif;
+      font-size: 20px;
+      color: var(--white);
+      background-color: var(--black);
+      padding: 15px 40px 15px 40px;
+      text-transform: uppercase;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
-    .kz-QR-bg{
-        margin: auto;
-        width: 290px;
-        height: 290px;
-        padding: 20px 10px 20px 10px;
-        border-radius: 15px;
-        background-color: var(--white);
-    }
-    .kz-QR{
-        padding: 0; 
-        padding-bottom: 20px; 
-    }
-    #qrcode {
-        width:160px;
-        height:160px;
-        margin-top:15px;
-    }
+  .kz-QR-bg{
+      margin: auto;
+      width: 290px;
+      height: 290px;
+      padding: 20px 10px 20px 10px;
+      border-radius: 15px;
+      background-color: var(--white);
+  }
+  .kz-QR{
+      padding: 0;
+      padding-bottom: 20px;
+  }
   .kz-qr-absolute{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: transparent;
     }
     
   #qr-btn{
-    margin-right: 1rem;    
+    margin-right: 1rem;
   }
   .kz-alt-btn{
     margin-top: 3vh;
@@ -591,7 +592,7 @@ function QRdownload(e) {
         </div>
   
         <Link to="analytics/{data.analyticsCode}">
-          <button class="kz-alternate " style="margin-right: 0;">
+          <button class="kz-alternate" style="margin-right: 0;">
             <img src="/icons/analytics.svg" alt="edit link"/>
           </button>
         </Link>
@@ -621,11 +622,11 @@ function QRdownload(e) {
                 </h3>
                 <div class="container-fluid text-center kz-QR">
                     <div class="kz-QR-bg">
-                        <QRCode  codeValue="https://{API.KZILLA_URL}{data.shortCode}" squareSize=250  id="https://{API.KZILLA_URL}{data.shortCode}"/>    
+                        <QRCode  codeValue="https://{API.KZILLA_URL}{data.shortCode}" id="https://{API.KZILLA_URL}{data.shortCode}"/>
                     </div>                    
                 </div>
                 <div class="text-center">
-                    <a id="{data.shortCode}" href=" " on:click={QRdownload} download="qr.png"><button class="kz-download">Download</button></a>
+                    <a id="{data.shortCode}" href=" " on:click={QRDownload} download="qr.png"><button class="kz-download">Download</button></a>
                 </div>
             </div>
         </div>

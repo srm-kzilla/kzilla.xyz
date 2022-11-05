@@ -9,8 +9,8 @@
     document.head.append(script);
     script.onload = function () {
       const qrCode = new QRCodeStyling({
-        width: 250,
-        height: 250,
+        width: 500,
+        height: 500,
         type: "canvas",
         data: codeValue,
         image: "/kz_logo.png",
@@ -26,17 +26,19 @@
         },
       });
       qrCode.append(document.getElementById(codeValue));
+      const canvas = document.getElementById(codeValue).children[0]
+      canvas.style.scale = "0.5";
+      canvas.style.transform = "translate(-250px, -250px)"
     };
   });
 </script>
 
-<div class="qrcode" id={codeValue} />
+<div class="qrcode" id={codeValue}></div>
 
 <style>
   .qrcode {
     width: 250px;
     height: 250px;
-    margin-top: 15px;
     margin: auto;
   }
 </style>

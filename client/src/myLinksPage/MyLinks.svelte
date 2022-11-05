@@ -19,7 +19,7 @@
 
 <div class="kz-table-design">
   {#if loading}
-    <p>
+    <p class="no-data">
       Computing the secret to life, the universe, and everything...
     </p>
   {:else}
@@ -39,7 +39,7 @@
         <Table data = {data}/>
       {/each}
     {:else}
-      <p>
+      <p class="no-data">
         We went to the moon and back, but could not find any more data.
       </p>
     {/if}
@@ -51,7 +51,7 @@
     display: grid;
     padding: 0 12vw;
     font-family: "UniSansBook", sans-serif;
-      font-size: 14px;
+    font-size: 14px;
   }
 
   .kz-table-title {
@@ -61,16 +61,24 @@
   }
 
   .kz-title {
-      flex-basis: 86%;
+    flex-basis: 86%;
+  }
+
+  .no-data {
+    height: 65vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
   }
 
   @media (max-width: 820px) {
-      .kz-title {
-          flex-basis: 62%;
-      }
-      .kz-table-design {
-          padding: 0 5vw;
-      }
+    .kz-title {
+      flex-basis: 62%;
+    }
+    .kz-table-design {
+      padding: 0 5vw;
+    }
   }
 
 </style>
