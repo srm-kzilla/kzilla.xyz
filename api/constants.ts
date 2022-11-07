@@ -3,7 +3,7 @@
  */
 export const Constants = {
   NODE_ENV: process.env.NODE_ENV,
-  PORT: process.env.PORT || 3000,
+  PORT: process.env.PORT || 4500,
   TTLSeconds: Number(process.env.TTL_SECONDS) || 60 * 60 * 6,
 };
 
