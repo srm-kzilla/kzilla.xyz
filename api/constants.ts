@@ -1,3 +1,5 @@
+import { config } from "dotenv";
+config();
 /**
  * Defines Constants for API
  */
