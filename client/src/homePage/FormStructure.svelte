@@ -7,7 +7,7 @@
   import Button from "../components/Button.svelte";
   import { SvelteToast , toast  } from '@zerodevx/svelte-toast';
   import QRCode from "../myLinksPage/Qrjs.svelte";
-
+  import * as yup from 'yup';
   
   const dispatch = createEventDispatcher();
 
@@ -15,8 +15,8 @@
 
   let tapped = false;
   let toShowCustomCodeInput = false;
-  let shortURL = "HeL0OlUc45";
-  let analyticsCode = "YmcA5s";
+  let shortURL = "";
+  let analyticsCode = "";
   let longUrl = "";
   let customCode = undefined;
   let data;
@@ -45,18 +45,18 @@
   //Validate URL (Check whether a URL is a kzilla.xyz link)
 
   function validateURL(url) {
-    const validUrl = new RegExp(
-      /^((https?|ftp):\/\/)?(www.)?(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i
-    );
-    const isKzillaUrl = /^((https?|ftp):\/\/)?kzilla.xyz\/\w+\/?$/;
-
-    if(!validUrl.test(url)) {
-      return { valid:false, msg:"Invalid URL." };
-    } else if(isKzillaUrl.test(url)) {
-      return { valid:false, msg:"Cannot re-shrink kzilla.xyz links." };
-    } else {
-      return { valid:true };
-    }
+    let schema = yup.string().url();
+    let valid = schema.isValid(url).then((validUrl)=> {
+      const isKzillaUrl = /^((https?|ftp):\/\/)?kzilla.xyz\/\w+\/?$/;
+      if(!validUrl) {
+        return { valid:false, msg:"Invalid URL." };
+      } else if(isKzillaUrl.test(url)) {
+        return { valid:false, msg:"Cannot re-shrink kzilla.xyz links." };
+      } else {
+        return { valid:true };
+      }
+    })
+    return valid;
   }
 
   function showCustomCodeInput() {
@@ -108,7 +108,7 @@ function QRDownload(e) {
   }
   //Attach URL shortener API...
 
-  function buttonClick(e) {
+  async function buttonClick(e) {
     tapped = true;
     if(longUrl){
       if (toShowCustomCodeInput && customCode === undefined) {
@@ -117,7 +117,7 @@ function QRDownload(e) {
       }
       button_content = "Shrunk";
       e.preventDefault();
-      const checkUrl =  validateURL(longUrl);
+      const checkUrl =  await validateURL(longUrl);
       if(checkUrl.valid) {
         grecaptcha.ready(async function() {
           const url = "https://kzilla-xyz.herokuapp.com/api/v1/links";
