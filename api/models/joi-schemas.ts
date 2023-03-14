@@ -11,10 +11,8 @@ export const createLinkSchema = Joi.object({
     .required()
     .trim(),
   customCode: Joi.string()
-    .regex(
-      /^(?=.*[A-Za-z])[^-_][-\w]{3,25}$/
-    )
-    .trim()
+    .regex(/^(?=.*[A-Za-z])[^-_][-\w]{3,25}$/)
+    .trim(),
 });
 
 /**
@@ -33,7 +31,7 @@ export const updateLinkSchema = Joi.object({
     .regex(/^[A-Za-z]{12}$/)
     .required(),
   longUrl: Joi.string().regex(
-    /^(?:(http|https|ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+    /^(?:(?!.*kzilla\.xyz).*?(http|https|ftp):\/\/)?[\w.-]+(?:\.[\w.-]+)+[\w\-\._~:/?#[\]@!\$&'()*+,;=]+$/
   ),
   enabled: Joi.bool(),
 }).xor("longUrl", "enabled");
