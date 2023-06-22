@@ -34,8 +34,6 @@ export const fetchAnalytics = async (
       throw 404;
     }
 
-    console.log(startDate, endDate);
-
     const startDateTs = startDate
       ? new Date(startDate).getTime()
       : result.timestamp;

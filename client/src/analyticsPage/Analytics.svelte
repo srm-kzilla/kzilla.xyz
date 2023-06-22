@@ -22,19 +22,19 @@
     data = await getAnalyticsData(analyticsId, startdate, enddate);
   });
   // Changed Start Date using Custom
-  var changeStartDate = async (event) => {
+  let changeStartDate = async (event) => {
     startdate = event.detail.startdate;
     data = null;
     data = await getAnalyticsData(analyticsId, startdate, enddate);
   };
   // Change End Date using Custom
-  var changeEndDate = async (event) => {
+  let changeEndDate = async (event) => {
     data = null;
     enddate = event.detail.enddate;
     data = await getAnalyticsData(analyticsId, startdate, enddate);
   };
   //Changed Dates Range
-  var datesChanged = async (value) => {
+  let datesChanged = async (value) => {
     button_content = value;
     ddToggler = false;
     if (value !== "custom" && value !== "allTime") {
@@ -96,7 +96,7 @@
   };
   // Format the date
   function formatDate(date) {
-    var d = new Date(date),
+    let d = new Date(date),
       month = "" + (d.getMonth() + 1),
       day = "" + d.getDate(),
       year = d.getFullYear();
