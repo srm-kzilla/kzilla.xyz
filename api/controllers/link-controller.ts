@@ -5,6 +5,8 @@ import { DatabaseService } from "../services/database-service";
 import { generateRandomCode } from "../utils/link-helpers";
 import * as metaget from "metaget";
 import { SERVER_ERROR, CUSTOM_CODE_ALREADY_EXISTS } from "../errors";
+import { generatePageNotFound } from "../utils/ejs-templates";
+import { Response, Request } from "express";
 
 /**
  * Handles creation of links
@@ -38,7 +40,7 @@ export const createLink = async (
     if (!customCode) return createLink(longUrl, ipAddress);
     result = await database
       .find(
-        { shortCode : shortCode }
+        { shortCode: shortCode }
       )
       .toArray();
 
@@ -100,10 +102,10 @@ export const fetchLink = async (shortCode: string) => {
   }
 
   try {
-    if(result.longUrl.startsWith("https://"))
-    result.meta = await metaget.fetch(result.longUrl);
+    if (result.longUrl.startsWith("https://"))
+      result.meta = await metaget.fetch(result.longUrl);
     else
-    result.meta = await metaget.fetch("https://" + result.longUrl);
+      result.meta = await metaget.fetch("https://" + result.longUrl);
   } catch (e) {
     result.meta = {};
   }
@@ -205,3 +207,8 @@ export const updateLink = async (
   CacheService.getInstance().del(result.value.shortCode);
   return result.value;
 };
+
+export const catchAllRoutes = async (req: Request, res: Response) => {
+  const html = await generatePageNotFound();
+  res.status(404).send(html as string);
+}
