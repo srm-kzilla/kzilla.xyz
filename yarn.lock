@@ -194,7 +194,7 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-14.0.27.tgz"
   integrity sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
 
-"@types/pino@^8.0.0":
+"@types/pino@^7.0.5":
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/@types/pino/-/pino-7.0.5.tgz#1c84a81b924a6a9e263dbb581dffdbad7a3c60c4"
   integrity sha512-wKoab31pknvILkxAF8ss+v9iNyhw5Iu/0jLtRkUD74cNfOOLJNnqfFKAv0r7wVaTQxRZtWrMpGfShwwBjOcgcg==
