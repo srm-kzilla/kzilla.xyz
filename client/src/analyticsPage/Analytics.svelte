@@ -9,13 +9,13 @@
   import { getAnalyticsData } from "../services/APIservice.js";
 
   let button_content = "All Time";
-  var data;
+  let data;
   let ddToggler = false;
   let endDate = new Date();
   let startDate = new Date();
-  var startdate = "";
-  var enddate = "";
-  var analyticsId = window.location.href.split("analytics/")[1];
+  let startdate = "";
+  let enddate = "";
+  let analyticsId = window.location.href.split("analytics/")[1];
 
   //   Initialize onMount
   onMount(async function initialise() {
