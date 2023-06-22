@@ -5,7 +5,7 @@
     "preinstall": "which link-module-alias && link-module-alias clean || echo",
     "start": "node build/server",
     "tsc": "tsc",
-    "dev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"node ./build/server.js\"",
+    "dev": "cross-env NODE_ENV=development tsc-watch --onSuccess \"node --openssl-legacy-provider ./build/server.js\"",
     "build": "yarn run tsc && yarn run copy",
     "copy": "cp -r ./api/views/ ./build/api/views/",
     "postinstall": "link-module-alias"

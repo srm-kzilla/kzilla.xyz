@@ -11,10 +11,8 @@
   let button_content = "All Time";
   var data;
   let ddToggler = false;
-  var dateObj = new Date();
-  var today = new Date();
-  dateObj.setDate(dateObj.getDate());
-  today.setDate(today.getDate());
+  let endDate = new Date();
+  let startDate = new Date();
   var startdate = "";
   var enddate = "";
   var analyticsId = window.location.href.split("analytics/")[1];
@@ -24,44 +22,71 @@
     data = await getAnalyticsData(analyticsId, startdate, enddate);
   });
   // Changed Start Date using Custom
-  var changeStartDate = async event => {
+  var changeStartDate = async (event) => {
     startdate = event.detail.startdate;
     data = null;
     data = await getAnalyticsData(analyticsId, startdate, enddate);
   };
   // Change End Date using Custom
-  var changeEndDate = async event => {
+  var changeEndDate = async (event) => {
     data = null;
     enddate = event.detail.enddate;
     data = await getAnalyticsData(analyticsId, startdate, enddate);
   };
   //Changed Dates Range
-  var datesChanged = async value => {
+  var datesChanged = async (value) => {
     button_content = value;
     ddToggler = false;
-    if (value != "custom" && value != "allTime") {
-      today = new Date();
-      today.setDate(today.getDate());
-      if (value == "today") {
-        dateObj.setDate(today.getDate());
-        dateObj.setMonth(today.getMonth());
-      } else if (value == "yesterday") {
-        dateObj.setDate(today.getDate() - 1);
-        dateObj.setMonth(today.getMonth());
-      } else if (value == "past3Days") {
-        dateObj.setDate(today.getDate() - 2);
-        dateObj.setMonth(today.getMonth());
-      } else if (value == "thisMonth") {
-        dateObj.setMonth(today.getMonth());
-        dateObj.setDate(today.getDate() - 30);
-      } else if (value == "thisWeek") {
-        dateObj.setDate(today.getDate() - 6);
-        dateObj.setMonth(today.getMonth());
+    if (value !== "custom" && value !== "allTime") {
+      const now = new Date(Date.now());
+      if (value === "today") {
+        startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        endDate = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate() + 1
+        );
+      } else if (value === "yesterday") {
+        startDate = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate() - 1
+        );
+        endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      } else if (value === "past3Days") {
+        startDate = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate() - 3
+        );
+        endDate = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate() + 1
+        );
+      } else if (value === "thisMonth") {
+        startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+        endDate = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate() + 1
+        );
+      } else if (value === "thisWeek") {
+        startDate = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate() - now.getDay()
+        );
+        endDate = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate() + 1
+        );
       }
-      enddate = formatDate(today);
-      startdate = formatDate(dateObj);
-    }
-    if (value == "allTime") {
+
+      enddate = formatDate(endDate);
+      startdate = formatDate(startDate);
+    } else if (value === "allTime") {
       startdate = "";
       enddate = "";
     }
@@ -85,6 +110,79 @@
     ddToggler = !ddToggler;
   }
 </script>
+
+<div class="super-container">
+  <Navbar
+    on:changeStartDate={changeStartDate}
+    on:changeEndDate={changeEndDate}
+    on:dropDown={toggleDropDown}
+    {button_content}
+  />
+  {#if ddToggler}
+    <div class="kz-dropdown">
+      <ul>
+        <li role="button" on:click={() => datesChanged("allTime")}>All Time</li>
+        <li role="button" on:click={() => datesChanged("today")}>Today</li>
+        <li role="button" on:click={() => datesChanged("past3Days")}>
+          Last 3 days
+        </li>
+        <li role="button" on:click={() => datesChanged("thisWeek")}>
+          This Week
+        </li>
+        <li role="button" on:click={() => datesChanged("thisMonth")}>
+          This Month
+        </li>
+        <li role="button" on:click={() => datesChanged("yesterday")}>
+          Yesterday
+        </li>
+        <li role="button" on:click={() => datesChanged("custom")}>Custom</li>
+      </ul>
+    </div>
+  {/if}
+  {#if data}
+    {#if data.status === 429}
+      <p class="text-center no-data error-message">
+        Our systems believe you are on to something bad so they have temporarily
+        blocked you. Please try again in a while.
+      </p>
+    {:else if data.status === 400}
+      <p class="text-center no-data error-message">
+        We went to the moon and back, but could not find any more data.
+      </p>
+    {:else if data.status === 404}
+      <p class="text-center no-data error-message">
+        Something has gone wrong. The link is broken, or the world is ending.
+        Either way, we're investigating the cause.
+      </p>
+    {:else}
+      <div class="header">
+        <HeroTag shortCode={data.shortCode} />
+        <UpperRow {data} />
+        <div class="row">
+          <div class="col-md-6">
+            <SmallBox analyticsData={data.reports[0]} heading={"sources"} />
+          </div>
+          <div class="col-md-6">
+            <SmallBox analyticsData={data.reports[1]} heading={"city"} />
+          </div>
+        </div>
+        <BrowserBox {data} />
+        {#if data.reports.length <= 0}
+          <div class="text-center no-data">
+            We went to the moon and back, but could not find any more data.
+          </div>
+        {/if}
+      </div>
+    {/if}
+  {:else}
+    <p class="text-center no-data error-message">
+      Computing the secret to life, the universe, and everything...
+    </p>
+  {/if}
+  <div class="footer-container">
+    <Footer />
+  </div>
+</div>
 
 <style>
   .super-container {
@@ -193,76 +291,3 @@
     }
   }
 </style>
-
-<div class="super-container">
-  <Navbar
-    on:changeStartDate={changeStartDate}
-    on:changeEndDate={changeEndDate}
-    on:dropDown={toggleDropDown}
-    {button_content} />
-  {#if ddToggler}
-    <div class="kz-dropdown">
-      <ul>
-        <li role="button" on:click={() => datesChanged('allTime')}>All Time</li>
-        <li role="button" on:click={() => datesChanged('today')}>Today</li>
-        <li role="button" on:click={() => datesChanged('past3Days')}>
-          Last 3 days
-        </li>
-        <li role="button" on:click={() => datesChanged('thisWeek')}>
-          This Week
-        </li>
-        <li role="button" on:click={() => datesChanged('thisMonth')}>
-          This Month
-        </li>
-        <li role="button" on:click={() => datesChanged('yesterday')}>
-          Yesterday
-        </li>
-        <li role="button" on:click={() => datesChanged('custom')}>Custom</li>
-      </ul>
-    </div>
-  {/if}
-  {#if data}
-    {#if data.status === 429}
-      <p class="text-center no-data error-message">
-        Our systems believe you are on to something bad so they have temporarily
-        blocked you. Please try again in a while.
-      </p>
-    {:else if data.status === 400}
-      <p class="text-center no-data error-message">
-        We went to the moon and back, but could not find any more data.
-      </p>
-    {:else if data.status === 404}
-      <p class="text-center no-data error-message">
-        Something has gone wrong. The link is broken, or the world is ending.
-        Either way, we're investigating the cause.
-      </p>
-    {:else}
-      <div class="header">
-        <HeroTag shortCode={data.shortCode} />
-        <UpperRow {data} />
-        <div class="row">
-          <div class="col-md-6">
-            <SmallBox analyticsData={data.reports[0]} heading={'sources'} />
-          </div>
-          <div class="col-md-6">
-            <SmallBox analyticsData={data.reports[1]} heading={'city'} />
-          </div>
-        </div>
-        <BrowserBox {data} />
-        {#if data.reports.length <= 0}
-          <div class="text-center no-data">
-            We went to the moon and back, but could not find any more data.
-          </div>
-        {/if}
-      </div>
-    {/if}
-  {:else}
-    <p class="text-center no-data error-message">
-      Computing the secret to life, the universe, and everything...
-    </p>
-  {/if}
-  <div class="footer-container">
-    <Footer />
-  </div>
-
-</div>

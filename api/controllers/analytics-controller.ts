@@ -34,6 +34,8 @@ export const fetchAnalytics = async (
       throw 404;
     }
 
+    console.log(startDate, endDate);
+
     const startDateTs = startDate
       ? new Date(startDate).getTime()
       : result.timestamp;
@@ -68,7 +70,7 @@ export const fetchAnalytics = async (
       ])
       .toArray();
 
-    var clicks = 0;
+    let clicks = 0;
     if (clicksArray[0] && clicksArray[0].clicks) {
       clicks = clicksArray[0].clicks as number;
     }
