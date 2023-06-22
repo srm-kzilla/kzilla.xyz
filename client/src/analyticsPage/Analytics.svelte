@@ -40,12 +40,13 @@
     if (value !== "custom" && value !== "allTime") {
       const now = new Date(Date.now());
       if (value === "today") {
-        startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // Today's date
         endDate = new Date(
           now.getFullYear(),
           now.getMonth(),
           now.getDate() + 1
-        );
+        ); // Tomorrow's date
+        // Doing this will get everything from today 12:00 AM to tomorrow 12:00 AM (or today 11:59 PM)
       } else if (value === "yesterday") {
         startDate = new Date(
           now.getFullYear(),
