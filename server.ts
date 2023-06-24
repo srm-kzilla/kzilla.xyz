@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { config } from "dotenv";
 import { mw } from "request-ip";
+import { catchAllRoutes } from "./api/controllers/link-controller";
 import { Constants, APIEndpoints } from "./api/constants";
 import linksRoute, { fetchLink } from "./api/routes/link-routes";
 import analyticsRoutes from "./api/routes/analytics-routes";
@@ -98,8 +99,10 @@ class Server {
       webhookRoutes
     );
 
-    this.app.post("*", recaptchaMiddleware);
-    this.app.put("*", recaptchaMiddleware);
+    if (Constants.NODE_ENV !== "development") {
+      this.app.post("*", recaptchaMiddleware);
+      this.app.put("*", recaptchaMiddleware);
+    }
 
     this.app.get(APIEndpoints.Links.GET_LINK, apiLimiter, fetchLink);
 
@@ -129,12 +132,17 @@ class Server {
       "/me",
       express.static(path.join(__dirname, "..", "client", "public"))
     );
+
+    this.app.all(
+      "*", catchAllRoutes
+
+    )
   }
 
   /**
    * Mounts secured routes into the Express instance
    */
-  private mountSecuredRoutes() {}
+  private mountSecuredRoutes() { }
 
   /**
    * Establish a connection with the database

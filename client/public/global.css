@@ -45,13 +45,14 @@
 
 button {
   border-style: none;
-  font-family: uniSansHeavy !important;
+  font-family: UniSansHeavy, sans-serif !important;
 }
 
 a:hover {
   color: #ffffff;
   text-decoration: none !important;
 }
+
 ::selection {
   background-color: var(--green);
   color: var(--white);
