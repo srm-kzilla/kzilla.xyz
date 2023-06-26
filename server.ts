@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import cookieParser from "cookie-parser";
@@ -45,7 +44,8 @@ class Server {
     this.app.use(cors());
     this.app.use(express.static("public"));
     this.app.use(helmet());
-    this.app.use(bodyParser.json());
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({extended: true}))
     this.app.use(cookieParser());
     this.app.use(mw());
 
