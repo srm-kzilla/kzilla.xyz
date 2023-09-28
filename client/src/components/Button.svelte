@@ -38,15 +38,18 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 20px;
+    padding: 16px 40px;
+  }
+
+  @media (max-width: 768px) {
+    .linker {
+      padding:20px 24px;
+    }
   }
   
   .linker:hover {
     text-decoration: none !important;
     color: #ffffff;
-  }
-  .spinner-border {
-    margin-top: 2.5vh;
   }
 </style>
 
