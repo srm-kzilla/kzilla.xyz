@@ -39,17 +39,29 @@
     align-items: center;
     gap: 10px;
     padding: 16px 40px;
-  }
-
-  @media (max-width: 768px) {
-    .linker {
-      padding:20px 24px;
-    }
+    width: 12em;
+    height: 4em;
   }
   
   .linker:hover {
     text-decoration: none !important;
     color: #ffffff;
+  }
+
+  @media (max-width: 1000px) {
+    .linker {
+      width: 9em;
+    }
+  }
+  @media (max-width: 760px) {
+    .linker {
+      width: 7em;
+    }
+  }
+  @media (max-width: 470px) {
+    .linker {
+      width: 8em;
+    }
   }
 </style>
 
