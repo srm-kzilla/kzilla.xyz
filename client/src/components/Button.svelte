@@ -32,6 +32,7 @@
     text-align: center;
     color: #ffffff;
     background-color: #000000;
+    white-space: nowrap;
     text-transform: uppercase;
     border-radius: 12px;
     display: flex;
@@ -60,7 +61,7 @@
   }
   @media (max-width: 470px) {
     .linker {
-      width: 8em;
+      width: 9em;
     }
   }
 </style>
