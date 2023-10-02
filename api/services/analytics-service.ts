@@ -100,7 +100,7 @@ export class AnalyticsService {
     });
 
     if (results.data.reports) {
-      return readableReports(results.data.reports, clicks);
+      return readableReports(results.data.reports, clicks, shortCode);
     }
   }
 
