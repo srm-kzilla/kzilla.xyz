@@ -3,6 +3,17 @@ export const API = {
   SHRINK_URL: "/links",
   FETCH_ANALYTICS: "/analytics/",
   MY_LINKS: "/links/me",
-  KZILLA_URL: "kzilla.xyz/",
-  ANALYTICS_URL: "kzilla.xyz/analytics/",
+  KZILLA_URL: process.env.SVELTE_APP_DOMAIN_URL,
+  ANALYTICS_URL: `${process.env.SVELTE_APP_DOMAIN_URL}analytics/`,
+};
+export const toastSuccess = {
+  theme: {
+    "--toastBarBackground": "#54a870",
+  },
+};
+
+export const toastFail = {
+  theme: {
+    "--toastBarBackground": "#F0634D",
+  },
 };

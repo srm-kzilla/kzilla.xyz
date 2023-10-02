@@ -8,7 +8,13 @@ export const createLinkSchema = Joi.object({
     .regex(
       /^(?:(http|https|ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]%@!\$&'\(\)\*\+,;=.]+$/
     )
-    .required(),
+    .required()
+    .trim(),
+  customCode: Joi.string()
+    .regex(
+      /^(?=.*[A-Za-z])[^-_][-\w]{3,25}$/
+    )
+    .trim()
 });
 
 /**

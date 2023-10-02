@@ -1,8 +1,11 @@
+import { config } from "dotenv";
+config();
 /**
  * Defines Constants for API
  */
 export const Constants = {
-  PORT: process.env.PORT || 3000,
+  NODE_ENV: process.env.NODE_ENV,
+  PORT: process.env.PORT || 4500,
   TTLSeconds: Number(process.env.TTL_SECONDS) || 60 * 60 * 6,
 };
 
@@ -15,7 +18,7 @@ export const APIEndpoints = {
     BASE_ENDPOINT: "/links",
     CREATE_LINK: "/",
     UPDATE_LINK: "/",
-    GET_LINK: "/:shortCode([A-Za-z]{5})",
+    GET_LINK: "/:shortCode([A-Za-z0-9_-]{4,25})",
     MY_LINKS: "/me",
     FLUSH_LINKS: "/flush",
   },
