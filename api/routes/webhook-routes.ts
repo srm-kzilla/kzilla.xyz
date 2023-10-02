@@ -17,12 +17,10 @@ router.post(
     }
 
     try {
-      const result = await createLink(req.body.longUrl, req.clientIp);
+      const result = await createLink(req.body.longUrl, req.clientIp, req.body.customCode);
       return res.status(201).json(result);
     } catch (error) {
-      if (error === 500) {
-        res.status(500).send();
-      }
+      res.status(error.code).json(error);
     }
   }
 );
