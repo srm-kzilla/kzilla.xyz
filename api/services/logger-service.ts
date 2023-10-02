@@ -11,7 +11,12 @@ export class LoggerService {
     this.LOGGER = pino(
       process.env.NODE_ENV === "development"
         ? {
-            prettyPrint: { colorize: true },
+            transport: {
+              target: "pino-pretty",
+              options: {
+                colorize: true,
+              },
+            },
           }
         : {}
     );

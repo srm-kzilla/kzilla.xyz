@@ -1,6 +1,6 @@
 import { API } from "../constants";
 
-export async function shrinkUrlService(token, longUrl) {
+export async function shrinkUrlService(token, longUrl, customCode) {
   const data = await fetch(API.BASE_URL + API.SHRINK_URL, {
     method: "POST",
     headers: {
@@ -9,6 +9,7 @@ export async function shrinkUrlService(token, longUrl) {
     },
     body: JSON.stringify({
       longUrl,
+      customCode
     }),
   });
 
