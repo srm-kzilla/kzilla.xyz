@@ -1,9 +1,14 @@
+import { config as configDotenv } from "dotenv";
+import includeEnv from "svelte-environment-variables";
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import path from "path";
 
+configDotenv({ path: path.resolve(__dirname, "../.env") });
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
@@ -24,7 +29,10 @@ export default {
 				css.write('public/build/bundle.css');
 			}
 		}),
-
+		//Add environment variables to client
+		replace({
+		...includeEnv(),
+		}),
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
 		// some cases you'll need additional configuration -
