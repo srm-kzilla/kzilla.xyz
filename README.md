@@ -34,6 +34,12 @@ Install dependencies
 $ yarn
 ```
 
+Build server
+
+```
+$ yarn build
+```
+
 Start the server
 
 ```
@@ -51,8 +57,10 @@ Please read `Contributing.md` for details on our code of conduct, and the proces
 ## Shout outs 💥
 
 | <p align="center">![Ishan Chhabra](https://github.com/ishan-chhabra.png?size=128)<br>[Ishan Chhabra](https://ishanchhabra.com)</p> | <p align="center">![Sriram Kailasam](https://github.com/sriram-kailasam.png?size=128)<br>[Sriram Kailasam](https://github.com/sriram-kailasam)</p> | <p align="center">![Harsh Goel](https://github.com/harshgoel05.png?size=128)<br>[Harsh Goel](https://github.com/harshgoel05)</p> | <p align="center">![Ritvick V. Pandey](https://github.com/Ritvick-me.png?size=128)<br>[Ritvick V. Pandey](https://github.com/Ritvick-me)</p> |
-| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 
+| <p align="center">![Mohammed Farhaan](https://github.com/mdfarhaan.png?size=128)<br>[Mohammed Farhaan](https://github.com/mdfarhaan)</p> | <p align="center">![Mohamed Sami](https://github.com/sm-sami.png?size=128)<br>[Mohamed Sami](https://github.com/sm-sami)</p> | <p align="center">![Utkarsh](https://github.com/Utkarsh575.png?size=128)<br>[Utkarsh](https://github.com/Utkarsh575)</p> | <p align="center">![Sreyom Sresaan](https://github.com/sreyom31.png?size=128)<br>[Sreyom Sresaan](https://github.com/sreyom31)</p> |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 
 ## Forking this repo 🚨
 

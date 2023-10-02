@@ -68,7 +68,7 @@ export const fetchAnalytics = async (
       ])
       .toArray();
 
-    var clicks = 0;
+    let clicks = 0;
     if (clicksArray[0] && clicksArray[0].clicks) {
       clicks = clicksArray[0].clicks as number;
     }
