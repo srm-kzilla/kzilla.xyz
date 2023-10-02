@@ -23,22 +23,28 @@
 </script>
 
 <style>
+  .super-container {
+    position: relative;
+    min-height: 96vh;
+  }
+  .footer-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
   .kz-main {
     position: relative;
-    padding: 0px;
+    padding: 0;
   }
 </style>
 
-<Navbar {button_content}/>
-
-
-<div class="container-fluid kz-main">
-
-  <HeroTag />
-
-  <FormDesign on:submission={myLinksFetcher}/>
-  <br />
-
+<div class="super-container">
+  <Navbar {button_content}/>
+  <div class="container-fluid kz-main">
+    <HeroTag />
+    <FormDesign on:submission={myLinksFetcher}/>
+  </div>
+  <div class="footer-container">
+    <Footer />
+  </div>
 </div>
-
-<Footer />

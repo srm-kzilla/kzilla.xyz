@@ -32,7 +32,7 @@ router.post(
     }
 
     try {
-      const result = await createLink(req.body.longUrl, req.clientIp);
+      const result = await createLink(req.body.longUrl, req.clientIp, req.body.customCode);
       let linkIds = Array.isArray(req.cookies.linkIds)
         ? req.cookies.linkIds
         : [];
@@ -49,9 +49,7 @@ router.post(
       console.log(req.cookies);
       return res.status(201).json(result);
     } catch (error) {
-      if (error === 500) {
-        res.status(500).send();
-      }
+        res.status(error.code).send(error);
     }
   }
 );

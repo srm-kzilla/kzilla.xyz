@@ -1,5 +1,5 @@
 <script>
-  export let analyticsId;
+  export let shortCode;
   import { API } from "../constants";
 </script>
 
@@ -53,7 +53,7 @@
   </div>
   <div class="col-md-6">
     <div class="hero-div">
-      <h5 class="hero-url">{API.KZILLA_URL}{analyticsId}</h5>
+      <h5 class="hero-url">{API.KZILLA_URL}{shortCode}</h5>
     </div>
 
   </div>
