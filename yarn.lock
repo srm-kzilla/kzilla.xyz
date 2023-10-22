@@ -145,10 +145,10 @@
     "@types/qs" "*"
     "@types/serve-static" "*"
 
-"@types/hapi__joi@^17.1.4":
-  version "17.1.4"
-  resolved "https://registry.npmjs.org/@types/hapi__joi/-/hapi__joi-17.1.4.tgz"
-  integrity sha512-gqY3TeTyZvnyNhM02HgyCIoGIWsTFMnuzMfnD8evTsr1KIfueGJaz+QC77j+dFvhZ5cJArUNjDRHUjPxNohzGA==
+"@types/hapi__joi@^17.1.12":
+  version "17.1.12"
+  resolved "https://registry.yarnpkg.com/@types/hapi__joi/-/hapi__joi-17.1.12.tgz#fc9911e568b5219ccf5ff95f4186dd1bc54c4c32"
+  integrity sha512-a7ao2UWX6q9DMbQgP7RlQGkE6fUBbh0Qv9Cs8DAQiGyOeFtGiJ4GtgKzsscUb1Syw4zSV3zC9GDfNOMOKxW5jg==
 
 "@types/helmet@^0.0.47":
   version "0.0.47"
