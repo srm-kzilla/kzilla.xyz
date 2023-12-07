@@ -30,6 +30,13 @@ export const APIEndpoints = {
     BASE_ENDPOINT: "/webhook",
     CREATE_LINK: "/link",
   },
+  App: {
+    BASE_ENDPOINT: "/app",
+    MY_LINKS: "/me",
+    CREATE: "/",
+    UPDATE: "/",
+    DISABLE: "/disable",
+  }
 };
 
 /**

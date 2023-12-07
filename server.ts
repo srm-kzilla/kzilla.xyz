@@ -10,6 +10,7 @@ import { Constants, APIEndpoints } from "./api/constants";
 import linksRoute, { fetchLink } from "./api/routes/link-routes";
 import analyticsRoutes from "./api/routes/analytics-routes";
 import webhookRoutes from "./api/routes/webhook-routes";
+import appRoutes from "./api/routes/app-routes";
 import { AnalyticsService } from "./api/services/analytics-service";
 import { DatabaseService } from "./api/services/database-service";
 import { recaptchaMiddleware } from "./api/middlewares/recaptcha-middleware";
@@ -45,7 +46,7 @@ class Server {
     this.app.use(express.static("public"));
     this.app.use(helmet());
     this.app.use(express.json());
-    this.app.use(express.urlencoded({extended: true}))
+    this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
     this.app.use(mw());
 
@@ -93,10 +94,22 @@ class Server {
       message: page429,
     });
 
+    const appLimiter = rateLimit({
+      windowMs: 1 * 60 * 1000,
+      max: 40,
+      message: "Too many requests from this IP, please try again later.",
+    });
+
     this.app.use(
       `${APIEndpoints.BASE}${APIEndpoints.Webhook.BASE_ENDPOINT}`,
       apiLimiter,
       webhookRoutes
+    );
+
+    this.app.use(
+      `${APIEndpoints.BASE}${APIEndpoints.App.BASE_ENDPOINT}`,
+      appLimiter,
+      appRoutes
     );
 
     if (Constants.NODE_ENV !== "development") {
@@ -133,16 +146,13 @@ class Server {
       express.static(path.join(__dirname, "..", "client", "public"))
     );
 
-    this.app.all(
-      "*", catchAllRoutes
-
-    )
+    this.app.all("*", catchAllRoutes);
   }
 
   /**
    * Mounts secured routes into the Express instance
    */
-  private mountSecuredRoutes() { }
+  private mountSecuredRoutes() {}
 
   /**
    * Establish a connection with the database
