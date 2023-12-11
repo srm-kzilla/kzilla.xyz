@@ -1,16 +1,26 @@
-import { Router, Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import { APIEndpoints } from "../constants";
 import {
   createLink,
   fetchMyLinks,
   updateLink,
 } from "../controllers/link-controller";
-import { createLinkSchema, updateLinkSchema } from "../models/joi-schemas";
+import {
+  createLinkSchemaApp,
+  getLinkSchema,
+  updateLinkSchema,
+} from "../models/joi-schemas";
 
 const router = Router();
+
 router.get(APIEndpoints.App.MY_LINKS, async (req: Request, res: Response) => {
-  if (!req.body.linkIds || req.body.linkIds.length === 0)
-    return res.status(404).send();
+  try {
+    await getLinkSchema.validateAsync(req.body);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+
+  if (req.body.linkIds.length === 0) return res.status(200).json({ links: [] });
 
   try {
     const result = await fetchMyLinks(req.body.linkIds);
@@ -25,7 +35,7 @@ router.get(APIEndpoints.App.MY_LINKS, async (req: Request, res: Response) => {
 
 router.post(APIEndpoints.App.CREATE, async (req: Request, res: Response) => {
   try {
-    await createLinkSchema.validateAsync(req.body);
+    await createLinkSchemaApp.validateAsync(req.body);
   } catch (error) {
     return res.status(400).json(error);
   }
