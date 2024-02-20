@@ -11,7 +11,6 @@
   let dataset = [];
   onMount(async () => {
     dataset = (await fetchMyLinks()).links;
-    dataset = dataset.reverse();
     loading = false;
   });
 </script>
