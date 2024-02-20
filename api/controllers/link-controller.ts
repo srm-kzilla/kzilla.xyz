@@ -118,7 +118,7 @@ export const fetchLink = async (shortCode: string) => {
  */
 export const fetchMyLinks = async (linkIds: string[]) => {
   try {
-    let result = await DatabaseService.getInstance()
+    const result = await DatabaseService.getInstance()
       .database!!.collection(Collections.LINKS)
       .find({ linkId: { $in: linkIds } })
       .project({
