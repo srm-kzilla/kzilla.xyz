@@ -23,8 +23,9 @@ export const createLink = async (
   const analyticsCode = generateRandomCode(5);
   const linkId = generateRandomCode(12);
 
-  const database = await DatabaseService.getInstance()
-    .database!!.collection(Collections.LINKS)
+  const database = await DatabaseService.getInstance().database!!.collection(
+    Collections.LINKS
+  );
 
   let result = await database
     .find({
@@ -38,11 +39,7 @@ export const createLink = async (
 
   if (result.length !== 0) {
     if (!customCode) return createLink(longUrl, ipAddress);
-    result = await database
-      .find(
-        { shortCode: shortCode }
-      )
-      .toArray();
+    result = await database.find({ shortCode: shortCode }).toArray();
 
     if (result.length !== 0) throw CUSTOM_CODE_ALREADY_EXISTS;
     return createLink(longUrl, ipAddress, customCode);
@@ -102,10 +99,11 @@ export const fetchLink = async (shortCode: string) => {
   }
 
   try {
-    if (result.longUrl.startsWith("https://"))
+    if (result.longUrl.startsWith("https://")) {
       result.meta = await metaget.fetch(result.longUrl);
-    else
+    } else {
       result.meta = await metaget.fetch("https://" + result.longUrl);
+    }
   } catch (e) {
     result.meta = {};
   }
@@ -134,7 +132,9 @@ export const fetchMyLinks = async (linkIds: string[]) => {
         linkId: 1,
         timestamp: 1,
       })
+      .sort({ timestamp: -1 })
       .toArray();
+
     if (result.length === 0) throw 404;
     return result;
   } catch (error) {
@@ -211,4 +211,4 @@ export const updateLink = async (
 export const catchAllRoutes = async (req: Request, res: Response) => {
   const html = await generatePageNotFound();
   res.status(404).send(html as string);
-}
+};
