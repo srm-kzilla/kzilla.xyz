@@ -41,7 +41,7 @@
     "googleapis": "^58.0.0",
     "helmet": "^4.0.0",
     "metaget": "^1.0.7",
-    "moment": "^2.27.0",
+    "moment": "^2.29.1",
     "mongodb": "^3.5.6",
     "node-cache": "^5.1.2",
     "pino": "^8.0.0",
