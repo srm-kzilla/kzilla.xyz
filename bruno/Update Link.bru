@@ -1,0 +1,19 @@
+meta {
+  name: Update Link
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{BaseUrl}}/links
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "linkId": "L25mXY2nG5qq",
+    "longUrl": "https://kzilla.xyz/",
+    "enabled": true
+  }
+}

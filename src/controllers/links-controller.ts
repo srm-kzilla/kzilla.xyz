@@ -1,11 +1,12 @@
 import { getConnInfo } from '@hono/node-server/conninfo';
 import type { Context } from 'hono';
 import { getCookie, setCookie } from 'hono/cookie';
-import { createLinkSchema } from '../models/links';
+import { createLinkSchema, updateLinkSchema } from '../models/links';
 import {
   createLink,
   fetchLink,
   fetchMultipleLinks,
+  updateLink,
 } from '../services/link-service';
 import cache from '../utils/cache';
 import { BackendError } from '../utils/errors';
@@ -48,11 +49,11 @@ export async function handleCreateLink(c: Context) {
   await createLink(longUrl, shortCode, analyticsCode, linkId, ipAddress);
   (await cache()).set(shortCode, longUrl, 60 * 2);
 
-  // TODO: Add to cookie
   setCookie(c, 'linkIds', JSON.stringify(myLinksArray), {
     sameSite: 'strict',
     httpOnly: true,
   });
+
   return c.json({ success: true, message: 'Created Successfully' });
 }
 
@@ -77,9 +78,6 @@ export async function handleFetchMyLinks(c: Context) {
 
 export async function handleFetchLink(c: Context) {
   const shortCode = c.req.param('shortCode');
-  const myLinksCookie = getCookie(c, 'linkIds') || '[]';
-  const myLinksArray = JSON.parse(myLinksCookie);
-  console.log(myLinksArray);
 
   let redirectUrl = (await cache()).get(shortCode);
 
@@ -102,4 +100,24 @@ export async function handleFetchLink(c: Context) {
     success: true,
     message: redirectUrl,
   });
+}
+
+export async function handleUpdateLink(c: Context) {
+  const reqBody = await c.req.json();
+  const myLinksCookie = getCookie(c, 'linkIds') || '[]';
+  const myLinksArray = JSON.parse(myLinksCookie);
+
+  const { linkId, longUrl, enabled } =
+    await updateLinkSchema.parseAsync(reqBody);
+
+  const shortCode = await updateLink(linkId, longUrl, enabled);
+  if (shortCode) {
+    (await cache()).set(shortCode, longUrl, 60 * 2);
+  }
+
+  setCookie(c, 'linkIds', JSON.stringify(myLinksArray), {
+    sameSite: 'strict',
+    httpOnly: true,
+  });
+  return c.json({ success: true, message: 'Updated Successfully' });
 }

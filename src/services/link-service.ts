@@ -1,3 +1,4 @@
+import type { WithId } from 'mongodb';
 import type { LinkSchemaType } from '../models/links';
 import db from '../utils/db';
 import { BackendError } from '../utils/errors';
@@ -48,7 +49,7 @@ export async function createLink(
   try {
     const linksCollection = (await db()).collection<LinkSchemaType>('links');
 
-    return await linksCollection.insertOne({
+    await linksCollection.insertOne({
       linkId,
       longUrl,
       customCode: shortCode,
@@ -59,6 +60,7 @@ export async function createLink(
       timestamp: new Date(),
       logs: [],
     });
+    return;
   } catch (err) {
     throw new BackendError('INTERNAL_ERROR', {
       message: 'Error while fetch a link',
@@ -67,7 +69,9 @@ export async function createLink(
   }
 }
 
-export async function fetchMultipleLinks(linkIds: string[]) {
+export async function fetchMultipleLinks(
+  linkIds: string[],
+): Promise<LinkSchemaType[]> {
   try {
     const linksCollection = (await db()).collection<LinkSchemaType>('links');
 
@@ -91,4 +95,43 @@ export async function fetchMultipleLinks(linkIds: string[]) {
       details: err,
     });
   }
+}
+
+export async function updateLink(
+  linkId: string,
+  longUrl: string,
+  enabled: boolean,
+) {
+  let result: WithId<LinkSchemaType> | null = null;
+  const linksCollection = (await db()).collection<LinkSchemaType>('links');
+
+  try {
+    result = await linksCollection.findOneAndUpdate(
+      {
+        linkId: linkId,
+      },
+      {
+        $set: {
+          longUrl: longUrl,
+          enabled: enabled,
+        },
+      },
+      {
+        returnDocument: 'after',
+      },
+    );
+  } catch (err) {
+    throw new BackendError('INTERNAL_ERROR', {
+      message: 'Error while updating the link',
+      details: err,
+    });
+  }
+
+  if (!result) {
+    throw new BackendError('NOT_FOUND', {
+      message: 'Link not found',
+    });
+  }
+
+  return result.customCode;
 }

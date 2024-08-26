@@ -25,6 +25,12 @@ export const createLinkSchema = linkSchema.pick({
   customCode: true,
 });
 
+export const updateLinkSchema = linkSchema.pick({
+  linkId: true,
+  longUrl: true,
+  enabled: true,
+});
+
 export const myLinksSchema = z.array(z.string().min(10));
 
 export type LinkSchemaType = z.infer<typeof linkSchema>;
