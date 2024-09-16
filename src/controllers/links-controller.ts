@@ -9,6 +9,7 @@ import {
   updateLink,
 } from '../services/link-service';
 import cache from '../utils/cache';
+import ENV from '../utils/env';
 import { BackendError } from '../utils/errors';
 import { generateRandomCode } from '../utils/links';
 
@@ -47,7 +48,7 @@ export async function handleCreateLink(c: Context) {
 
   myLinksArray.push(linkId);
   await createLink(longUrl, shortCode, analyticsCode, linkId, ipAddress);
-  (await cache()).set(shortCode, longUrl, 60 * 2);
+  (await cache()).set(shortCode, longUrl, ENV.TTL_SECONDS);
 
   setCookie(c, 'linkIds', JSON.stringify(myLinksArray), {
     sameSite: 'strict',
@@ -93,6 +94,7 @@ export async function handleFetchLink(c: Context) {
       });
     }
 
+    (await cache()).set(shortCode, link.longUrl, ENV.TTL_SECONDS);
     redirectUrl = link.longUrl;
   }
 
@@ -112,7 +114,7 @@ export async function handleUpdateLink(c: Context) {
 
   const shortCode = await updateLink(linkId, longUrl, enabled);
   if (shortCode) {
-    (await cache()).set(shortCode, longUrl, 60 * 2);
+    (await cache()).set(shortCode, longUrl, ENV.TTL_SECONDS);
   }
 
   setCookie(c, 'linkIds', JSON.stringify(myLinksArray), {
@@ -120,4 +122,17 @@ export async function handleUpdateLink(c: Context) {
     httpOnly: true,
   });
   return c.json({ success: true, message: 'Updated Successfully' });
+}
+
+export async function handleFlushLinks(c: Context) {
+  const flushToken = c.req.header('Authorization');
+
+  if (flushToken !== ENV.FLUSH_CODE) {
+    throw new BackendError('UNAUTHORIZED', {
+      message: 'Unauthorized',
+      details: 'You are not authorized to perform this action',
+    });
+  }
+
+  (await cache()).flushAll();
 }

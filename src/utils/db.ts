@@ -4,7 +4,7 @@ import config from './env';
 let db: Db;
 
 async function initializeClient(): Promise<Db> {
-  const client = await MongoClient.connect(config.MONGODB_URI);
+  const client = await MongoClient.connect(config.DB_URL);
 
   return client.db();
 }
