@@ -119,10 +119,10 @@
   resolved "https://registry.npmjs.org/@types/ejs/-/ejs-3.0.4.tgz"
   integrity sha512-ZxnwyBGO4KX/82AsFHTX82eMw0PsoBcIngEat+zx0y+3yxoNDJucAihg9nAcrc+g4Cwiv/4WcWsX4oiy0ySrRQ==
 
-"@types/express-rate-limit@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.npmjs.org/@types/express-rate-limit/-/express-rate-limit-5.0.0.tgz"
-  integrity sha512-tVRtvshGIYTNiUET3XJaONn1Li0V9mhi9Tb23Kf3rJ19hsgbCywkZBOf5Xhd9OXBO0Ssw7B+qAHL77xe/TiqUw==
+"@types/express-rate-limit@^5.1.3":
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/@types/express-rate-limit/-/express-rate-limit-5.1.3.tgz#79f2ca40d90455a5798da6f8e06d8a3d35f4a1d6"
+  integrity sha512-H+TYy3K53uPU2TqPGFYaiWc2xJV6+bIFkDd/Ma2/h67Pa6ARk9kWE0p/K9OH1Okm0et9Sfm66fmXoAxsH2PHXg==
   dependencies:
     "@types/express" "*"
 
