@@ -1,7 +1,8 @@
-.DS_STORE
+.DS_Store
 .env
 .vscode
 .yarn-integrity
 build
 node_modules
 client/public/build
+/target
