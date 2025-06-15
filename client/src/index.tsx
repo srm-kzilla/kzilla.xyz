@@ -1,9 +1,20 @@
-/* @refresh reload */
-import { render } from 'solid-js/web';
+import "virtual:uno.css";
+import { render } from "solid-js/web";
+import { Route, Router } from "@solidjs/router";
+import App from "./pages/Home";
+import "./index.css";
 
-import './index.css';
-import App from './App';
+const wrapper = document.getElementById("app");
 
-const root = document.getElementById('root') as HTMLElement;
+if (!wrapper) {
+  throw new Error("Wrapper div not found");
+}
 
-render(() => <App />, root);
+render(
+  () => (
+    <Router>
+      <Route path="/" component={App} />
+    </Router>
+  ),
+  wrapper,
+);

@@ -1,0 +1,93 @@
+.text-roller {
+    animation: roll 12s ease-in-out infinite;
+}
+
+@keyframes roll {
+    0%,
+    16.67% {
+        transform: translateY(-12rem);
+    }
+    20%,
+    36.67% {
+        transform: translateY(-9rem);
+    }
+    40%,
+    56.67% {
+        transform: translateY(-6rem);
+    }
+    60%,
+    76.67% {
+        transform: translateY(-3rem);
+    }
+    80%,
+    96.67% {
+        transform: translateY(0rem);
+    }
+    100% {
+        transform: translateY(-12rem);
+    }
+}
+
+@media (min-width: 768px) {
+    @keyframes roll-md {
+        0%,
+        16.67% {
+            transform: translateY(-18rem);
+        }
+        20%,
+        36.67% {
+            transform: translateY(-13.5rem);
+        }
+        40%,
+        56.67% {
+            transform: translateY(-9rem);
+        }
+        60%,
+        76.67% {
+            transform: translateY(-4.5rem);
+        }
+        80%,
+        96.67% {
+            transform: translateY(0rem);
+        }
+        100% {
+            transform: translateY(-18rem);
+        }
+    }
+
+    .text-roller {
+        animation: roll-md 12s ease-in-out infinite;
+    }
+}
+
+@media (min-width: 1024px) {
+    @keyframes roll-lg {
+        0%,
+        16.67% {
+            transform: translateY(-24rem);
+        }
+        20%,
+        36.67% {
+            transform: translateY(-18rem);
+        }
+        40%,
+        56.67% {
+            transform: translateY(-12rem);
+        }
+        60%,
+        76.67% {
+            transform: translateY(-6rem);
+        }
+        80%,
+        96.67% {
+            transform: translateY(0rem);
+        }
+        100% {
+            transform: translateY(-24rem);
+        }
+    }
+
+    .text-roller {
+        animation: roll-lg 12s ease-in-out infinite;
+    }
+}
